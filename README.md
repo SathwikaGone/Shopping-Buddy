@@ -5,4 +5,5 @@ Sathwika Gone,
 Yaswanth Yarram, 
 Susritha Gade, 
 Sandeep Devineni, 
-Rakesh Avirineni
+Rakesh Avirineni,
+Mehar Choudhary Meenavilli
