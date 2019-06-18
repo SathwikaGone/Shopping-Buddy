@@ -1,7 +1,8 @@
 # Shopping-Buddy
 Team Members:
-Vennela Cheekoti
-Sathwika Gone
-Yaswanth Yarram
-Susritha Gade
-Sandeep Devineni
+Vennela Cheekoti, 
+Sathwika Gone, 
+Yaswanth Yarram, 
+Susritha Gade, 
+Sandeep Devineni, 
+Rakesh Avirineni
