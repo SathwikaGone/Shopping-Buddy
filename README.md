@@ -1,5 +1,5 @@
 # Shopping-Buddy
-Team Members:
+##Team Members
 Vennela Cheekoti, 
 Sathwika Gone, 
 Yaswanth Yarram, 
