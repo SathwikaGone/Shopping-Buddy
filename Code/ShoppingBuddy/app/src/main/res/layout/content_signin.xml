@@ -82,7 +82,7 @@
     <Button
         android:id="@+id/button2"
         android:layout_width="190dp"
-        android:layout_height="wrap_content"
+        android:layout_height="43dp"
         android:background="@color/design_default_color_primary"
         android:text="Sign In"
         android:textColor="@android:color/white"
