@@ -1,4 +1,5 @@
 # Shopping Buddy
+## Logo
 ## Team Members
 - Vennela Cheekoti
 - Sathwika Gone
