@@ -3,12 +3,15 @@ package com.example.shoppingbuddy;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -22,6 +25,8 @@ public class SigninActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     public Button btn;
     public Button btn1;
+    public EditText email;
+    public EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +36,8 @@ public class SigninActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
+        email=findViewById(R.id.editText3);
+        password=findViewById(R.id.editText7);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -54,6 +60,7 @@ public class SigninActivity extends AppCompatActivity
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loginAcc();
                 Intent i=new Intent(SigninActivity.this,Home.class);
                 Log.d("click","button clicked");
                 startActivity(i);
@@ -116,5 +123,17 @@ public class SigninActivity extends AppCompatActivity
 //        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 //        drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private void loginAcc(){
+        String em=email.getText().toString().trim();
+        String pwd=password.getText().toString().trim();
+        if(TextUtils.isEmpty(em)){
+            Toast.makeText(this,"Email should not be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(pwd)){
+            Toast.makeText(this,"password should not be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
     }
 }
