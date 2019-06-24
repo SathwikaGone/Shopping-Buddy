@@ -167,6 +167,18 @@ private void CreateAct(){
             Toast.makeText(this,"Re-Password should not be empty",Toast.LENGTH_LONG).show();
             return;
         }
+    firebaseAuth.createUserWithEmailAndPassword(em,pw).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(MainActivity.this,"Registered successfully",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this,"Could not register please try again",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+    );
         
     }
 }
