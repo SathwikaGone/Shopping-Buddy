@@ -36,13 +36,15 @@ public class MainActivity extends AppCompatActivity
     public EditText password;
     public EditText repwd;
 
-
+private ProgressDialog progressDialog;
+    private FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+firebaseAuth= FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -167,6 +169,8 @@ private void CreateAct(){
             Toast.makeText(this,"Re-Password should not be empty",Toast.LENGTH_LONG).show();
             return;
         }
+ progressDialog.setMessage("Registering user...");
+        progressDialog.show();
     firebaseAuth.createUserWithEmailAndPassword(em,pw).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
