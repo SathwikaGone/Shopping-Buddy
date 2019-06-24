@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "821667873987",
+    "firebase_url": "https://shoppingbuddy-57efd.firebaseio.com",
+    "project_id": "shoppingbuddy-57efd",
+    "storage_bucket": "shoppingbuddy-57efd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821667873987:android:bef5cfefaa2ab290",
+        "android_client_info": {
+          "package_name": "com.example.shoppingbuddy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "821667873987-fpr9473g1mkon1env6tgtsi2ksbkkver.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDr8vbZkxL0gGOrFwb0bDLRyi_hj5N8bvY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "821667873987-fpr9473g1mkon1env6tgtsi2ksbkkver.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
