@@ -140,5 +140,33 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
+private void CreateAct(){
+        String uname=username.getText().toString().trim();
+        String em=email.getText().toString().trim();
+        String pw=password.getText().toString().trim();
+        String repw= repwd.getText().toString().trim();
+        String phn=phno.getText().toString().trim();
+        int phone=Integer.parseInt(phno.getText().toString().trim());
+        if(TextUtils.isEmpty(uname)){
+            Toast.makeText(this,"User Name should not be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(em)){
+            Toast.makeText(this,"Email should not be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(phn)){
+            Toast.makeText(this,"Phone number should not be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(pw)){
+            Toast.makeText(this,"Password should not be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(em)){
+            Toast.makeText(this,"Re-Password should not be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
+        
+    }
 }
