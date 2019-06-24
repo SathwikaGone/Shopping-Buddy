@@ -68,7 +68,7 @@ firebaseAuth= FirebaseAuth.getInstance();
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // CreateAct();
+               CreateAct();
                 Intent i=new Intent(MainActivity.this,SigninActivity.class);
                 Log.d("click","button clicked");
                 startActivity(i);
