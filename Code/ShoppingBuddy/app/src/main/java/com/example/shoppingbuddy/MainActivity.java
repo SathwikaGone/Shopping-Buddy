@@ -165,8 +165,12 @@ private void CreateAct(){
             Toast.makeText(this,"Password should not be empty",Toast.LENGTH_LONG).show();
             return;
         }
-        if(TextUtils.isEmpty(em)){
+        if(TextUtils.isEmpty(repw)){
             Toast.makeText(this,"Re-Password should not be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(!pw.equals(repw)) {
+            Toast.makeText(this, "Password and Confirm Password does not match", Toast.LENGTH_LONG).show();
             return;
         }
  progressDialog.setMessage("Registering user...");
