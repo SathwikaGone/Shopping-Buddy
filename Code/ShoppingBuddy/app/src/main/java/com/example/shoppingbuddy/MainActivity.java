@@ -173,6 +173,10 @@ private void CreateAct(){
             Toast.makeText(this, "Password and Confirm Password does not match", Toast.LENGTH_LONG).show();
             return;
         }
+        if(pw.length() < 8){
+            Toast.makeText(this,"Passwod should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
+            return;
+        }
  progressDialog.setMessage("Registering user...");
         progressDialog.show();
     firebaseAuth.createUserWithEmailAndPassword(em,pw).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
