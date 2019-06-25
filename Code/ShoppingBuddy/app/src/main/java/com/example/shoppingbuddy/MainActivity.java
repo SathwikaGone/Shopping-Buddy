@@ -148,6 +148,7 @@ private void CreateAct(){
         String pw=password.getText().toString().trim();
         String repw= repwd.getText().toString().trim();
         String phn=phno.getText().toString().trim();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
         int phone=Integer.parseInt(phno.getText().toString().trim());
         if(TextUtils.isEmpty(uname)){
             Toast.makeText(this,"User Name should not be empty",Toast.LENGTH_LONG).show();
@@ -169,32 +170,30 @@ private void CreateAct(){
             Toast.makeText(this,"Re-Password should not be empty",Toast.LENGTH_LONG).show();
             return;
         }
-<<<<<<< HEAD
         //final EditText emailValidate = (EditText)findViewById(R.id.textMessage);
 
         //final TextView textView = (TextView)findViewById(R.id.text);
 
         //String email = emailValidate.getText().toString().trim();
 
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-
-// onClick of button perform this simplest code.
-        if (em.matches(emailPattern))
-        {
-            Toast.makeText(this,"valid email address",Toast.LENGTH_SHORT).show();
-            return;
-        }
-        else
-        {
-            Toast.makeText(this,"Invalid email address", Toast.LENGTH_SHORT).show();
-=======
         if(!pw.equals(repw)) {
             Toast.makeText(this, "Password and Confirm Password does not match", Toast.LENGTH_LONG).show();
             return;
         }
         if(pw.length() < 8){
             Toast.makeText(this,"Passwod should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
->>>>>>> 4afb4190f4eea6cdb3cd76932a54d2e0da1a7155
+            return;
+        }
+
+
+        // onClick of button perform this simplest code.
+        if (em.matches(emailPattern))
+        {
+            Toast.makeText(this,"valid email address",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else {
+            Toast.makeText(this, "Invalid email address", Toast.LENGTH_SHORT).show();
             return;
         }
  progressDialog.setMessage("Registering user...");
