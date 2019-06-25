@@ -1,5 +1,6 @@
 package com.example.shoppingbuddy;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -33,11 +34,16 @@ public class SigninActivity extends AppCompatActivity
     public EditText email;
     public EditText password;
     private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signin);
+
         firebaseAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
+
         Intent i=getIntent();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -67,9 +73,7 @@ public class SigninActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 loginAcc();
-                Intent i=new Intent(SigninActivity.this,Home.class);
-                Log.d("click","button clicked");
-                startActivity(i);
+
             }
         });
     }
@@ -141,6 +145,8 @@ public class SigninActivity extends AppCompatActivity
             Toast.makeText(this,"password should not be empty",Toast.LENGTH_LONG).show();
             return;
         }
+        progressDialog.setMessage(" Logging in...");
+        progressDialog.show();
         firebaseAuth.signInWithEmailAndPassword(em, pwd)
                 .addOnCompleteListener(SigninActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
