@@ -169,6 +169,25 @@ private void CreateAct(){
             Toast.makeText(this,"Re-Password should not be empty",Toast.LENGTH_LONG).show();
             return;
         }
+        //final EditText emailValidate = (EditText)findViewById(R.id.textMessage);
+
+        //final TextView textView = (TextView)findViewById(R.id.text);
+
+        //String email = emailValidate.getText().toString().trim();
+
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+// onClick of button perform this simplest code.
+        if (em.matches(emailPattern))
+        {
+            Toast.makeText(this,"valid email address",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        else
+        {
+            Toast.makeText(this,"Invalid email address", Toast.LENGTH_SHORT).show();
+            return;
+        }
  progressDialog.setMessage("Registering user...");
         progressDialog.show();
     firebaseAuth.createUserWithEmailAndPassword(em,pw).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
