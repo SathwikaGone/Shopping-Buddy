@@ -184,19 +184,17 @@ private void CreateAct(){
             Toast.makeText(this,"Passwod should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
             return;
         }
-
-
         // onClick of button perform this simplest code.
         if (em.matches(emailPattern))
         {
             Toast.makeText(this,"valid email address",Toast.LENGTH_SHORT).show();
             return;
         }
-        else {
+        if (!em.matches(emailPattern)){
             Toast.makeText(this, "Invalid email address", Toast.LENGTH_SHORT).show();
             return;
         }
- progressDialog.setMessage("Registering user...");
+        progressDialog.setMessage("Registering user...");
         progressDialog.show();
     firebaseAuth.createUserWithEmailAndPassword(em,pw).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                 @Override
