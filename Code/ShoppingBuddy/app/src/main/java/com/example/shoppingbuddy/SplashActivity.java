@@ -11,7 +11,7 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        SystemClock.sleep(3000);
+        SystemClock.sleep(1500);
         Intent login = new Intent(SplashActivity.this,MainActivity.class);
         startActivity(login);
         finish();
