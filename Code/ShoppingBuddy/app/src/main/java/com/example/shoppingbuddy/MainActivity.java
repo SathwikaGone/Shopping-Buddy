@@ -165,10 +165,11 @@ private void CreateAct(){
             Toast.makeText(this,"Password should not be empty",Toast.LENGTH_LONG).show();
             return;
         }
-        if(TextUtils.isEmpty(em)){
+        if(TextUtils.isEmpty(repw)){
             Toast.makeText(this,"Re-Password should not be empty",Toast.LENGTH_LONG).show();
             return;
         }
+<<<<<<< HEAD
         //final EditText emailValidate = (EditText)findViewById(R.id.textMessage);
 
         //final TextView textView = (TextView)findViewById(R.id.text);
@@ -186,6 +187,14 @@ private void CreateAct(){
         else
         {
             Toast.makeText(this,"Invalid email address", Toast.LENGTH_SHORT).show();
+=======
+        if(!pw.equals(repw)) {
+            Toast.makeText(this, "Password and Confirm Password does not match", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(pw.length() < 8){
+            Toast.makeText(this,"Passwod should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
+>>>>>>> 4afb4190f4eea6cdb3cd76932a54d2e0da1a7155
             return;
         }
  progressDialog.setMessage("Registering user...");
