@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+<<<<<<< HEAD
     private void CreateAct() {
         String uname = username.getText().toString().trim();
         String em = email.getText().toString().trim();
@@ -177,6 +178,70 @@ public class MainActivity extends AppCompatActivity
                                 Toast.makeText(MainActivity.this, "Could not register please try again", Toast.LENGTH_SHORT).show();
                             }
                         }
+=======
+private void CreateAct(){
+        String uname=username.getText().toString().trim();
+        String em=email.getText().toString().trim();
+        String pw=password.getText().toString().trim();
+        String repw= repwd.getText().toString().trim();
+        String phn=phno.getText().toString().trim();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+        int phone=Integer.parseInt(phno.getText().toString().trim());
+        if(TextUtils.isEmpty(uname)){
+            Toast.makeText(this,"User Name should not be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(em)){
+            Toast.makeText(this,"Email should not be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(phn)){
+            Toast.makeText(this,"Phone number should not be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(pw)){
+            Toast.makeText(this,"Password should not be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(TextUtils.isEmpty(repw)){
+            Toast.makeText(this,"Re-Password should not be empty",Toast.LENGTH_LONG).show();
+            return;
+        }
+        //final EditText emailValidate = (EditText)findViewById(R.id.textMessage);
+
+        //final TextView textView = (TextView)findViewById(R.id.text);
+
+        //String email = emailValidate.getText().toString().trim();
+
+        if(!pw.equals(repw)) {
+            Toast.makeText(this, "Password and Confirm Password does not match", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(pw.length() < 8){
+            Toast.makeText(this,"Passwod should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
+            return;
+        }
+        // onClick of button perform this simplest code.
+        if (em.matches(emailPattern))
+        {
+            Toast.makeText(this,"valid email address",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (!em.matches(emailPattern)){
+            Toast.makeText(this, "Invalid email address", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        progressDialog.setMessage("Registering user...");
+        progressDialog.show();
+    firebaseAuth.createUserWithEmailAndPassword(em,pw).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
+                        Toast.makeText(MainActivity.this,"Registered successfully",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        Toast.makeText(MainActivity.this,"Could not register please try again",Toast.LENGTH_SHORT).show();
+>>>>>>> 41cc695349497f41a9cd418861ca81bc3b61fe5a
                     }
             );
 
