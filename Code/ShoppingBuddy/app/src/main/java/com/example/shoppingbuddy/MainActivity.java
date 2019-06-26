@@ -177,6 +177,7 @@ public class MainActivity extends AppCompatActivity
            // Toast.makeText(this, "Re-Password should not be empty", Toast.LENGTH_LONG).show();
 
         }
+<<<<<<< HEAD
         else if(pw.length()<8){
             password.setError("Password should have a minimum length of 8 characters");
             // Toast.makeText(this, "Password should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
@@ -192,6 +193,19 @@ public class MainActivity extends AppCompatActivity
             phno.setError("Please enter valid 10 digit phone number");
             //Toast.makeText(this,"Please enter valid 10 digit phone number", Toast.LENGTH_LONG).show();
 
+=======
+        else if(!pw.equals(repw)){
+            Toast.makeText(this,"Password and Confirm Passwords does not match",Toast.LENGTH_LONG).show();
+            return;
+        }
+        else if(pw.length()<8){
+            Toast.makeText(this, "Password should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
+            return;
+        }
+        else if(!phno.getText().toString().matches(MobilePattern)) {
+            Toast.makeText(this,"Please enter valid 10 digit phone number", Toast.LENGTH_LONG).show();
+            return;
+>>>>>>> 00800ba5f87d1cb5155fc8e143c9ade130066f90
         }
 
     else {
