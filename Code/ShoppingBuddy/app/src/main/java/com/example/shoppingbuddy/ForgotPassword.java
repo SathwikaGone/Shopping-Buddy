@@ -46,6 +46,21 @@ public class ForgotPassword extends AppCompatActivity {
             Toast.makeText(this,"Email should not be empty",Toast.LENGTH_LONG).show();
             return;
         }
+        progressDialog.setMessage(" Email Sent...");
+        progressDialog.show();
+        firebaseAuth.sendPasswordResetEmail(em).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(ForgotPassword.this, "Email sent sucessful", Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(ForgotPassword.this, Home.class);
+                    startActivity(i);
+                } else {
+                    Toast.makeText(ForgotPassword.this, "Login failed", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+        });
        
     }
 }
