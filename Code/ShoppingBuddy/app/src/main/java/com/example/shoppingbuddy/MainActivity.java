@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity
         String pw = password.getText().toString();
         String repw = repwd.getText().toString();
         String phn = phno.getText().toString();
-        String MobilePattern = "[0-9]{10}";
+        //String MobilePattern = "[0-9]{10}";
         int phone = Integer.parseInt(phno.getText().toString());
 //        if((TextUtils.isEmpty(uname))&&(TextUtils.isEmpty(em))&&(TextUtils.isEmpty(phn))&&(TextUtils.isEmpty(pw))&&(TextUtils.isEmpty(em))) {
 //            Toast.makeText(this, "All fields must be filled", Toast.LENGTH_LONG).show();
@@ -177,7 +177,7 @@ public class MainActivity extends AppCompatActivity
            // Toast.makeText(this, "Re-Password should not be empty", Toast.LENGTH_LONG).show();
 
         }
-<<<<<<< HEAD
+
         else if(pw.length()<8){
             password.setError("Password should have a minimum length of 8 characters");
             // Toast.makeText(this, "Password should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
@@ -189,23 +189,10 @@ public class MainActivity extends AppCompatActivity
 
         }
 
-        else if(!phno.getText().toString().matches(MobilePattern)) {
+        else if(!(phn.length()==10)) {
             phno.setError("Please enter valid 10 digit phone number");
             //Toast.makeText(this,"Please enter valid 10 digit phone number", Toast.LENGTH_LONG).show();
 
-=======
-        else if(!pw.equals(repw)){
-            Toast.makeText(this,"Password and Confirm Passwords does not match",Toast.LENGTH_LONG).show();
-            return;
-        }
-        else if(pw.length()<8){
-            Toast.makeText(this, "Password should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
-            return;
-        }
-        else if(!phno.getText().toString().matches(MobilePattern)) {
-            Toast.makeText(this,"Please enter valid 10 digit phone number", Toast.LENGTH_LONG).show();
-            return;
->>>>>>> 00800ba5f87d1cb5155fc8e143c9ade130066f90
         }
 
     else {
