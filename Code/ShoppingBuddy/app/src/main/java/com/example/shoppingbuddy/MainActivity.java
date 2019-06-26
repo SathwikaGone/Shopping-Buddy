@@ -142,16 +142,22 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void CreateAct() {
-        String uname = username.getText().toString().trim();
-        String em = email.getText().toString().trim();
-        String pw = password.getText().toString().trim();
-        String repw = repwd.getText().toString().trim();
-        String phn = phno.getText().toString().trim();
-        int phone = Integer.parseInt(phno.getText().toString().trim());
-        if (TextUtils.isEmpty(uname)) {
+        String uname = username.getText().toString();
+        String em = email.getText().toString();
+        String pw = password.getText().toString();
+        String repw = repwd.getText().toString();
+        String phn = phno.getText().toString();
+        int phone = Integer.parseInt(phno.getText().toString());
+        if((TextUtils.isEmpty(uname))&&(TextUtils.isEmpty(em))&&(TextUtils.isEmpty(phn))&&(TextUtils.isEmpty(pw))&&(TextUtils.isEmpty(em))) {
+            Toast.makeText(this, "All fields must be filled", Toast.LENGTH_LONG).show();
+        }
+        else if(TextUtils.isEmpty(uname)) {
             Toast.makeText(this, "User Name should not be empty", Toast.LENGTH_LONG).show();
 
-        } else if (TextUtils.isEmpty(em)) {
+        }else if(!em.contains("@")|| !em.contains(".")){
+            Toast.makeText(this, "Enter a valid email address", Toast.LENGTH_LONG).show();
+        }
+        else if (TextUtils.isEmpty(em)) {
             Toast.makeText(this, "Email should not be empty", Toast.LENGTH_LONG).show();
 
         } else if (TextUtils.isEmpty(phn)) {
@@ -163,7 +169,9 @@ public class MainActivity extends AppCompatActivity
         } else if (TextUtils.isEmpty(em)) {
             Toast.makeText(this, "Re-Password should not be empty", Toast.LENGTH_LONG).show();
 
-        } else {
+        }
+
+    else {
             progressDialog.setMessage("Registering user...");
             progressDialog.show();
             firebaseAuth.createUserWithEmailAndPassword(em, pw).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
