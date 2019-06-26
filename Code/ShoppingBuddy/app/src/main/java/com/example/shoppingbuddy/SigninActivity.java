@@ -148,21 +148,26 @@ public class SigninActivity extends AppCompatActivity
         progressDialog.setMessage(" Logging in...");
         progressDialog.show();
         if(em.matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
-            firebaseAuth.signInWithEmailAndPassword(em, pwd)
-                    .addOnCompleteListener(SigninActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
+            if(pwd.length()>=8) {
+                firebaseAuth.signInWithEmailAndPassword(em, pwd)
+                        .addOnCompleteListener(SigninActivity.this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
 
-                            if (task.isSuccessful()) {
-                                Toast.makeText(SigninActivity.this, "Login sucessful", Toast.LENGTH_SHORT).show();
-                                Intent i = new Intent(SigninActivity.this, Home.class);
-                                startActivity(i);
-                            } else {
-                                Toast.makeText(SigninActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
-                                return;
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(SigninActivity.this, "Login sucessful", Toast.LENGTH_SHORT).show();
+                                    Intent i = new Intent(SigninActivity.this, Home.class);
+                                    startActivity(i);
+                                } else {
+                                    Toast.makeText(SigninActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
+                                    return;
+                                }
                             }
-                        }
-                    });
+                        });
+            }
+            else{
+                Toast.makeText(this,"Password limit not reached",Toast.LENGTH_LONG).show();
+            }
         }
         else{
             Toast.makeText(this,"Email pattern not matched",Toast.LENGTH_LONG).show();
