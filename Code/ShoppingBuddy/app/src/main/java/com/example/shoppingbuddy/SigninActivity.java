@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -35,6 +36,7 @@ public class SigninActivity extends AppCompatActivity
     public EditText password;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
+    public TextView forgotpassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +78,18 @@ public class SigninActivity extends AppCompatActivity
 
             }
         });
+        forgotpassword=(TextView)findViewById(R.id.textView23);
+        forgotpassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(SigninActivity.this,ForgotPassword.class);
+                Log.d("click","button clicked");
+                startActivity(i);
+            }
+        });
+
     }
+
 
     @Override
     public void onBackPressed() {
