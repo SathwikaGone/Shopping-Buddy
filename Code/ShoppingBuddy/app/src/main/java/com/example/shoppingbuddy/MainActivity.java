@@ -147,44 +147,47 @@ public class MainActivity extends AppCompatActivity
         String pw = password.getText().toString();
         String repw = repwd.getText().toString();
         String phn = phno.getText().toString();
-        String MobilePattern = "[0-9]{10}";
+        //String MobilePattern = "[0-9]{10}";
         int phone = Integer.parseInt(phno.getText().toString());
-        if((TextUtils.isEmpty(uname))&&(TextUtils.isEmpty(em))&&(TextUtils.isEmpty(phn))&&(TextUtils.isEmpty(pw))&&(TextUtils.isEmpty(em))) {
-            Toast.makeText(this, "All fields must be filled", Toast.LENGTH_LONG).show();
-        }
-        else if(TextUtils.isEmpty(uname)) {
-            Toast.makeText(this, "User Name should not be empty", Toast.LENGTH_LONG).show();
+//        if((TextUtils.isEmpty(uname))&&(TextUtils.isEmpty(em))&&(TextUtils.isEmpty(phn))&&(TextUtils.isEmpty(pw))&&(TextUtils.isEmpty(em))) {
+//            Toast.makeText(this, "All fields must be filled", Toast.LENGTH_LONG).show();
+//        }
+        if(TextUtils.isEmpty(uname)) {
+            username.setError("user Name should not be empty");
+            //Toast.makeText(this, "User Name should not be empty", Toast.LENGTH_LONG).show();
 
-        }else if(!em.contains("@")|| !em.contains(".")){
-            Toast.makeText(this, "Enter a valid email address", Toast.LENGTH_LONG).show();
-        }
-        else if (TextUtils.isEmpty(em)) {
-            Toast.makeText(this, "Email should not be empty", Toast.LENGTH_LONG).show();
+        } else if (TextUtils.isEmpty(em)) {
+            email.setError("Email should not be empty");
+            //Toast.makeText(this, "Email should not be empty", Toast.LENGTH_LONG).show();
 
+        } else if(!em.contains("@")|| !em.contains(".")){
+            email.setError("Enter a valid email address");
+            //Toast.makeText(this, "Enter a valid email address", Toast.LENGTH_LONG).show();
         } else if (TextUtils.isEmpty(phn)) {
-            Toast.makeText(this, "Phone number should not be empty", Toast.LENGTH_LONG).show();
+            phno.setError("Phone number should not be empty");
+           // Toast.makeText(this, "Phone number should not be empty", Toast.LENGTH_LONG).show();
 
         } else if (TextUtils.isEmpty(pw)) {
-            Toast.makeText(this, "Password should not be empty", Toast.LENGTH_LONG).show();
+            password.setError("Password should not be empty");
+           // Toast.makeText(this, "Password should not be empty", Toast.LENGTH_LONG).show();
 
         } else if (TextUtils.isEmpty(repw)) {
-            Toast.makeText(this, "Re-Password should not be empty", Toast.LENGTH_LONG).show();
+            repwd.setError("Re-Password should not be empty");
+           // Toast.makeText(this, "Re-Password should not be empty", Toast.LENGTH_LONG).show();
 
-        }
-        else if(!pw.equals(repw)){
-            Toast.makeText(this,"Password and Confirm Passwords does not match",Toast.LENGTH_LONG).show();
-            return;
-        }
-        else if(pw.length()<8){
-            Toast.makeText(this, "Password should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
-            return;
-        }
-        else if(!phno.getText().toString().matches(MobilePattern)) {
-            Toast.makeText(this,"Please enter valid 10 digit phone number", Toast.LENGTH_LONG).show();
-            return;
-        }
+        } else if(pw.length()<8){
+            password.setError("Password should have a minimum length of 8 characters");
+            // Toast.makeText(this, "Password should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
 
-    else {
+        } else if(!(pw.equals(repw))){
+            repwd.setError("Password and Confirm Passwords does not match");
+            //Toast.makeText(this,"Password and Confirm Passwords does not match",Toast.LENGTH_LONG).show();
+
+        } else if(!(phn.length()==10)) {
+            phno.setError("Please enter valid 10 digit phone number");
+            //Toast.makeText(this,"Please enter valid 10 digit phone number", Toast.LENGTH_LONG).show();
+
+        } else {
             progressDialog.setMessage("Registering user...");
             progressDialog.show();
             firebaseAuth.createUserWithEmailAndPassword(em, pw).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
