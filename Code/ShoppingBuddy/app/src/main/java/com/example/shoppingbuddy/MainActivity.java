@@ -156,15 +156,14 @@ public class MainActivity extends AppCompatActivity
             username.setError("user Name should not be empty");
             //Toast.makeText(this, "User Name should not be empty", Toast.LENGTH_LONG).show();
 
-        }else if (TextUtils.isEmpty(em)) {
+        } else if (TextUtils.isEmpty(em)) {
             email.setError("Email should not be empty");
             //Toast.makeText(this, "Email should not be empty", Toast.LENGTH_LONG).show();
 
-        }else if(!em.contains("@")|| !em.contains(".")){
+        } else if(!em.contains("@")|| !em.contains(".")){
             email.setError("Enter a valid email address");
             //Toast.makeText(this, "Enter a valid email address", Toast.LENGTH_LONG).show();
-        }
-         else if (TextUtils.isEmpty(phn)) {
+        } else if (TextUtils.isEmpty(phn)) {
             phno.setError("Phone number should not be empty");
            // Toast.makeText(this, "Phone number should not be empty", Toast.LENGTH_LONG).show();
 
@@ -176,26 +175,19 @@ public class MainActivity extends AppCompatActivity
             repwd.setError("Re-Password should not be empty");
            // Toast.makeText(this, "Re-Password should not be empty", Toast.LENGTH_LONG).show();
 
-        }
-
-        else if(pw.length()<8){
+        } else if(pw.length()<8){
             password.setError("Password should have a minimum length of 8 characters");
             // Toast.makeText(this, "Password should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
 
-        }
-        else if(!pw.equals(repw)){
+        } else if(!pw.equals(repw)){
             repwd.setError("Password and Confirm Passwords does not match");
             //Toast.makeText(this,"Password and Confirm Passwords does not match",Toast.LENGTH_LONG).show();
 
-        }
-
-        else if(!(phn.length()==10)) {
+        } else if(!(phn.length()==10)) {
             phno.setError("Please enter valid 10 digit phone number");
             //Toast.makeText(this,"Please enter valid 10 digit phone number", Toast.LENGTH_LONG).show();
 
-        }
-
-    else {
+        } else {
             progressDialog.setMessage("Registering user...");
             progressDialog.show();
             firebaseAuth.createUserWithEmailAndPassword(em, pw).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
