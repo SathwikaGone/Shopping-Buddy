@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity
             // Toast.makeText(this, "Password should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
 
         }
-        else if(!pw.equals(repw)){
+        else if(!(pw.equals(repw))){
             repwd.setError("Password and Confirm Passwords does not match");
             //Toast.makeText(this,"Password and Confirm Passwords does not match",Toast.LENGTH_LONG).show();
 
