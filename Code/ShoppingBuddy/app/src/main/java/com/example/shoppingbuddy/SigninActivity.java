@@ -138,17 +138,20 @@ public class SigninActivity extends AppCompatActivity
         String em=email.getText().toString().trim();
         String pwd=password.getText().toString().trim();
         if(TextUtils.isEmpty(em)){
-            Toast.makeText(this,"Email should not be empty",Toast.LENGTH_LONG).show();
+            email.setError("Email should not be empty");
+            //Toast.makeText(this,"Email should not be empty",Toast.LENGTH_LONG).show();
             return;
         }
         if(TextUtils.isEmpty(pwd)){
-            Toast.makeText(this,"password should not be empty",Toast.LENGTH_LONG).show();
+            password.setError("password should not be empty");
+           // Toast.makeText(this,"password should not be empty",Toast.LENGTH_LONG).show();
             return;
         }
-        progressDialog.setMessage(" Logging in...");
-        progressDialog.show();
+
         if(em.matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
             if(pwd.length()>=8) {
+                progressDialog.setMessage(" Logging in...");
+                progressDialog.show();
                 firebaseAuth.signInWithEmailAndPassword(em, pwd)
                         .addOnCompleteListener(SigninActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
