@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity
         String pw = password.getText().toString();
         String repw = repwd.getText().toString();
         String phn = phno.getText().toString();
+        String MobilePattern = "[0-9]{10}";
         int phone = Integer.parseInt(phno.getText().toString());
         if((TextUtils.isEmpty(uname))&&(TextUtils.isEmpty(em))&&(TextUtils.isEmpty(phn))&&(TextUtils.isEmpty(pw))&&(TextUtils.isEmpty(em))) {
             Toast.makeText(this, "All fields must be filled", Toast.LENGTH_LONG).show();
@@ -169,6 +170,13 @@ public class MainActivity extends AppCompatActivity
         } else if (TextUtils.isEmpty(em)) {
             Toast.makeText(this, "Re-Password should not be empty", Toast.LENGTH_LONG).show();
 
+        } else if(phno.getText().toString().matches(MobilePattern)) {
+            Toast.makeText(this,"Phone number is valid",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if(!phno.getText().toString().matches(MobilePattern)) {
+            Toast.makeText(this,"Please enter valid 10 digit phone number", Toast.LENGTH_LONG).show();
+            return;
         }
 
     else {
