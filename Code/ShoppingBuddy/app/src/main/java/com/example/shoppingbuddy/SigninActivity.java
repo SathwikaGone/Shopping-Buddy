@@ -1,6 +1,7 @@
 package com.example.shoppingbuddy;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
@@ -194,7 +196,38 @@ public class SigninActivity extends AppCompatActivity
                                         startActivity(i);
                                     }
                                     else {
-                                        Toast.makeText(SigninActivity.this, "User email is not verified", Toast.LENGTH_SHORT).show();
+                                        //Toast.makeText(SigninActivity.this, "User email is not verified", Toast.LENGTH_SHORT).show();
+                                        AlertDialog.Builder builder=new AlertDialog.Builder(SigninActivity.this);
+                                        builder.setMessage("User Email not verified").setCancelable(false);
+                                        builder.setPositiveButton("send email verification again", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(final DialogInterface dialog, int which) {
+                                                user.sendEmailVerification()
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if (task.isSuccessful()) {
+                                                                    Toast.makeText(SigninActivity.this,"Email sent",Toast.LENGTH_LONG).show();
+                                                                }
+                                                                else{
+                                                                    Toast.makeText(SigninActivity.this,"Problem in sending email verification please try again",Toast.LENGTH_LONG).show();
+                                                                }
+                                                               //dialog.cancel();
+
+                                                             }
+                                                });
+
+                                    }
+                                        });
+                                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                //dialog.cancel();
+                                            }
+                                        });
+                                        AlertDialog alert=builder.create();
+                                        alert.setTitle("Email verification");
+                                        alert.show();
                                     }
                                 } else {
                                     Toast.makeText(SigninActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
