@@ -172,7 +172,8 @@ public class SigninActivity extends AppCompatActivity
                                 if (task.isSuccessful()) {
                                     user = firebaseAuth.getCurrentUser();
                                     if (user.isEmailVerified()) {
-
+                                        progressDialog.setMessage("Logging in...");
+                                        progressDialog.show();
                                         Toast.makeText(SigninActivity.this, "Login sucessful", Toast.LENGTH_SHORT).show();
                                         Intent i = new Intent(SigninActivity.this, Home.class);
                                         startActivity(i);
