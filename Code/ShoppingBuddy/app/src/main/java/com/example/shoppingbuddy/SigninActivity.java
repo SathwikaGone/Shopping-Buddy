@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -37,6 +38,7 @@ public class SigninActivity extends AppCompatActivity
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     public TextView forgotpassword;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,17 +165,21 @@ public class SigninActivity extends AppCompatActivity
 
         if(em.matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
             if(pwd.length()>=8) {
-                progressDialog.setMessage(" Logging in...");
-                progressDialog.show();
                 firebaseAuth.signInWithEmailAndPassword(em, pwd)
                         .addOnCompleteListener(SigninActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(SigninActivity.this, "Login sucessful", Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(SigninActivity.this, Home.class);
-                                    startActivity(i);
+                                    user = firebaseAuth.getCurrentUser();
+                                    if (user.isEmailVerified()) {
+
+                                        Toast.makeText(SigninActivity.this, "Login sucessful", Toast.LENGTH_SHORT).show();
+                                        Intent i = new Intent(SigninActivity.this, Home.class);
+                                        startActivity(i);
+                                    }
+                                    else {
+                                        Toast.makeText(SigninActivity.this, "User email is not verified", Toast.LENGTH_SHORT).show();
+                                    }
                                 } else {
                                     Toast.makeText(SigninActivity.this, "Login failed", Toast.LENGTH_SHORT).show();
                                     return;
