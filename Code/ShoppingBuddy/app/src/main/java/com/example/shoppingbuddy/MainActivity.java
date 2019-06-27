@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity
         String pw = password.getText().toString();
         String repw = repwd.getText().toString();
         String phone=phonenumber.getText().toString();
-        //String MobilePattern = "[0-9]{10}";
+        String MobilePattern = "[0-9]{10}";
         //int phone = Integer.parseInt(phno.getText().toString());
         if ((TextUtils.isEmpty(uname)) && (TextUtils.isEmpty(em)) && (TextUtils.isEmpty(phone)) && (TextUtils.isEmpty(pw)) && (TextUtils.isEmpty(em))) {
            // Toast.makeText(this, "All fields must be filled", Toast.LENGTH_LONG).show();
@@ -189,7 +189,11 @@ public class MainActivity extends AppCompatActivity
                 repwd.setError("Password and Confirm Passwords does not match");
                 //Toast.makeText(this,"Password and Confirm Passwords does not match",Toast.LENGTH_LONG).show();
 
-            } else if (!(phone.length() == 10)) {
+            }
+         else if(!(phone.matches(MobilePattern))){
+            phonenumber.setError("Enter valid phone number");
+
+        }else if (!(phone.length() == 10)) {
                 phonenumber.setError("Please enter valid 10 digit phone number");
                 //Toast.makeText(this,"Please enter valid 10 digit phone number", Toast.LENGTH_LONG).show();
 
@@ -200,7 +204,7 @@ public class MainActivity extends AppCompatActivity
                          @Override
                          public void onComplete(@NonNull Task<AuthResult> task) {
                              if (task.isSuccessful()) {
-                                 Toast.makeText(MainActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
+
                                  FirebaseAuth auth = FirebaseAuth.getInstance();
                                  FirebaseUser user = auth.getCurrentUser();
                                  user.sendEmailVerification()
@@ -208,7 +212,8 @@ public class MainActivity extends AppCompatActivity
                                              @Override
                                              public void onComplete(@NonNull Task<Void> task) {
                                                  if (task.isSuccessful()) {
-                                                     Log.d( "success" ,"elail sent");
+                                                     Toast.makeText(MainActivity.this, "Email sent", Toast.LENGTH_SHORT).show();
+                                                     Log.d( "success" ,"email sent");
                                                      Intent i = new Intent(MainActivity.this, SigninActivity.class);
                                                      startActivity(i);
                                                  }
