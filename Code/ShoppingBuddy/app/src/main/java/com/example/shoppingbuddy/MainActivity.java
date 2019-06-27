@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -193,21 +194,32 @@ public class MainActivity extends AppCompatActivity
                 //Toast.makeText(this,"Please enter valid 10 digit phone number", Toast.LENGTH_LONG).show();
 
             } else {
-                progressDialog.setMessage("Registering user...");
-                progressDialog.show();
-                firebaseAuth.createUserWithEmailAndPassword(em, pw).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(MainActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
-                                    Intent i = new Intent(MainActivity.this, Home.class);
-                                    startActivity(i);
-                                } else {
-                                    Toast.makeText(MainActivity.this, "Could not register please try again", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        }
-                );
+//                progressDialog.setMessage("Registering user...");
+//                progressDialog.show();
+             firebaseAuth.createUserWithEmailAndPassword(em, pw).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                         @Override
+                         public void onComplete(@NonNull Task<AuthResult> task) {
+                             if (task.isSuccessful()) {
+                                 Toast.makeText(MainActivity.this, "Registered successfully", Toast.LENGTH_SHORT).show();
+                                 FirebaseAuth auth = FirebaseAuth.getInstance();
+                                 FirebaseUser user = auth.getCurrentUser();
+                                 user.sendEmailVerification()
+                                         .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                             @Override
+                                             public void onComplete(@NonNull Task<Void> task) {
+                                                 if (task.isSuccessful()) {
+                                                     Log.d( "success" ,"elail sent");
+                                                     Intent i = new Intent(MainActivity.this, SigninActivity.class);
+                                                     startActivity(i);
+                                                 }
+                                             }
+                                         });
+                             } else {
+                                 Toast.makeText(MainActivity.this, "Could not register please try again", Toast.LENGTH_SHORT).show();
+                             }
+                         }
+                     }
+             );
 
             }
         }
