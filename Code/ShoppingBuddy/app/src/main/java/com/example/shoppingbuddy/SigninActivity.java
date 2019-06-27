@@ -2,6 +2,7 @@ package com.example.shoppingbuddy;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.text.TextUtils;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,6 +37,8 @@ public class SigninActivity extends AppCompatActivity
     public Button btn1;
     public EditText email;
     public EditText password;
+    private CheckBox saveLoginCheckBox;
+    private SharedPreferences rememberMe;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     public TextView forgotpassword;
@@ -47,6 +51,7 @@ public class SigninActivity extends AppCompatActivity
 
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
+        rememberMe = this.getPreferences(MODE_PRIVATE);
 
         Intent i=getIntent();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -54,6 +59,8 @@ public class SigninActivity extends AppCompatActivity
 
         email=findViewById(R.id.editText3);
         password=findViewById(R.id.editText7);
+        saveLoginCheckBox = (CheckBox)findViewById(R.id.saveLoginCheckBox);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -171,6 +178,14 @@ public class SigninActivity extends AppCompatActivity
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     user = firebaseAuth.getCurrentUser();
+                                    if(saveLoginCheckBox.isChecked()){
+
+                                        SharedPreferences.Editor  editor = rememberMe.edit();
+                                        editor.putString("userName", String.valueOf(email));
+                                        editor.putString("password", String.valueOf(password));
+                                        editor.commit();
+                                    }
+
                                     if (user.isEmailVerified()) {
                                         progressDialog.setMessage("Logging in...");
                                         progressDialog.show();
