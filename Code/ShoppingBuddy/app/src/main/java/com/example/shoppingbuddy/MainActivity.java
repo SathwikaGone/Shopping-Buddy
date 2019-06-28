@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity
     public EditText password;
     public EditText repwd;
     public EditText phonenumber;
-
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
 

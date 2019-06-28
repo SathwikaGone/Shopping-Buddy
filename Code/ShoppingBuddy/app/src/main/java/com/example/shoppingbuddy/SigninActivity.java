@@ -45,6 +45,8 @@ public class SigninActivity extends AppCompatActivity
     private ProgressDialog progressDialog;
     public TextView forgotpassword;
     private FirebaseUser user;
+    public String em;
+    public String pwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,7 @@ public class SigninActivity extends AppCompatActivity
 
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
-        rememberMe = this.getPreferences(MODE_PRIVATE);
+
 
         Intent i=getIntent();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -62,7 +64,10 @@ public class SigninActivity extends AppCompatActivity
         email=findViewById(R.id.editText3);
         password=findViewById(R.id.editText7);
         saveLoginCheckBox = (CheckBox)findViewById(R.id.saveLoginCheckBox);
+        rememberMe = SigninActivity.this.getPreferences(MODE_PRIVATE);
 
+        email.setText(rememberMe.getString("userName",""));
+        password.setText(rememberMe.getString("password",""));
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -159,8 +164,8 @@ public class SigninActivity extends AppCompatActivity
         return true;
     }
     private void loginAcc(){
-        String em=email.getText().toString().trim();
-        String pwd=password.getText().toString().trim();
+         em=email.getText().toString().trim();
+         pwd=password.getText().toString().trim();
         if(TextUtils.isEmpty(em)){
             email.setError("Email should not be empty");
             //Toast.makeText(this,"Email should not be empty",Toast.LENGTH_LONG).show();
@@ -183,8 +188,8 @@ public class SigninActivity extends AppCompatActivity
                                     if(saveLoginCheckBox.isChecked()){
 
                                         SharedPreferences.Editor  editor = rememberMe.edit();
-                                        editor.putString("userName", String.valueOf(email));
-                                        editor.putString("password", String.valueOf(password));
+                                        editor.putString("userName", em);
+                                        editor.putString("password", pwd);
                                         editor.commit();
                                     }
 
