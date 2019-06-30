@@ -3,6 +3,7 @@ package com.example.shoppingbuddy;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,10 +39,14 @@ public class SigninActivity extends AppCompatActivity
     public Button btn1;
     public EditText email;
     public EditText password;
+    private CheckBox saveLoginCheckBox;
+    private SharedPreferences rememberMe;
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
     public TextView forgotpassword;
     private FirebaseUser user;
+    public String em;
+    public String pwd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +56,18 @@ public class SigninActivity extends AppCompatActivity
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
 
+
         Intent i=getIntent();
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         email=findViewById(R.id.editText3);
         password=findViewById(R.id.editText7);
+        saveLoginCheckBox = (CheckBox)findViewById(R.id.saveLoginCheckBox);
+        rememberMe = SigninActivity.this.getPreferences(MODE_PRIVATE);
+
+        email.setText(rememberMe.getString("userName",""));
+        password.setText(rememberMe.getString("password",""));
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -152,8 +164,8 @@ public class SigninActivity extends AppCompatActivity
         return true;
     }
     private void loginAcc(){
-        String em=email.getText().toString().trim();
-        String pwd=password.getText().toString().trim();
+         em=email.getText().toString().trim();
+         pwd=password.getText().toString().trim();
         if(TextUtils.isEmpty(em)){
             email.setError("Email should not be empty");
             //Toast.makeText(this,"Email should not be empty",Toast.LENGTH_LONG).show();
@@ -173,6 +185,14 @@ public class SigninActivity extends AppCompatActivity
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     user = firebaseAuth.getCurrentUser();
+                                    if(saveLoginCheckBox.isChecked()){
+
+                                        SharedPreferences.Editor  editor = rememberMe.edit();
+                                        editor.putString("userName", em);
+                                        editor.putString("password", pwd);
+                                        editor.commit();
+                                    }
+
                                     if (user.isEmailVerified()) {
                                         progressDialog.setMessage("Logging in...");
                                         progressDialog.show();
@@ -207,7 +227,7 @@ public class SigninActivity extends AppCompatActivity
                                         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                                             @Override
                                             public void onClick(DialogInterface dialog, int which) {
-                                                //dialog.cancel();
+                                                dialog.cancel();
                                             }
                                         });
                                         AlertDialog alert=builder.create();
