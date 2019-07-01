@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity
                                              @Override
                                              public void onComplete(@NonNull Task<Void> task) {
                                                  if (task.isSuccessful()) {
-                                                     Toast.makeText(MainActivity.this, "Email sent", Toast.LENGTH_SHORT).show();
+                                                     Toast.makeText(MainActivity.this, "Email sent", Toast.LENGTH_LONG).show();
                                                      Log.d( "success" ,"email sent");
                                                      Intent i = new Intent(MainActivity.this, SigninActivity.class);
                                                      startActivity(i);
@@ -219,7 +219,7 @@ public class MainActivity extends AppCompatActivity
                                              }
                                          });
                              } else {
-                                 Toast.makeText(MainActivity.this, "Could not register please try again", Toast.LENGTH_SHORT).show();
+                                 Toast.makeText(MainActivity.this, "Could not register please try again", Toast.LENGTH_LONG).show();
                              }
                          }
                      }
