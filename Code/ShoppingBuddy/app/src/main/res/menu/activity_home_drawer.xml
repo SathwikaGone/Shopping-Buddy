@@ -1,4 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view"/>
+    tools:showIn="navigation_view">
+<group>
+<item
+    android:title="home"
+    android:id="@+id/home"
+    android:icon="@mipmap/home" />
+<item
+    android:title="electronics"
+    android:id="@+id/electronics"
+    android:icon="@mipmap/electronics" />
+<item
+    android:title="books"
+    android:id="@+id/books"
+    android:icon="@mipmap/book" />
+
+<item
+    android:title="orders"
+    android:id="@+id/orders"
+    android:icon="@mipmap/order" />
+<item
+    android:title="deals"
+    android:id="@+id/deals"
+    android:icon="@mipmap/deals" />
+
+
+
+</group>
+    </menu>

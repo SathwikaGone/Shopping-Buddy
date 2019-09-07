@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         username = findViewById(R.id.editText);
         email = findViewById(R.id.editText2);
         phonenumber = findViewById(R.id.editText8);
@@ -119,23 +120,20 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
+//         Handle navigation view item clicks here.
 //        int id = item.getItemId();
 //
-//        if (id == R.id.nav_camera) {
+//        if (id == R.id.home) {
 //            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
+//        } else if (id == R.id.electronics) {
 //
-//        } else if (id == R.id.nav_slideshow) {
+//        } else if (id == R.id.books) {
 //
-//        } else if (id == R.id.nav_manage) {
+//        } else if (id == R.id.orders) {
 //
-//        } else if (id == R.id.nav_share) {
+//        } else if (id == R.id.deals) {
 //
-//        } else if (id == R.id.nav_send) {
-
 //        }
-//
 //        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 //        drawer.closeDrawer(GravityCompat.START);
         return true;
