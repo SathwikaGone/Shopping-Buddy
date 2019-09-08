@@ -4,28 +4,42 @@
     tools:showIn="navigation_view">
 <group>
 <item
-    android:title="home"
-    android:id="@+id/home"
-    android:icon="@mipmap/home" />
-<item
-    android:title="electronics"
-    android:id="@+id/electronics"
-    android:icon="@mipmap/electronics" />
-<item
-    android:title="books"
-    android:id="@+id/books"
-    android:icon="@mipmap/book" />
-
-<item
-    android:title="orders"
-    android:id="@+id/orders"
-    android:icon="@mipmap/order" />
-<item
-    android:title="deals"
-    android:id="@+id/deals"
-    android:icon="@mipmap/deals" />
-
-
+    android:title="Home"
+    android:id="@+id/home"/>
+    <item
+        android:title="Clothing"
+        android:id="@+id/clothing" />
+    <item
+        android:title="Footwear"
+        android:id="@+id/footwear" />
+    <item
+        android:title="Accessories"
+        android:id="@+id/accessories"/>
+    <item
+        android:title="Electronics"
+        android:id="@+id/electronics" />
+    <item
+        android:title="Books"
+        android:id="@+id/books" />
+    <item
+        android:title="Sports Equipment"
+        android:id="@+id/SportsEquipment" />
+    <item
+        android:title="Beauty and Personal Care"
+        android:id="@+id/Beauty" />
+    <item
+        android:title="Deals"
+        android:id="@+id/deals" />
+    <item
+        android:title="Orders"
+        android:id="@+id/orders" />
+    <item
+        android:title="Settings"
+        android:id="@+id/settings" />
+    <item
+        android:title="Logout"
+        android:id="@+id/logout" />
 
 </group>
+
     </menu>
