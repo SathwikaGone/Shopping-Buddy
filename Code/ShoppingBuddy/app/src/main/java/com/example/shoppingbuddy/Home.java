@@ -97,7 +97,8 @@ public class Home extends AppCompatActivity
 
         }
         else if (id == R.id.accessories) {
-
+            Intent in=new Intent(this,AccessoriesActivity.class);
+            startActivity(in);
         }
         else if (id == R.id.electronics) {
 
