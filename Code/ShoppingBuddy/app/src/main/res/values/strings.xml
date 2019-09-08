@@ -11,4 +11,6 @@
     <string name="title_activity_home">Home</string>
     <string name="title_activity_splash">SplashActivity</string>
     <string name="title_activity_clothing">ClothingActivity</string>
+    <string name="title_activity_electronics">ElectronicsActivity</string>
+    <string name="title_activity_accessories">AccessoriesActivity</string>
 </resources>

@@ -87,13 +87,16 @@ public class ElectronicsActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.home) {
-            // Handle the camera action
+            // Handle the home action
             Intent in=new Intent(this,Home.class);
             startActivity(in);
         }
-//        else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
+        else if (id == R.id.accessories) {
+            // Handle the accessories action
+            Intent in=new Intent(this,AccessoriesActivity.class);
+            startActivity(in);
+        }
+//        else if (id == R.id.nav_slideshow) {
 //
 //        } else if (id == R.id.nav_manage) {
 //
