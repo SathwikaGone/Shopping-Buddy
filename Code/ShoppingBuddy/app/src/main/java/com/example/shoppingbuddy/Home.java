@@ -26,14 +26,14 @@ public class Home extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        Button btn=findViewById(R.id.button5);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent ini=new Intent(Home.this,MainActivity.class);
-                startActivity(ini);
-            }
-        });
+//        Button btn=findViewById(R.id.button5);
+//        btn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent ini=new Intent(Home.this,MainActivity.class);
+//                startActivity(ini);
+//            }
+//        });
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -91,7 +91,17 @@ public class Home extends AppCompatActivity
 
         if (id == R.id.home) {
 
-        } else if (id == R.id.electronics) {
+        } else if (id == R.id.clothing) {
+            Intent in=new Intent(this,ClothingActivity.class);
+            startActivity(in);
+
+        }
+        else if (id == R.id.accessories) {
+
+        }
+        else if (id == R.id.electronics) {
+
+        } else if (id == R.id.footwear) {
 
         } else if (id == R.id.books) {
 
