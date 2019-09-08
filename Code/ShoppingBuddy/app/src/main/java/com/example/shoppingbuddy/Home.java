@@ -74,8 +74,7 @@ public class Home extends AppCompatActivity
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_cart) {
             return true;
-        }
-        else  if(id==R.id.action_notification){
+        } else if (id == R.id.action_notification) {
             return true;
         }
 
@@ -89,30 +88,30 @@ public class Home extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.home) {
+        if (id == R.id.home) {}
 
-        } else if (id == R.id.clothing) {
-            Intent in=new Intent(this,ClothingActivity.class);
-            startActivity(in);
-
-        }
+//        } else if (id == R.id.clothing) {
+//            Intent in=new Intent(this,ClothingActivity.class);
+//            startActivity(in);
+//
+//        }
         else if (id == R.id.accessories) {
-            Intent in=new Intent(this,AccessoriesActivity.class);
-            startActivity(in);
+                Intent in = new Intent(this, AccessoriesActivity.class);
+                startActivity(in);
+            } else if (id == R.id.electronics) {
+
+            } else if (id == R.id.footwear) {
+
+            } else if (id == R.id.books) {
+
+            } else if (id == R.id.orders) {
+
+            } else if (id == R.id.deals) {
+
+            }
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
         }
-        else if (id == R.id.electronics) {
-
-        } else if (id == R.id.footwear) {
-
-        } else if (id == R.id.books) {
-
-        } else if (id == R.id.orders) {
-
-        } else if (id == R.id.deals) {
-
-        }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
-}
+

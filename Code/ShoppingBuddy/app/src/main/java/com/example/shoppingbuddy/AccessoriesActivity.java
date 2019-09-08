@@ -90,9 +90,9 @@ public class AccessoriesActivity extends AppCompatActivity
             // Handle the home action
             Intent in=new Intent(this,Home.class);
             startActivity(in);}
-         else if (id == R.id.electronics) {
-            Intent in=new Intent(this,ElectronicsActivity.class);
-            startActivity(in);}
+//         else if (id == R.id.electronics) {
+//            Intent in=new Intent(this,ElectronicsActivity.class);
+//            startActivity(in);}
 
 
       //  } else if (id == R.id.nav_slideshow) {
