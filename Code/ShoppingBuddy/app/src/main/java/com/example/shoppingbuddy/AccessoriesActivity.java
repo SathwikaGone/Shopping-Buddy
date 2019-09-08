@@ -93,6 +93,11 @@ public class AccessoriesActivity extends AppCompatActivity
          else if (id == R.id.electronics) {
             Intent in=new Intent(this,ElectronicsActivity.class);
             startActivity(in);}
+        else if (id == R.id.clothing) {
+            // Handle the accessories action
+            Intent in=new Intent(this,ClothingActivity.class);
+            startActivity(in);
+        }
 
 
       //  } else if (id == R.id.nav_slideshow) {

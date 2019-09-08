@@ -16,6 +16,10 @@
             android:label="@string/title_activity_electronics"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
+            android:name=".ClothingActivity"
+            android:label="@string/title_activity_clothing"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".AccessoriesActivity"
             android:label="@string/title_activity_accessories"
             android:theme="@style/AppTheme.NoActionBar"></activity>
