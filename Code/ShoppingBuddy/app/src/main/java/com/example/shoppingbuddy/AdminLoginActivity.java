@@ -20,7 +20,7 @@ public class AdminLoginActivity extends AppCompatActivity {
         EditText et1=findViewById(R.id.editText7);
         String un=et.getText().toString().trim();
         String pw=et1.getText().toString().trim();
-        if(un=="admin" && pw=="admin"){
+        if(un.equals("admin") && pw.equals("admin")){
             Intent ini=new Intent(this,Home.class);
             startActivity(ini);
         }
