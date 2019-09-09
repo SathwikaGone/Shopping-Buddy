@@ -21,7 +21,7 @@ public class AdminLoginActivity extends AppCompatActivity {
         String un=et.getText().toString().trim();
         String pw=et1.getText().toString().trim();
         if(un.equals("admin") && pw.equals("admin")){
-            Intent ini=new Intent(this,Home.class);
+            Intent ini=new Intent(this,AdminHomeActivity.class);
             startActivity(ini);
         }
         else{
