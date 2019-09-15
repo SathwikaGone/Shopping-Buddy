@@ -12,7 +12,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Container"></activity>
+        <activity
+            android:name=".WomensClothingProductList"
+            android:label="@string/title_activity_womens_clothing_product_list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".Container" />
         <activity
             android:name=".ClothingProductList"
             android:label="@string/title_activity_clothing_product_list"
