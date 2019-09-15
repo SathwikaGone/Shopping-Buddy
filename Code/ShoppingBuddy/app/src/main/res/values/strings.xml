@@ -22,4 +22,5 @@
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
     <string name="title_activity_add_product">AddProductActivity</string>
+    <string name="title_activity_clothing_product_list">ClothingProductList</string>
 </resources>
