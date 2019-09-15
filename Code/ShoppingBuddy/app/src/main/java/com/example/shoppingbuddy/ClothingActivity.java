@@ -55,6 +55,14 @@ public class ClothingActivity extends AppCompatActivity
                 startActivity(mb);
             }
         });
+        Button kb=findViewById(R.id.button8);
+        kb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent kb1=new Intent(ClothingActivity.this, KidsClothingProductList.class);
+                startActivity(kb1);
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -115,6 +123,10 @@ public class ClothingActivity extends AppCompatActivity
 
         } else if (id == R.id.electronics) {
             Intent in=new Intent(this,ElectronicsActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.clothing) {
+            Intent in=new Intent(this,ClothingActivity.class);
             startActivity(in);
         }
         //else if (id == R.id.nav_manage) {

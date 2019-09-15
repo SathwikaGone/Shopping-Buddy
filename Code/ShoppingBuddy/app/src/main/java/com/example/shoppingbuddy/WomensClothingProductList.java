@@ -1,5 +1,6 @@
 package com.example.shoppingbuddy;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -134,7 +135,23 @@ public class WomensClothingProductList extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        if (id == R.id.home) {
+            // Handle the home action
+            Intent in=new Intent(this,Home.class);
+            startActivity(in);
+        }
+        else if (id == R.id.accessories) {
+            Intent in=new Intent(this,AccessoriesActivity.class);
+            startActivity(in);
 
+        } else if (id == R.id.electronics) {
+            Intent in=new Intent(this,ElectronicsActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.clothing) {
+            Intent in=new Intent(this,ClothingActivity.class);
+            startActivity(in);
+        }
 //        if (id == R.id.nav_camera) {
 //            // Handle the camera action
 //        } else if (id == R.id.nav_gallery) {

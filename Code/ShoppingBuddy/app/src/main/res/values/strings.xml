@@ -24,4 +24,5 @@
     <string name="title_activity_add_product">AddProductActivity</string>
     <string name="title_activity_clothing_product_list">ClothingProductList</string>
     <string name="title_activity_womens_clothing_product_list">WomensClothingProductList</string>
+    <string name="title_activity_kids_clothing_product_list">KidsClothingProductList</string>
 </resources>
