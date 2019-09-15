@@ -83,13 +83,17 @@ public class AddProductActivity extends AppCompatActivity
         Button addprod=findViewById(R.id.button12);
 
 
-
         storage = FirebaseStorage.getInstance().getReference("productimages");
         storg = FirebaseStorage.getInstance().getReference();
         db = FirebaseFirestore.getInstance();
         itemCollection = db.collection("products");
 
-
+        uploadbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openFileChooser();
+            }
+        });
 
         addprod.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +127,6 @@ public class AddProductActivity extends AppCompatActivity
             }
         });
 
-
         spinner = (Spinner)findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(AddProductActivity.this,
                 android.R.layout.simple_spinner_item,paths);
@@ -141,10 +144,6 @@ public class AddProductActivity extends AppCompatActivity
 
             }
         });
-
-
-
-
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -164,8 +163,53 @@ public class AddProductActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-    
 
+    private void openFileChooser(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, PICK_IMG_REQUEST);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == PICK_IMG_REQUEST && resultCode == RESULT_OK
+                && data !=null && data.getData()!=null){
+            imageURI = data.getData();
+            Log.d("clck", "inside onactivity");
+            uploadImage();
+        }
+
+    }
+
+    private String getFileExtension(Uri uri){
+        ContentResolver cr = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cr.getType(uri));
+    }
+
+    private void uploadImage() {
+        Log.d("clck", "inside uploadimage");
+        if (imageURI != null) {
+            imageName = System.currentTimeMillis();
+            final StorageReference fileRef = storage.child(imageName + "." + getFileExtension(imageURI));
+            fileRef.putFile(imageURI).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    fileRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            imageURL = uri.toString();
+                            Log.d("clck", "image inserted");
+                            Picasso.get().load(imageURL).into(prodimage);
+                            Log.d("clck", "image displayed");
+                        }
+                    });
+                }
+            });
+
+        }
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
