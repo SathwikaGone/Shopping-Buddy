@@ -1,34 +1,57 @@
 package com.example.shoppingbuddy;
 
-import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 
-public class AccessoriesActivity extends AppCompatActivity
+import java.util.ArrayList;
+
+public class MensAccessoriesProductList extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private RecyclerView productLV;
+    private RecyclerView.Adapter productsAdapter;
+    private RecyclerView.LayoutManager productLayoutManager;
+
+    private FirebaseFirestore db;
+    private StorageReference StorageRef;
+    private CollectionReference productCollection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_accessories);
+        setContentView(R.layout.activity_clothing_product_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        db = FirebaseFirestore.getInstance();
+        StorageRef = FirebaseStorage.getInstance().getReference().child("productimages");
+        productCollection = db.collection("products");
+
 
 //        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
@@ -38,12 +61,29 @@ public class AccessoriesActivity extends AppCompatActivity
 //                        .setAction("Action", null).show();
 //            }
 //        });
-        Button mbutton=findViewById(R.id.button6);
-        mbutton.setOnClickListener(new View.OnClickListener() {
+        final ArrayList<Container> itemListArray = new ArrayList<>();
+
+        productCollection.orderBy("itemId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onClick(View v) {
-                Intent mb=new Intent(AccessoriesActivity.this, MensAccessoriesProductList.class);
-                startActivity(mb);
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    int i = 0;
+                    for (QueryDocumentSnapshot doc : task.getResult()) {
+
+                        if (doc.getString("category").equals("Men's Accessories")) {
+                            itemListArray.add(new Container(doc.getString("itemId"), doc.getString("itemName"), doc.getDouble("cost"), doc.getString("itemDetails"),
+                                    doc.getString("category"), doc.getId(), doc.getString("imageURL")));
+                            i++;
+                        }
+                    }
+
+                    productLV = findViewById(R.id.productsLV);
+                    productLV.setHasFixedSize(true);
+                    productLayoutManager = new LinearLayoutManager(MensAccessoriesProductList.this);
+                    productsAdapter = new ProductsAdapter(itemListArray, MensAccessoriesProductList.this);
+                    productLV.setLayoutManager(productLayoutManager);
+                    productLV.setAdapter(productsAdapter);
+                }
             }
         });
 
@@ -70,7 +110,7 @@ public class AccessoriesActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.accessories, menu);
+        getMenuInflater().inflate(R.menu.clothing_product_list, menu);
         return true;
     }
 
@@ -95,21 +135,11 @@ public class AccessoriesActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.home) {
-            // Handle the home action
-            Intent in=new Intent(this,Home.class);
-            startActivity(in);}
-         else if (id == R.id.electronics) {
-            Intent in=new Intent(this,ElectronicsActivity.class);
-            startActivity(in);}
-        else if (id == R.id.clothing) {
-            // Handle the accessories action
-            Intent in=new Intent(this,ClothingActivity.class);
-            startActivity(in);
-        }
-
-
-      //  } else if (id == R.id.nav_slideshow) {
+//        if (id == R.id.nav_camera) {
+//            // Handle the camera action
+//        } else if (id == R.id.nav_gallery) {
+//
+//        } else if (id == R.id.nav_slideshow) {
 //
 //        } else if (id == R.id.nav_manage) {
 //
