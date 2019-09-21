@@ -64,21 +64,20 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ItemsV
         itemsViewHolder.productName.setText(currentItem.getItemName());
         itemsViewHolder.cost.setText("Buying price :$" + currentItem.getCost());
 
-//        itemsViewHolder.linearLayout2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, I.class);
-//                intent.putExtra("imageURL", currentItem.getImage());
-//                intent.putExtra("userEmail", currentItem.getUserEmail());
-//                intent.putExtra("documentId", currentItem.getDocumentId());
-//                intent.putExtra("itemId", currentItem.getItemID());
-//                intent.putExtra("itemName", currentItem.getItemName());
-//                intent.putExtra("unitPrice", currentItem.getUnitPrice());
-//                intent.putExtra("qntyRequired", currentItem.getQntyNeeded());
-//                intent.putExtra("requiredBy", requiredBy);
-//                context.startActivity(intent);
-//            }
-//        });
+        itemsViewHolder.linearLayout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditorRemoveProduct.class);
+                intent.putExtra("imageURL", currentItem.getImageURL());
+                intent.putExtra("documentId", currentItem.getDocumentId());
+                intent.putExtra("description", currentItem.getDescription());
+                intent.putExtra("itemId", currentItem.getItemID());
+                intent.putExtra("category", currentItem.getCategory());
+                intent.putExtra("itemName", currentItem.getItemName());
+                intent.putExtra("unitPrice", currentItem.getCost());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

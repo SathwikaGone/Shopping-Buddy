@@ -13,9 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".SelectProduct"
+            android:label="@string/title_activity_select_product"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".EditorRemoveProduct"
+            android:label="@string/title_activity_editor_remove_product"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".MensAccessoriesProductList"
             android:label="@string/title_activity_mens_accessories_product_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".KidsClothingProductList"
             android:label="@string/title_activity_kids_clothing_product_list"

@@ -55,6 +55,14 @@ public class AdminHomeActivity extends AppCompatActivity
                 startActivity(i);
             }
         });
+        Button editProduct=findViewById(R.id.button9);
+        editProduct.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent i = new Intent(AdminHomeActivity.this, SelectProduct.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override
