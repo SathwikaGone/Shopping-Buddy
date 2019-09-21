@@ -77,7 +77,6 @@ public class EditorRemoveProduct extends AppCompatActivity
         prodcost = i.getDoubleExtra("unitPrice",0);
         documentId = i.getStringExtra("documentId");
         imageURL = i.getStringExtra("imageURL");
-        //imageIV.setImageResource(i.getIntExtra("image",0));
         Picasso.get().load(imageURL).into(prodimage);
         name.setText(i.getStringExtra("itemName"));
         id.setText(prodid);
@@ -115,7 +114,34 @@ public class EditorRemoveProduct extends AppCompatActivity
         });
 
 
-
+        cancelBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(EditorRemoveProduct.this, SelectProduct.class);
+                startActivity(i);
+            }
+        });
+        removeBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditorRemoveProduct.this);
+                builder.setMessage("Are you sure you want to delete the product").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        itemDoc.delete();
+                        finish();
+                        Toast.makeText(EditorRemoveProduct.this, "Product deleted successfully", Toast.LENGTH_LONG).show();
+                        Intent i = new Intent(EditorRemoveProduct.this, AdminHomeActivity.class);
+                        startActivity(i);
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).show();
+            }
+        });
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
