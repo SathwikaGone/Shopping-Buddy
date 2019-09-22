@@ -117,7 +117,7 @@ public class SelectProduct extends AppCompatActivity
                             productLV = findViewById(R.id.productsLV);
                             productLV.setHasFixedSize(true);
                             productLayoutManager = new LinearLayoutManager(SelectProduct.this);
-                            productsAdapter = new ProductsAdapter(itemListArray, SelectProduct.this);
+                            productsAdapter = new AdminProductsAdapter(itemListArray, SelectProduct.this);
                             productLV.setLayoutManager(productLayoutManager);
                             productLV.setAdapter(productsAdapter);
                         }
