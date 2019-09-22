@@ -46,6 +46,14 @@ public class AccessoriesActivity extends AppCompatActivity
                 startActivity(mb);
             }
         });
+        Button wbutton=findViewById(R.id.button7);
+        wbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mb=new Intent(AccessoriesActivity.this, WomenAccessoriesProductList.class);
+                startActivity(mb);
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
