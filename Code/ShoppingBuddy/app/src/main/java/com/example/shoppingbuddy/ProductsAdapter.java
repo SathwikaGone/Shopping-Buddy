@@ -67,7 +67,7 @@ public class ProductsAdapter extends RecyclerView.Adapter<ProductsAdapter.ItemsV
         itemsViewHolder.linearLayout2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, EditorRemoveProduct.class);
+                Intent intent = new Intent(context, ItemDetails.class);
                 intent.putExtra("imageURL", currentItem.getImageURL());
                 intent.putExtra("documentId", currentItem.getDocumentId());
                 intent.putExtra("description", currentItem.getDescription());

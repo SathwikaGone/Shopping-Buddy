@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ItemDetails"
+            android:label="@string/title_activity_item_details"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".SelectProduct"
             android:label="@string/title_activity_select_product"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditorRemoveProduct"
             android:label="@string/title_activity_editor_remove_product"
@@ -32,7 +36,7 @@
             android:name=".WomensClothingProductList"
             android:label="@string/title_activity_womens_clothing_product_list"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Container" />
+
         <activity
             android:name=".ClothingProductList"
             android:label="@string/title_activity_clothing_product_list"
