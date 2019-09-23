@@ -30,4 +30,5 @@
     <string name="title_activity_select_product">SelectProduct</string>
     <string name="title_activity_item_details">ItemDetails</string>
     <string name="title_activity_women_accessories_product_list">WomenAccessoriesProductList</string>
+    <string name="title_activity_cellphones_electronics_product_list">CellphonesProductList</string>
 </resources>
