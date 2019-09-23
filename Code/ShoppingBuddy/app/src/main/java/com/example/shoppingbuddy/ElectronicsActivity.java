@@ -46,6 +46,14 @@ public class ElectronicsActivity extends AppCompatActivity
                 startActivity(i);
             }
         });
+	Button tbutton=findViewById(R.id.button7);
+        tbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(ElectronicsActivity.this,TvandComputersProductList.class);
+                startActivity(i);
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
