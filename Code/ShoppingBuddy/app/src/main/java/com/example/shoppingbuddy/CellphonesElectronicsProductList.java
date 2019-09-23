@@ -37,6 +37,8 @@ public class CellphonesElectronicsProductList extends AppCompatActivity
     private StorageReference StorageRef;
     private CollectionReference productCollection;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

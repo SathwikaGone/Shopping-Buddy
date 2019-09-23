@@ -24,6 +24,7 @@
             android:name=".EditorRemoveProduct"
             android:label="@string/title_activity_editor_remove_product"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity
             android:name=".CellphonesElectronicsProductList"
             android:label="@string/title_activity_cellphones_electronics_product_list"
