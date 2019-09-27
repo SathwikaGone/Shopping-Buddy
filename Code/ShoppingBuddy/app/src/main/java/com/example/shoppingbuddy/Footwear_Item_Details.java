@@ -11,11 +11,9 @@ import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import androidx.core.view.GravityCompat;
@@ -29,28 +27,26 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class ItemDetails extends AppCompatActivity
+public class Footwear_Item_Details extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView imageIV;
-    private TextView itemNameTV, priceTV, detailsTV,quantityTV;
+    private TextView itemNameTV, priceTV, detailsTV,quantityTV,sizeTV;
     private FirebaseFirestore db;
     private String imageURL,docId;
     private DocumentReference itemRef;
-    private Button cart;
+    private Button cart,six,seven,eight,nine,ten;
     private Spinner spinner;
     private static final String[] paths = {"1","2","3","4","5","6","7","8","9","10"};
     Spinner quantity;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_item_details);
+        setContentView(R.layout.activity_footwear__item__details);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -59,9 +55,15 @@ public class ItemDetails extends AppCompatActivity
         priceTV = findViewById(R.id.priceTV);
         detailsTV = findViewById(R.id.detailsTV);
         cart=findViewById(R.id.button16);
+        six=findViewById(R.id.button17);
+        seven=findViewById(R.id.button18);
+        eight=findViewById(R.id.button19);
+        nine=findViewById(R.id.button20);
+        ten=findViewById(R.id.button21);
         db = FirebaseFirestore.getInstance();
         quantity=findViewById(R.id.spinner);
         quantityTV=findViewById(R.id.textView32);
+        sizeTV=findViewById(R.id.textView31);
 //      Get data from the Intent
         Intent i = getIntent();
         docId = i.getStringExtra("documentId");
@@ -80,7 +82,7 @@ public class ItemDetails extends AppCompatActivity
             }
         });
         spinner = (Spinner)findViewById(R.id.spinner);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(ItemDetails.this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(Footwear_Item_Details.this,
                 android.R.layout.simple_spinner_item,paths);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -95,6 +97,9 @@ public class ItemDetails extends AppCompatActivity
 
             }
         });
+
+
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -118,7 +123,7 @@ public class ItemDetails extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.item_details, menu);
+        getMenuInflater().inflate(R.menu.footwear__item__details, menu);
         return true;
     }
 
@@ -142,22 +147,19 @@ public class ItemDetails extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        if (id == R.id.home) {
-            // Handle the home action
-            Intent in=new Intent(this,Home.class);
-            startActivity(in);
-        }
-        else if (id == R.id.accessories) {
-            Intent in=new Intent(this,AccessoriesActivity.class);
-            startActivity(in);
 
-        } else if (id == R.id.electronics) {
-            Intent in=new Intent(this,ElectronicsActivity.class);
-            startActivity(in);
-        }
-        else if (id == R.id.clothing) {
-            Intent in=new Intent(this,ClothingActivity.class);
-            startActivity(in);
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

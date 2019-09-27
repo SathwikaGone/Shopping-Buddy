@@ -28,9 +28,13 @@
     <string name="title_activity_mens_accessories_product_list">MensAccessoriesProductList</string>
     <string name="title_activity_editor_remove_product">EditorRemoveProduct</string>
     <string name="title_activity_select_product">SelectProduct</string>
-    <string name="title_activity_item_details">ItemDetails</string>  
+    <string name="title_activity_item_details">ItemDetails</string>
     <string name="title_activity_women_accessories_product_list">WomenAccessoriesProductList</string>
     <string name="title_activity_tvandcomputers_electronics_product_list">TvandComputersProductList</string>
     <string name="title_activity_cellphones_electronics_product_list">CellphonesProductList</string>
+    <string name="title_activity_clothing__item__details">Clothing_Item_Details</string>
+    <string name="title_activity_footwear__item__details">Footwear_Item_Details</string>
+    <string name="title_activity_footwear">Footwear</string>
+    <string name="title_activity_mens_footwear_products">MensFootwearProducts</string>
 
 </resources>

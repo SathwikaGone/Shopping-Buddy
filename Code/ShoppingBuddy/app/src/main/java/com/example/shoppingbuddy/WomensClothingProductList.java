@@ -80,7 +80,7 @@ public class WomensClothingProductList extends AppCompatActivity
                     productLV = findViewById(R.id.productsLV);
                     productLV.setHasFixedSize(true);
                     productLayoutManager = new LinearLayoutManager(WomensClothingProductList.this);
-                    productsAdapter = new ProductsAdapter(itemListArray, WomensClothingProductList.this);
+                    productsAdapter = new ClothingProductsAdapter(itemListArray, WomensClothingProductList.this);
                     productLV.setLayoutManager(productLayoutManager);
                     productLV.setAdapter(productsAdapter);
                 }
