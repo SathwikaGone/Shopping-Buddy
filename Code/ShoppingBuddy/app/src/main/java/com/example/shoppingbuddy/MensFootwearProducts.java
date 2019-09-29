@@ -72,7 +72,7 @@ public class MensFootwearProducts extends AppCompatActivity
                     int i = 0;
                     for (QueryDocumentSnapshot doc : task.getResult()) {
 
-                        if (doc.getString("category").equals("Men's Footwear")) {
+                        if (doc.getString("category").equals("Men's Accessories")) {
                             itemListArray.add(new Container(doc.getString("itemId"), doc.getString("itemName"), doc.getDouble("cost"), doc.getString("itemDetails"),
                                     doc.getString("category"), doc.getId(), doc.getString("imageURL")));
                             i++;
