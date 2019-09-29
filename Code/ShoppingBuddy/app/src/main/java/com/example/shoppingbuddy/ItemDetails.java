@@ -118,7 +118,7 @@ public class ItemDetails extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.item_details, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -130,8 +130,9 @@ public class ItemDetails extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_cart) {
+            Intent i = new Intent(ItemDetails.this,CartActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
@@ -145,18 +146,23 @@ public class ItemDetails extends AppCompatActivity
         if (id == R.id.home) {
             // Handle the home action
             Intent in=new Intent(this,Home.class);
+            startActivity(in);}
+        else if (id == R.id.electronics) {
+            Intent in=new Intent(this,ElectronicsActivity.class);
+            startActivity(in);}
+        else if (id == R.id.clothing) {
+            // Handle the accessories action
+            Intent in=new Intent(this,ClothingActivity.class);
             startActivity(in);
         }
         else if (id == R.id.accessories) {
+            // Handle the accessories action
             Intent in=new Intent(this,AccessoriesActivity.class);
             startActivity(in);
-
-        } else if (id == R.id.electronics) {
-            Intent in=new Intent(this,ElectronicsActivity.class);
-            startActivity(in);
         }
-        else if (id == R.id.clothing) {
-            Intent in=new Intent(this,ClothingActivity.class);
+        else if (id == R.id.footwear) {
+            // Handle the accessories action
+            Intent in=new Intent(this,Footwear.class);
             startActivity(in);
         }
 

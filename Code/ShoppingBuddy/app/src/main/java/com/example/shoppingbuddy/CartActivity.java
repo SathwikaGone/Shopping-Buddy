@@ -2,21 +2,15 @@ package com.example.shoppingbuddy;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-
-import android.view.MenuItem;
-
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -25,18 +19,18 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-import androidx.drawerlayout.widget.DrawerLayout;
+import java.util.ArrayList;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.Menu;
-
-import java.util.ArrayList;
-
-public class KidsClothingProductList extends AppCompatActivity
+public class CartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private RecyclerView productLV;
     private RecyclerView.Adapter productsAdapter;
@@ -44,19 +38,26 @@ public class KidsClothingProductList extends AppCompatActivity
 
     private FirebaseFirestore db;
     private StorageReference StorageRef;
-    private CollectionReference productCollection;
-
+    private CollectionReference productCollection, cartCollection;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_clothing_product_list);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         db = FirebaseFirestore.getInstance();
         StorageRef = FirebaseStorage.getInstance().getReference().child("productimages");
         productCollection = db.collection("products");
-      //  FloatingActionButton fab = findViewById(R.id.fab);
+        cartCollection=db.collection("cart");
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
+
+
+
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -64,47 +65,60 @@ public class KidsClothingProductList extends AppCompatActivity
 //                        .setAction("Action", null).show();
 //            }
 //        });
-
-
         final ArrayList<Container> itemListArray = new ArrayList<>();
 
-        productCollection.orderBy("itemId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+
+        cartCollection.orderBy("itemId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
-                    int i = 0;
-                    for (QueryDocumentSnapshot doc : task.getResult()) {
+                    for (final QueryDocumentSnapshot doc : task.getResult()) {
+                        if(user.getEmail().equals(doc.getString("user"))){
+                            Log.d("click","inside users verfication");
+                            productCollection.orderBy("itemId",Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                                    int i=0;
+                                    for(QueryDocumentSnapshot doc1: task.getResult()){
+                                        Log.d("click","inside products collection");
+                                        if(doc.getString("itemId").equals(doc1.getId())){
+                                            Log.d("click","inside products verification");
+                                            itemListArray.add(new Container(doc1.getString("itemId"), doc1.getString("itemName"), doc1.getDouble("cost"), doc1.getString("itemDetails"),
+                                                    doc1.getString("category"), doc1.getId(), doc1.getString("imageURL"),doc.getLong("quantity"),doc.getString("size"),doc.getString("user")));
+                                            i++;
+                                        }
+                                    }
+                                    productLV = findViewById(R.id.productsLV);
+                                    productLV.setHasFixedSize(true);
+                                    productLayoutManager = new LinearLayoutManager(CartActivity.this);
+                                    productsAdapter = new CartAdapter(itemListArray, CartActivity.this);
+                                    productLV.setLayoutManager(productLayoutManager);
+                                    productLV.setAdapter(productsAdapter);
+                                }
+                            });
 
-                        if (doc.getString("category").equals("Kid's clothing")) {
-                            itemListArray.add(new Container(doc.getString("itemId"), doc.getString("itemName"), doc.getDouble("cost"), doc.getString("itemDetails"),
-                                    doc.getString("category"), doc.getId(), doc.getString("imageURL")));
-                            i++;
                         }
                     }
 
-                    productLV = findViewById(R.id.productsLV);
-                    productLV.setHasFixedSize(true);
-                    productLayoutManager = new LinearLayoutManager(KidsClothingProductList.this);
-                    productsAdapter = new ClothingProductsAdapter(itemListArray, KidsClothingProductList.this);
-                    productLV.setLayoutManager(productLayoutManager);
-                    productLV.setAdapter(productsAdapter);
+
                 }
             }
         });
 
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -128,7 +142,7 @@ public class KidsClothingProductList extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_cart) {
-            Intent i = new Intent(KidsClothingProductList.this,CartActivity.class);
+            Intent i = new Intent(CartActivity.this,CartActivity.class);
             startActivity(i);
         }
 
@@ -163,9 +177,9 @@ public class KidsClothingProductList extends AppCompatActivity
             startActivity(in);
         }
 
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 }
+

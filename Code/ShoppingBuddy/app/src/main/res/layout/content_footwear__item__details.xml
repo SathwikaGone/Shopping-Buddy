@@ -50,15 +50,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="item name"
-                    android:textColor="#00F" />
+                    android:text="Product Name:"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/priceTV"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="price" />
+                    android:text="Price"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="22sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -71,14 +74,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="7dp"
-                    android:text="Item description"
-                    android:textSize="18dp" />
+                    android:text="Product Description:"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/detailsTV"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="7dp" />
+                    android:padding="7dp"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
             </LinearLayout>
         </LinearLayout>
 
@@ -89,7 +94,9 @@
         android:id="@+id/button16"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
         android:text="Add to cart"
+        android:textColor="@color/common_google_signin_btn_text_dark_default"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.95"
@@ -99,102 +106,98 @@
 
     <Spinner
         android:id="@+id/spinner"
-        android:layout_width="200dp"
+        android:layout_width="100dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.546"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.643" />
+        app:layout_constraintVertical_bias="0.672" />
 
     <TextView
         android:id="@+id/textView32"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Enter Quantity"
-        android:textSize="24sp"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.653" />
-
-    <Button
-        android:id="@+id/button17"
-        android:layout_width="43dp"
-        android:layout_height="42dp"
-        android:text="6"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.402"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.755" />
-
-    <Button
-        android:id="@+id/button18"
-        android:layout_width="43dp"
-        android:layout_height="42dp"
-        android:text="7"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.519"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.755" />
 
     <TextView
         android:id="@+id/textView31"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         android:text="Choose size"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
         android:textSize="22sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button17"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.76" />
-
-    <Button
-        android:id="@+id/button19"
-        android:layout_width="43dp"
-        android:layout_height="42dp"
-        android:text="8"
+    <RadioGroup
+        android:layout_width="277dp"
+        android:layout_height="61dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.635"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.755" />
+        app:layout_constraintVertical_bias="0.798">
 
-    <Button
-        android:id="@+id/button20"
-        android:layout_width="43dp"
-        android:layout_height="42dp"
-        android:text="9"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.752"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.755" />
+        <RadioButton
+            android:id="@+id/but6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="536dp" />
+        <RadioButton
+            android:id="@+id/but7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="536dp" />
 
-    <Button
-        android:id="@+id/button21"
-        android:layout_width="43dp"
-        android:layout_height="42dp"
-        android:text="10"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.869"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.755" />
+        <RadioButton
+            android:id="@+id/but8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="536dp" />
+
+        <RadioButton
+            android:id="@+id/but9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="536dp" />
+
+        <RadioButton
+            android:id="@+id/but10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="536dp" />
+
+
+    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

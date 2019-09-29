@@ -15,6 +15,9 @@ public class Container{
     private String category;
     private String documentId;
     private String imageURL;
+    private Long quantity;
+    private String size;
+    private String email;
 
     public Container(String itemID, String itemName, double cost, String description, String category, String documentId, String imageURL) {
         this.itemID = itemID;
@@ -24,6 +27,19 @@ public class Container{
         this.category = category;
         this.documentId = documentId;
         this.imageURL = imageURL;
+    }
+
+    public Container(String itemID, String itemName, double cost, String description, String category, String documentId, String imageURL, Long quantity, String size, String email) {
+        this.itemID = itemID;
+        this.itemName = itemName;
+        this.cost = cost;
+        this.description = description;
+        this.category = category;
+        this.documentId = documentId;
+        this.imageURL = imageURL;
+        this.quantity = quantity;
+        this.size = size;
+        this.email = email;
     }
 
     public String getItemID() {
@@ -52,6 +68,18 @@ public class Container{
 
     public String getImageURL() {
         return imageURL;
+    }
+
+    public Long getQuantity() {
+        return quantity;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public String getEmail() {
+        return email;
     }
 }
 

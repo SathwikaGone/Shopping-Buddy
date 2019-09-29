@@ -14,80 +14,84 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MensFootwearProducts"
-            android:label="@string/title_activity_mens_footwear_products"
+            android:label="Men's Footwear"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Footwear"
-            android:label="@string/title_activity_footwear"
+            android:label="Footwear"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Footwear_Item_Details"
-            android:label="@string/title_activity_footwear__item__details"
+            android:label="Product Details"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".CartActivity"
+            android:label="cart"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Clothing_Item_Details"
-            android:label="@string/title_activity_clothing__item__details"
+            android:label="Product Details"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ItemDetails"
-            android:label="@string/title_activity_item_details"
+            android:label="Product Details"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SelectProduct"
-            android:label="@string/title_activity_select_product"
+            android:label="Search Product"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditorRemoveProduct"
-            android:label="@string/title_activity_editor_remove_product"
+            android:label="Edit Product"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CellphonesElectronicsProductList"
-            android:label="@string/title_activity_cellphones_electronics_product_list"
+            android:label="Cellphones"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".TvandComputersProductList"
-            android:label="@string/title_activity_tvandcomputers_electronics_product_list"
+            android:label="TV and Computers"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MensAccessoriesProductList"
-            android:label="@string/title_activity_mens_accessories_product_list"
+            android:label="Men's Accessories"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".KidsClothingProductList"
-            android:label="@string/title_activity_kids_clothing_product_list"
+            android:label="Kid's Clothing"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".WomenAccessoriesProductList"
-            android:label="@string/title_activity_women_accessories_product_list"
+            android:label="Women's Accessories"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".WomensClothingProductList"
-            android:label="@string/title_activity_womens_clothing_product_list"
+            android:label="Women's Clothing"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ClothingProductList"
-            android:label="@string/title_activity_clothing_product_list"
+            android:label="Products List"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AddProductActivity"
-            android:label="@string/title_activity_add_product"
+            android:label="Add Product"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AdminHomeActivity"
-            android:label="@string/title_activity_admin_home"
+            android:label="Admin Home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".AdminLoginActivity" />
         <activity
             android:name=".ElectronicsActivity"
-            android:label="@string/title_activity_electronics"
+            android:label="Electronics"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ClothingActivity"
-            android:label="@string/title_activity_clothing"
+            android:label="Clothing"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AccessoriesActivity"
-            android:label="@string/title_activity_accessories"
+            android:label="Accessories"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ForgotPassword" />
         <activity
@@ -101,15 +105,15 @@
         </activity>
         <activity
             android:name=".Home"
-            android:label="@string/title_activity_home"
+            android:label="Home"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SigninActivity"
-            android:label="@string/title_activity_signin"
+            android:label="shoppingBuddy"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:label="shoppingBuddy"
             android:theme="@style/AppTheme.NoActionBar" />
     </application>
 

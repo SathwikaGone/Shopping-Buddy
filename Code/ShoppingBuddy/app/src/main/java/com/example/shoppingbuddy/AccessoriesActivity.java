@@ -78,7 +78,7 @@ public class AccessoriesActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.accessories, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -90,8 +90,9 @@ public class AccessoriesActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_cart) {
+            Intent i = new Intent(AccessoriesActivity.this,CartActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
@@ -113,6 +114,16 @@ public class AccessoriesActivity extends AppCompatActivity
         else if (id == R.id.clothing) {
             // Handle the accessories action
             Intent in=new Intent(this,ClothingActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.accessories) {
+            // Handle the accessories action
+            Intent in=new Intent(this,AccessoriesActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.footwear) {
+            // Handle the accessories action
+            Intent in=new Intent(this,Footwear.class);
             startActivity(in);
         }
 

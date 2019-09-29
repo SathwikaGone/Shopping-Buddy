@@ -167,7 +167,7 @@ public class EditorRemoveProduct extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.editor_remove_product, menu);
+        getMenuInflater().inflate(R.menu.admin_home, menu);
         return true;
     }
 
@@ -192,20 +192,28 @@ public class EditorRemoveProduct extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
-
+        if (id == R.id.home) {
+            // Handle the home action
+            Intent in=new Intent(this,Home.class);
+            startActivity(in);}
+        else if (id == R.id.electronics) {
+            Intent in=new Intent(this,ElectronicsActivity.class);
+            startActivity(in);}
+        else if (id == R.id.clothing) {
+            // Handle the accessories action
+            Intent in=new Intent(this,ClothingActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.accessories) {
+            // Handle the accessories action
+            Intent in=new Intent(this,AccessoriesActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.footwear) {
+            // Handle the accessories action
+            Intent in=new Intent(this,Footwear.class);
+            startActivity(in);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

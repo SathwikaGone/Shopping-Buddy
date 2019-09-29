@@ -1,5 +1,6 @@
 package com.example.shoppingbuddy;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -110,7 +111,7 @@ public class MensAccessoriesProductList extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.clothing_product_list, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -122,8 +123,9 @@ public class MensAccessoriesProductList extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_cart) {
+            Intent i = new Intent(MensAccessoriesProductList.this,CartActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
@@ -135,19 +137,28 @@ public class MensAccessoriesProductList extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
+        if (id == R.id.home) {
+            // Handle the home action
+            Intent in=new Intent(this,Home.class);
+            startActivity(in);}
+        else if (id == R.id.electronics) {
+            Intent in=new Intent(this,ElectronicsActivity.class);
+            startActivity(in);}
+        else if (id == R.id.clothing) {
+            // Handle the accessories action
+            Intent in=new Intent(this,ClothingActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.accessories) {
+            // Handle the accessories action
+            Intent in=new Intent(this,AccessoriesActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.footwear) {
+            // Handle the accessories action
+            Intent in=new Intent(this,Footwear.class);
+            startActivity(in);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
