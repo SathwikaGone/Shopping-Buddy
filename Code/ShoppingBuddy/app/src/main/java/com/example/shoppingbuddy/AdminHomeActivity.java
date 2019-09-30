@@ -63,6 +63,14 @@ public class AdminHomeActivity extends AppCompatActivity
                 startActivity(i);
             }
         });
+        Button addPromo=findViewById(R.id.button10);
+        addPromo.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                Intent i = new Intent(AdminHomeActivity.this, AdminPromoActivity.class);
+                startActivity(i);
+            }
+        });
     }
 
     @Override
