@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ShippingAddressActivity"
+            android:label="Shipping Address"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".MensFootwearProducts"
-            android:label="Men's Footwear"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:label="Men&apos;s Footwear"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Footwear"
             android:label="Footwear"
@@ -54,19 +58,19 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".MensAccessoriesProductList"
-            android:label="Men's Accessories"
+            android:label="Men&apos;s Accessories"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".KidsClothingProductList"
-            android:label="Kid's Clothing"
+            android:label="Kid&apos;s Clothing"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".WomenAccessoriesProductList"
-            android:label="Women's Accessories"
+            android:label="Women&apos;s Accessories"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".WomensClothingProductList"
-            android:label="Women's Clothing"
+            android:label="Women&apos;s Clothing"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ClothingProductList"

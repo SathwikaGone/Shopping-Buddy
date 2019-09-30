@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -45,7 +47,7 @@ public class CartActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_clothing_product_list);
+        setContentView(R.layout.activity_cart_product_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         db = FirebaseFirestore.getInstance();
@@ -54,6 +56,14 @@ public class CartActivity extends AppCompatActivity
         cartCollection=db.collection("cart");
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
+        Button btn = findViewById(R.id.button18);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CartActivity.this,ShippingAddressActivity.class);
+                startActivity(i);
+            }
+        });
 
 
 
