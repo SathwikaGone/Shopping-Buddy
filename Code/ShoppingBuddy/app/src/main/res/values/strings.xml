@@ -36,5 +36,9 @@
     <string name="title_activity_footwear__item__details">Footwear_Item_Details</string>
     <string name="title_activity_footwear">Footwear</string>
     <string name="title_activity_mens_footwear_products">MensFootwearProducts</string>
+    <string name="title_activity_shipping_address">ShippingAddressActivity</string>
+    <string name="title_activity_cart_product_list">CartProductList</string>
+    <string name="title_activity_admin_promo">AdminPromoActivity</string>
+
 
 </resources>

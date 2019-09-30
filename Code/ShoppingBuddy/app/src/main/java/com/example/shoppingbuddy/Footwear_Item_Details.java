@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -28,20 +31,32 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Footwear_Item_Details extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView imageIV;
     private TextView itemNameTV, priceTV, detailsTV,quantityTV,sizeTV;
     private FirebaseFirestore db;
-    private String imageURL,docId;
+    private String imageURL,docId,size1,curruser;
     private DocumentReference itemRef;
     private Button cart,six,seven,eight,nine,ten;
     private Spinner spinner;
     private static final String[] paths = {"1","2","3","4","5","6","7","8","9","10"};
     Spinner quantity;
+    private Long quant;
+    private RadioGroup size;
+    private RadioButton selectedRadioButton;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseUser user;
+    private CollectionReference itemCollection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,15 +70,19 @@ public class Footwear_Item_Details extends AppCompatActivity
         priceTV = findViewById(R.id.priceTV);
         detailsTV = findViewById(R.id.detailsTV);
         cart=findViewById(R.id.button16);
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        user = auth.getCurrentUser();
 //        six=findViewById(R.id.button17);
 //        seven=findViewById(R.id.button18);
 //        eight=findViewById(R.id.button19);
 //        nine=findViewById(R.id.button20);
 //        ten=findViewById(R.id.button21);
         db = FirebaseFirestore.getInstance();
+        itemCollection = db.collection("cart");
         quantity=findViewById(R.id.spinner);
         quantityTV=findViewById(R.id.textView32);
         sizeTV=findViewById(R.id.textView31);
+        size=findViewById(R.id.size);
 //      Get data from the Intent
         Intent i = getIntent();
         docId = i.getStringExtra("documentId");
@@ -71,7 +90,7 @@ public class Footwear_Item_Details extends AppCompatActivity
         //imageIV.setImageResource(i.getIntExtra("image",0));
         Picasso.get().load(imageURL).into(imageIV);
         itemNameTV.setText(i.getStringExtra("itemName"));
-        priceTV.setText("Buying price :$" + i.getDoubleExtra("unitPrice",0));
+        priceTV.setText("$" + i.getDoubleExtra("unitPrice",0));
 
 //        Get an instance of the items
         itemRef = db.collection("products").document(docId);
@@ -98,7 +117,26 @@ public class Footwear_Item_Details extends AppCompatActivity
             }
         });
 
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                quant=Long.parseLong(quantity.getSelectedItem().toString());
 
+                int selectedId = size.getCheckedRadioButtonId();
+                // find the radiobutton by returned id
+                selectedRadioButton = (RadioButton)findViewById(selectedId);
+                size1=selectedRadioButton.getText().toString();
+                curruser=user.getEmail();
+                Map<String, Object> addcart = new HashMap<>();
+                addcart.put("user", curruser);
+                addcart.put("itemId", docId);
+                addcart.put("quantity", quant);
+                addcart.put("size", size1);
+                itemCollection.document().set(addcart);
+                Toast.makeText(Footwear_Item_Details.this, "Item added to the cart", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

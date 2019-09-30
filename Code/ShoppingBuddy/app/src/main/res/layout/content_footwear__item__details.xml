@@ -5,94 +5,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Footwear_Item_Details"
-    tools:showIn="@layout/app_bar_footwear__item__details">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+    tools:context=".Clothing_Item_Details"
+    tools:showIn="@layout/app_bar_clothing__item__details">
+
+
+    <ImageView
+        android:id="@+id/imageIV"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/imageIV"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:layout_gravity="center_horizontal"
-                    android:padding="5dp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/itemNameTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="Product Name:"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="22sp" />
-
-                <TextView
-                    android:id="@+id/priceTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:text="Price"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="22sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/detailHeadTV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="7dp"
-                    android:text="Product Description:"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                    android:textSize="22sp" />
-
-                <TextView
-                    android:id="@+id/detailsTV"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="7dp"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
-            </LinearLayout>
-        </LinearLayout>
+        app:layout_constraintVertical_bias="0.0" />
 
 
-    </ScrollView>
+    <TextView
+        android:id="@+id/itemNameTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="Product Name:"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.359" />
+
+    <TextView
+        android:id="@+id/priceTV"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.239"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.433" />
+
+
+    <TextView
+        android:id="@+id/detailHeadTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:text="Product Description:"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.499" />
+
+    <TextView
+        android:id="@+id/detailsTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="7dp"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.566" />
+
 
     <Button
         android:id="@+id/button16"
-        android:layout_width="wrap_content"
+        android:layout_width="130dp"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
         android:text="Add to cart"
@@ -110,10 +105,10 @@
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.546"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.672" />
+        app:layout_constraintVertical_bias="0.678" />
 
     <TextView
         android:id="@+id/textView32"
@@ -128,7 +123,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.653" />
+        app:layout_constraintVertical_bias="0.668" />
 
     <TextView
         android:id="@+id/textView31"
@@ -142,7 +137,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.76" />
+
     <RadioGroup
+        android:id="@+id/size"
         android:layout_width="277dp"
         android:layout_height="61dp"
         android:orientation="horizontal"
@@ -154,15 +151,16 @@
         app:layout_constraintVertical_bias="0.798">
 
         <RadioButton
-            android:id="@+id/but6"
+            android:id="@+id/xs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="6"
             android:textColor="@color/common_google_signin_btn_text_dark_focused"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="536dp" />
+
         <RadioButton
-            android:id="@+id/but7"
+            android:id="@+id/s"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="7"
@@ -171,7 +169,7 @@
             tools:layout_editor_absoluteY="536dp" />
 
         <RadioButton
-            android:id="@+id/but8"
+            android:id="@+id/m"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="8"
@@ -180,7 +178,7 @@
             tools:layout_editor_absoluteY="536dp" />
 
         <RadioButton
-            android:id="@+id/but9"
+            android:id="@+id/l"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="9"
@@ -189,7 +187,7 @@
             tools:layout_editor_absoluteY="536dp" />
 
         <RadioButton
-            android:id="@+id/but10"
+            android:id="@+id/xl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="10"
@@ -199,5 +197,21 @@
 
 
     </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView33"
+        android:layout_width="115dp"
+        android:layout_height="35dp"
+        android:text="Price"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.429" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
