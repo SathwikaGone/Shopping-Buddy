@@ -84,6 +84,57 @@ public class ShippingAddressActivity extends AppCompatActivity
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         Button shipadd= findViewById(R.id.button17);
+        shipadd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                fname=fname1.getText().toString();
+                lname=lname1.getText().toString();
+                address=address1.getText().toString();
+                city=city1.getText().toString();
+                state=state1.getText().toString();
+                zipcode=zipcode1.getText().toString();
+                orderId = lname + Math.random();
+                ordersCollection.orderBy("orderId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (final QueryDocumentSnapshot doc : task.getResult()) {
+
+                                if (doc.getString("orderId").equals("")) {
+                                    orderId = lname + Math.random();
+                                } else if (doc.getString("orderId").equals(orderId)) {
+                                    orderId = lname + Math.random();
+                                } else {
+                                    orderId = lname + Math.random();
+                                }
+                            }
+                        }
+                    }
+                });
+
+                if(fname.equals("")||lname.equals("")||address.equals("") || city.equals("") || state.equals("") || zipcode.equals("")){
+                    Toast.makeText(ShippingAddressActivity.this, "All the field needs to be filled ", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Map<String, Object> addproduct = new HashMap<>();
+                    addproduct.put("User",user);
+                    addproduct.put("OrderId", orderId );
+                    addproduct.put("First Name", fname);
+                    addproduct.put("Last Name", lname);
+                    addproduct.put("Address", address);
+                    addproduct.put("City", city);
+                    addproduct.put("State", state);
+                    addproduct.put("Zipcode", zipcode);
+                    ordersCollection.document().set(addproduct);
+                    Toast.makeText(ShippingAddressActivity.this, "Order", Toast.LENGTH_SHORT).show();
+                    finish();
+
+
+                }
+
+            }
+        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
