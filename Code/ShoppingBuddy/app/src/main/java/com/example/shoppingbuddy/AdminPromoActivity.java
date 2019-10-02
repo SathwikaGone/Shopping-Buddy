@@ -38,8 +38,8 @@ public class AdminPromoActivity extends AppCompatActivity
     private StorageReference storg;
     private CollectionReference itemCollection;
     private DocumentReference itemDoc;
-    String id,promo;
-    EditText promoid,promocode;
+    String id,promo,deductamount;
+    EditText promoid,promocode,deductedamount;
 
 
     @Override
@@ -51,6 +51,7 @@ public class AdminPromoActivity extends AppCompatActivity
 
         promoid=findViewById(R.id.editText10);
         promocode=findViewById(R.id.editText11);
+        deductedamount=findViewById(R.id.editText19);
         Button addpromo=findViewById(R.id.button17);
 
 
@@ -64,6 +65,7 @@ public class AdminPromoActivity extends AppCompatActivity
             public void onClick(View v) {
                 id=promoid.getText().toString();
                 promo=promocode.getText().toString();
+                deductamount=deductedamount.getText().toString();
 
                 if(id.equals("")||promo.equals("")){
                     Toast.makeText(AdminPromoActivity.this, "All the field needs to be filled ", Toast.LENGTH_SHORT).show();
@@ -72,6 +74,7 @@ public class AdminPromoActivity extends AppCompatActivity
                     Map<String, Object> addpromo = new HashMap<>();
                     addpromo.put("PromoId", id);
                     addpromo.put("PromoCode", promo);
+                    addpromo.put("amount to dedcut",deductamount);
 
                     itemCollection.document().set(addpromo);
                     Toast.makeText(AdminPromoActivity.this, "Promo code added to the list", Toast.LENGTH_SHORT).show();

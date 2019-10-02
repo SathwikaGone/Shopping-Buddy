@@ -30,6 +30,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -48,6 +49,7 @@ public class Clothing_Item_Details extends AppCompatActivity
     private String imageURL,docId,size1,curruser;
     private DocumentReference itemRef;
     private Button cart,xsmall,small,medium,large,xlarge;
+    private ImageButton share;
     private Spinner spinner;
     private static final String[] paths = {"1","2","3","4","5","6","7","8","9","10"};
     Spinner quantity;
@@ -70,6 +72,7 @@ public class Clothing_Item_Details extends AppCompatActivity
         priceTV = findViewById(R.id.priceTV);
         detailsTV = findViewById(R.id.detailsTV);
         cart=findViewById(R.id.button16);
+        share=findViewById(R.id.imageButton);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 //        xsmall=findViewById(R.id.button17);
@@ -135,6 +138,19 @@ public class Clothing_Item_Details extends AppCompatActivity
                 itemCollection.document().set(addcart);
                 Toast.makeText(Clothing_Item_Details.this, "Item added to the cart", Toast.LENGTH_SHORT).show();
                 finish();
+            }
+        });
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody = "Your body here";
+                String shareSub = "Your subject here";
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Share using"));
             }
         });
 

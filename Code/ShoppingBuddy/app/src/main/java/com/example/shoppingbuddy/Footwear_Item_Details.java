@@ -30,6 +30,7 @@ import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -49,6 +50,7 @@ public class Footwear_Item_Details extends AppCompatActivity
     private DocumentReference itemRef;
     private Button cart,six,seven,eight,nine,ten;
     private Spinner spinner;
+    private ImageButton share;
     private static final String[] paths = {"1","2","3","4","5","6","7","8","9","10"};
     Spinner quantity;
     private Long quant;
@@ -69,6 +71,7 @@ public class Footwear_Item_Details extends AppCompatActivity
         itemNameTV = findViewById(R.id.itemNameTV);
         priceTV = findViewById(R.id.priceTV);
         detailsTV = findViewById(R.id.detailsTV);
+        share=findViewById(R.id.imageButton);
         cart=findViewById(R.id.button16);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
@@ -135,6 +138,19 @@ public class Footwear_Item_Details extends AppCompatActivity
                 itemCollection.document().set(addcart);
                 Toast.makeText(Footwear_Item_Details.this, "Item added to the cart", Toast.LENGTH_SHORT).show();
                 finish();
+            }
+        });
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody = "Your body here";
+                String shareSub = "Your subject here";
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Share using"));
             }
         });
 

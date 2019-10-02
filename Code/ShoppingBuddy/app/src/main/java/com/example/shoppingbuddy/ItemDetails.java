@@ -32,6 +32,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -51,6 +52,7 @@ public class ItemDetails extends AppCompatActivity
     private DocumentReference itemRef;
     private Button cart;
     private Spinner spinner;
+    private ImageButton share;
     private static final String[] paths = {"1","2","3","4","5","6","7","8","9","10"};
     Spinner quantity;
     private Long quant;
@@ -70,6 +72,7 @@ public class ItemDetails extends AppCompatActivity
         priceTV = findViewById(R.id.priceTV);
         detailsTV = findViewById(R.id.detailsTV);
         cart=findViewById(R.id.button16);
+        share=findViewById(R.id.imageButton);
         db = FirebaseFirestore.getInstance();
         quantity=findViewById(R.id.spinner);
         quantityTV=findViewById(R.id.textView32);
@@ -126,6 +129,19 @@ public class ItemDetails extends AppCompatActivity
                 itemCollection.document().set(addcart);
                 Toast.makeText(ItemDetails.this, "Item added to the cart", Toast.LENGTH_SHORT).show();
                 finish();
+            }
+        });
+        share.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+                sharingIntent.setType("text/plain");
+                String shareBody = "Your body here";
+                String shareSub = "Your subject here";
+                sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, shareSub);
+                sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+                startActivity(Intent.createChooser(sharingIntent, "Share using"));
             }
         });
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
