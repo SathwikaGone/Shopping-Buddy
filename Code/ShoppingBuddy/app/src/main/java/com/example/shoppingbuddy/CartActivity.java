@@ -7,6 +7,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -14,6 +17,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -43,7 +47,9 @@ public class CartActivity extends AppCompatActivity
     private CollectionReference productCollection, cartCollection;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
-
+    private double totalcost;
+    private DocumentReference itemDoc;
+    private String documentId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -95,6 +101,8 @@ public class CartActivity extends AppCompatActivity
                                             Log.d("click","inside products verification");
                                             itemListArray.add(new Container(doc1.getString("itemId"), doc1.getString("itemName"), doc1.getDouble("cost"), doc1.getString("itemDetails"),
                                                     doc1.getString("category"), doc1.getId(), doc1.getString("imageURL"),doc.getLong("quantity"),doc.getString("size"),doc.getString("user")));
+                                            Log.d("click","cost: "+doc1.getDouble("cost"));
+                                            totalcost=totalcost+doc1.getDouble("cost");
                                             i++;
                                         }
                                     }
@@ -104,6 +112,8 @@ public class CartActivity extends AppCompatActivity
                                     productsAdapter = new CartAdapter(itemListArray, CartActivity.this);
                                     productLV.setLayoutManager(productLayoutManager);
                                     productLV.setAdapter(productsAdapter);
+                                    TextView totaltv=findViewById(R.id.textView41);
+                                    totaltv.setText("Total cost: "+totalcost);
                                 }
                             });
 
@@ -115,7 +125,6 @@ public class CartActivity extends AppCompatActivity
             }
         });
 
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -125,6 +134,7 @@ public class CartActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
+
 
     @Override
     public void onBackPressed() {

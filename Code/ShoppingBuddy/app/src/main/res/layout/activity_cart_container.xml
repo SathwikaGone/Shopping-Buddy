@@ -16,34 +16,35 @@
             android:id="@+id/imageIV"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:layout_margin="5dp"/>
-
+            android:layout_margin="5dp" />
 
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_margin="5dp">
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
 
             <TextView
                 android:id="@+id/iNameTV"
-                android:textColor="#0000FF"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ProductName" />
+                android:text="ProductName"
+                android:textColor="#0000FF" />
 
             <TextView
                 android:id="@+id/sizeTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Size" />
+
             <TextView
                 android:id="@+id/quantityTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Quantity" />
+
             <TextView
                 android:id="@+id/priceTV"
                 android:layout_width="wrap_content"
@@ -52,6 +53,8 @@
 
 
         </LinearLayout>
+
+
 
     </LinearLayout>
 

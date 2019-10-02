@@ -2,13 +2,19 @@ package com.example.shoppingbuddy;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -29,6 +35,7 @@ public static class ItemsViewHolder extends RecyclerView.ViewHolder {
     public TextView productName;
     public TextView cost,quantity,size;
 
+
     public LinearLayout linearLayout2;
 
     public ItemsViewHolder(@NonNull View itemView) {
@@ -39,9 +46,9 @@ public static class ItemsViewHolder extends RecyclerView.ViewHolder {
         cost = itemView.findViewById(R.id.priceTV);
         quantity = itemView.findViewById(R.id.quantityTV);
         size = itemView.findViewById(R.id.sizeTV);
-
-
         linearLayout2 = itemView.findViewById(R.id.linearLayout2);
+
+
     }
 }
     @NonNull
@@ -67,7 +74,7 @@ public static class ItemsViewHolder extends RecyclerView.ViewHolder {
 //        itemsViewHolder.linearLayout2.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
-//                Intent intent = new Intent(context, Clothing_Item_Details.class);
+//                Intent intent = new Intent(context, CartActivity.class);
 //                intent.putExtra("imageURL", currentItem.getImageURL());
 //                intent.putExtra("documentId", currentItem.getDocumentId());
 //                intent.putExtra("description", currentItem.getDescription());
@@ -76,9 +83,14 @@ public static class ItemsViewHolder extends RecyclerView.ViewHolder {
 //                intent.putExtra("itemName", currentItem.getItemName());
 //                intent.putExtra("unitPrice", currentItem.getCost());
 //                context.startActivity(intent);
+//
 //            }
+//
 //        });
+
     }
+
+
 
     @Override
     public int getItemCount() {
