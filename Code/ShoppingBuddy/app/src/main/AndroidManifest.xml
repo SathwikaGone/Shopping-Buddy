@@ -20,13 +20,9 @@
             android:name=".MensFootwearProducts"
             android:label="Men&apos;s Footwear"
             android:theme="@style/AppTheme.NoActionBar" />
-	<activity
+        <activity
             android:name=".AdminPromoActivity"
             android:label="@string/title_activity_admin_promo"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".MensFootwearProducts"
-            android:label="Men&apos;s Footwear"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Footwear"

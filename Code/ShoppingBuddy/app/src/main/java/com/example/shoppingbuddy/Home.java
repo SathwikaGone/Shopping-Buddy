@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.navigation.NavigationView;
@@ -34,6 +35,55 @@ public class Home extends AppCompatActivity
 //            @Override
 //            public void onClick(View view) {
 //                Intent ini=new Intent(Home.this,MainActivity.class);
+//                startActivity(ini);
+//            }
+//        });
+
+        ImageView in=findViewById(R.id.imageView4);
+        ImageView in1=findViewById(R.id.imageView5);
+        ImageView in2=findViewById(R.id.imageView6);
+        ImageView in3=findViewById(R.id.imageView7);
+        ImageView in4=findViewById(R.id.imageView8);
+        ImageView in5=findViewById(R.id.imageView9);
+        in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ini=new Intent(Home.this,ClothingActivity.class);
+                startActivity(ini);
+            }
+        });
+        in1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ini=new Intent(Home.this,Footwear.class);
+                startActivity(ini);
+            }
+        });
+        in2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ini=new Intent(Home.this,AccessoriesActivity.class);
+                startActivity(ini);
+            }
+        });
+        in3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent ini=new Intent(Home.this,ElectronicsActivity.class);
+                startActivity(ini);
+            }
+        });
+//        in4.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent ini=new Intent(Home.this,ClothingActivity.class);
+//                startActivity(ini);
+//            }
+//        });
+//        in5.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent ini=new Intent(Home.this,ClothingActivity.class);
 //                startActivity(ini);
 //            }
 //        });

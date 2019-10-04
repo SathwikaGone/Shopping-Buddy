@@ -9,171 +9,74 @@
     tools:showIn="@layout/app_bar_home">
 
     <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="173dp"
-        android:layout_height="218dp"
+        android:id="@+id/imageView4"
+        android:layout_width="214dp"
+        android:layout_height="181dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.016"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/image" />
+        app:srcCompat="@drawable/clothing" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="185dp"
+        android:layout_height="181dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/footwear" />
 
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="176dp"
-        android:layout_height="200dp"
+        android:layout_width="202dp"
+        android:layout_height="205dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/image1" />
+        app:layout_constraintVertical_bias="0.446"
+        app:srcCompat="@drawable/accessories" />
 
     <ImageView
         android:id="@+id/imageView7"
-        android:layout_width="161dp"
-        android:layout_height="146dp"
+        android:layout_width="190dp"
+        android:layout_height="179dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.064"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.678"
-        app:srcCompat="@drawable/image2" />
+        app:layout_constraintVertical_bias="0.439"
+        app:srcCompat="@drawable/electronics" />
 
     <ImageView
         android:id="@+id/imageView8"
-        android:layout_width="187dp"
-        android:layout_height="175dp"
+        android:layout_width="218dp"
+        android:layout_height="194dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.923"
+        app:srcCompat="@drawable/books" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="178dp"
+        android:layout_height="215dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.66"
-        app:srcCompat="@drawable/image3" />
-
-    <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="$167"
-        android:textColor="@android:color/background_dark"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.14"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.339" />
-
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="177dp"
-        android:layout_height="53dp"
-        android:text="Trumpet Mermaid off the shoulder"
-        android:textColor="@android:color/background_dark"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.106"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.422" />
-
-    <TextView
-        android:id="@+id/textView14"
-        android:layout_width="92dp"
-        android:layout_height="51dp"
-        android:text="$169"
-        android:textColor="@android:color/background_dark"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView12"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.318" />
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="154dp"
-        android:layout_height="45dp"
-        android:text="Weather Breaker Jacket for Men"
-        android:textColor="@android:color/background_dark"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView13"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.441" />
-
-    <TextView
-        android:id="@+id/textView15"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="$399.95"
-        android:textColor="@android:color/background_dark"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.239"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView16"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="$224.95"
-        android:textColor="@android:color/background_dark"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.44"
-        app:layout_constraintStart_toEndOf="@+id/textView15"
-        app:layout_constraintTop_toBottomOf="@+id/imageView8"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView17"
-        android:layout_width="170dp"
-        android:layout_height="50dp"
-        android:text="Nikon D3500- Digital Camera-SLR"
-        android:textColor="@android:color/background_dark"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/textView18"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView15"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView18"
-        android:layout_width="167dp"
-        android:layout_height="71dp"
-        android:text="Beats by Dr.Dre Solo Wireless"
-        android:textColor="@android:color/background_dark"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView17"
-        app:layout_constraintTop_toBottomOf="@+id/textView16"
-        app:layout_constraintVertical_bias="0.0" />
-
+        app:layout_constraintVertical_bias="0.965"
+        app:srcCompat="@drawable/beauty" />
 </androidx.constraintlayout.widget.ConstraintLayout>

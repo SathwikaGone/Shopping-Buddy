@@ -63,13 +63,7 @@ public class CartActivity extends AppCompatActivity
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         Button btn = findViewById(R.id.button18);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(CartActivity.this,ShippingAddressActivity.class);
-                startActivity(i);
-            }
-        });
+
 
 
 
@@ -122,6 +116,14 @@ public class CartActivity extends AppCompatActivity
 
 
                 }
+            }
+        });
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CartActivity.this,ShippingAddressActivity.class);
+                i.putExtra("total cost",totalcost);
+                startActivity(i);
             }
         });
 

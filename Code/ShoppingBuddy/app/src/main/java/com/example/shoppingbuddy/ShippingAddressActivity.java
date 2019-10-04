@@ -1,5 +1,6 @@
 package com.example.shoppingbuddy;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.common.util.Strings;
@@ -57,6 +58,7 @@ public class ShippingAddressActivity extends AppCompatActivity
     private CollectionReference ordersCollection, cartCollection;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
+    double totalcost;
 
     private String fname,lname,address,city,state,zipcode,promocode, orderId="";
 
@@ -79,6 +81,9 @@ public class ShippingAddressActivity extends AppCompatActivity
         totcost=findViewById(R.id.textView40);
 
         db = FirebaseFirestore.getInstance();
+        Intent i=getIntent();
+        totalcost=i.getDoubleExtra("total cost",0.0);
+        totcost.setText("$"+totalcost);
 
         ordersCollection=db.collection("orders");
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -135,13 +140,14 @@ public class ShippingAddressActivity extends AppCompatActivity
             }
         });
 
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
-        FirebaseAuth auth1 = FirebaseAuth.getInstance();
-        FirebaseUser user = auth1.getCurrentUser();
-        View headerView = navigationView.getHeaderView(0);
-        TextView navUsername = (TextView) headerView.findViewById(R.id.textView);
-        navUsername.setText(user.getEmail());
+//        FirebaseAuth auth1 = FirebaseAuth.getInstance();
+//        FirebaseUser user = auth1.getCurrentUser();
+//        View headerView = navigationView.getHeaderView(0);
+//        TextView navUsername = (TextView) headerView.findViewById(R.id.textView);
+//        navUsername.setText(user.getEmail());
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
