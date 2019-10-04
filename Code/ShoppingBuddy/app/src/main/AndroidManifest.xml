@@ -25,6 +25,9 @@
             android:label="@string/title_activity_admin_promo"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".PaymentActivity"
+            android:label="Payment" />
+        <activity
             android:name=".Footwear"
             android:label="Footwear"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -88,6 +91,7 @@
             android:name=".AdminHomeActivity"
             android:label="Admin Home"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".AdminLoginActivity" />
         <activity
             android:name=".ElectronicsActivity"

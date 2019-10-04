@@ -64,6 +64,7 @@ public class ShippingAddressActivity extends AppCompatActivity
 
     EditText fname1,lname1,address1,city1,state1,zipcode1,promocode1;
     TextView totcost;
+    Button paybutton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,8 @@ public class ShippingAddressActivity extends AppCompatActivity
          city1=findViewById(R.id.editText16);
          state1=findViewById(R.id.editText17);
          zipcode1=findViewById(R.id.editText15);
+         paybutton = findViewById(R.id.button17);
+
 
         totcost=findViewById(R.id.textView40);
 
@@ -136,6 +139,16 @@ public class ShippingAddressActivity extends AppCompatActivity
 
 
                 }
+
+            }
+        });
+
+        paybutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(ShippingAddressActivity.this, PaymentActivity.class);
+                i.putExtra("total cost",totalcost);
+                startActivity(i);
 
             }
         });
