@@ -127,6 +127,11 @@ public class ElectronicsActivity extends AppCompatActivity
             Intent in=new Intent(this,ClothingActivity.class);
             startActivity(in);
         }
+        else if (id == R.id.logout) {
+            // Handle the accessories action
+            Intent in=new Intent(this,MainActivity.class);
+            startActivity(in);
+        }
 //        else if (id == R.id.nav_slideshow) {
 //
 //        } else if (id == R.id.nav_manage) {

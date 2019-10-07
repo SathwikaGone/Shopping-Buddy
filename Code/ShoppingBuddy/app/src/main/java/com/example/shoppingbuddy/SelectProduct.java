@@ -1,5 +1,6 @@
 package com.example.shoppingbuddy;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -173,6 +174,12 @@ public class SelectProduct extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+
+          if (id == R.id.logout) {
+            // Handle the accessories action
+            Intent in=new Intent(this,MainActivity.class);
+            startActivity(in);
+        }
 //
 //        if (id == R.id.nav_camera) {
 //            // Handle the camera action

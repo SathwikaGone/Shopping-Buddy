@@ -134,6 +134,12 @@ public class AccessoriesActivity extends AppCompatActivity
             Intent in=new Intent(this,Footwear.class);
             startActivity(in);
         }
+        else if (id == R.id.logout) {
+            // Handle the accessories action
+            Intent in=new Intent(this,MainActivity.class);
+            startActivity(in);
+        }
+
 
 
       //  } else if (id == R.id.nav_slideshow) {

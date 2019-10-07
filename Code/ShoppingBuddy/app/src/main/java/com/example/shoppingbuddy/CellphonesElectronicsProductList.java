@@ -163,6 +163,11 @@ public class CellphonesElectronicsProductList extends AppCompatActivity
             Intent in=new Intent(this,Footwear.class);
             startActivity(in);
         }
+        else if (id == R.id.logout) {
+            // Handle the accessories action
+            Intent in=new Intent(this,MainActivity.class);
+            startActivity(in);
+        }
 //        if (id == R.id.nav_camera) {
 //            // Handle the camera action
 //        } else if (id == R.id.nav_gallery) {

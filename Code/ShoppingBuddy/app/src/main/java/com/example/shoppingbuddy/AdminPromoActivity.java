@@ -1,5 +1,6 @@
 package com.example.shoppingbuddy;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -149,6 +150,11 @@ public class AdminPromoActivity extends AppCompatActivity
 //        } else if (id == R.id.nav_send) {
 //
 //        }
+          if (id == R.id.logout) {
+            // Handle the accessories action
+            Intent in=new Intent(this,MainActivity.class);
+            startActivity(in);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

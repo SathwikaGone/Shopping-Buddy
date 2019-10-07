@@ -163,6 +163,11 @@ public class WomenAccessoriesProductList extends AppCompatActivity
                 Intent in=new Intent(this,Footwear.class);
                 startActivity(in);
             }
+            else if (id == R.id.logout) {
+                // Handle the accessories action
+                Intent in=new Intent(this,MainActivity.class);
+                startActivity(in);
+            }
             DrawerLayout drawer = findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);
             return true;

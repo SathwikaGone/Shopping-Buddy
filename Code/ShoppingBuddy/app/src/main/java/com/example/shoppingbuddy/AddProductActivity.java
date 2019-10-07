@@ -81,6 +81,7 @@ public class AddProductActivity extends AppCompatActivity
         prodimage=findViewById(R.id.imageView3);
         uploadbtn=findViewById(R.id.button13);
         Button addprod=findViewById(R.id.button12);
+        Button cancel=findViewById(R.id.button14);
 
 
         storage = FirebaseStorage.getInstance().getReference("productimages");
@@ -124,6 +125,13 @@ public class AddProductActivity extends AppCompatActivity
 
                 }
 
+            }
+        });
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(AddProductActivity.this,AdminHomeActivity.class);
+                startActivity(in);
             }
         });
 
@@ -261,6 +269,11 @@ public class AddProductActivity extends AppCompatActivity
 //        } else if (id == R.id.nav_send) {
 //
 //        }
+          if (id == R.id.logout) {
+            // Handle the accessories action
+            Intent in=new Intent(this,MainActivity.class);
+            startActivity(in);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
