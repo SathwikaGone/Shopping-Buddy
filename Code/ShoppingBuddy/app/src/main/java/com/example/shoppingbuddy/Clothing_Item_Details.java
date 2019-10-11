@@ -58,7 +58,7 @@ public class Clothing_Item_Details extends AppCompatActivity
     private RadioButton selectedRadioButton;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
-    private CollectionReference itemCollection;
+    private CollectionReference itemCollection,orderCollection;
 
 
     @Override
@@ -82,6 +82,7 @@ public class Clothing_Item_Details extends AppCompatActivity
 //        xlarge=findViewById(R.id.button21);
         db = FirebaseFirestore.getInstance();
         itemCollection = db.collection("cart");
+        orderCollection=db.collection("orders");
         quantity=findViewById(R.id.spinner);
         quantityTV=findViewById(R.id.textView32);
         sizeTV=findViewById(R.id.textView31);
@@ -136,6 +137,7 @@ public class Clothing_Item_Details extends AppCompatActivity
                 addcart.put("quantity", quant);
                 addcart.put("size", size1);
                 itemCollection.document().set(addcart);
+                orderCollection.document().set(addcart);
                 Toast.makeText(Clothing_Item_Details.this, "Item added to the cart", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -233,6 +235,11 @@ public class Clothing_Item_Details extends AppCompatActivity
         else if (id == R.id.logout) {
             // Handle the accessories action
             Intent in=new Intent(this,MainActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.orders) {
+            // Handle the accessories action
+            Intent in = new Intent(this, Orders_Product_List.class);
             startActivity(in);
         }
 

@@ -13,6 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Orders_Product_List"
+            android:label="@string/title_activity_orders__product__list"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".ShippingAddressActivity"
             android:label="Shipping Address"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -91,7 +95,6 @@
             android:name=".AdminHomeActivity"
             android:label="Admin Home"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name=".AdminLoginActivity" />
         <activity
             android:name=".ElectronicsActivity"
