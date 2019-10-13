@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".UserHistoryActivity"
+            android:label="Users History"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Orders_Product_List"
             android:label="Orders"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ShippingAddressActivity"
             android:label="Shipping Address"

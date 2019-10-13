@@ -192,31 +192,13 @@ public class EditorRemoveProduct extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.home) {
-            // Handle the home action
-            Intent in=new Intent(this,Home.class);
-            startActivity(in);}
-        else if (id == R.id.electronics) {
-            Intent in=new Intent(this,ElectronicsActivity.class);
-            startActivity(in);}
-        else if (id == R.id.clothing) {
-            // Handle the accessories action
-            Intent in=new Intent(this,ClothingActivity.class);
+        if(id==R.id.History){
+            Intent in=new Intent(EditorRemoveProduct.this,UserHistoryActivity.class);
             startActivity(in);
         }
-        else if (id == R.id.accessories) {
+        else if (id == R.id.Logout) {
             // Handle the accessories action
-            Intent in=new Intent(this,AccessoriesActivity.class);
-            startActivity(in);
-        }
-        else if (id == R.id.footwear) {
-            // Handle the accessories action
-            Intent in=new Intent(this,Footwear.class);
-            startActivity(in);
-        }
-        else if (id == R.id.logout) {
-            // Handle the accessories action
-            Intent in=new Intent(this,MainActivity.class);
+            Intent in=new Intent(EditorRemoveProduct.this,MainActivity.class);
             startActivity(in);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

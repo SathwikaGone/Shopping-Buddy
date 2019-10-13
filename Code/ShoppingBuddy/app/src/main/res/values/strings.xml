@@ -40,6 +40,8 @@
     <string name="title_activity_cart_product_list">CartProductList</string>
     <string name="title_activity_admin_promo">AdminPromoActivity</string>
     <string name="title_activity_orders__product__list">Orders_Product_List</string>
+    <string name="title_activity_user_history">UserHistoryActivity</string>
+    <string name="title_activity_user_orders">UserOrdersActivity</string>
 
 
 </resources>

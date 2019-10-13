@@ -110,6 +110,15 @@ public class AdminHomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        if(id==R.id.History){
+            Intent in=new Intent(AdminHomeActivity.this,UserHistoryActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.Logout) {
+            // Handle the accessories action
+            Intent in=new Intent(AdminHomeActivity.this,MainActivity.class);
+            startActivity(in);
+        }
 
 //        if (id == R.id.nav_home) {
 //            // Handle the camera action
@@ -124,11 +133,7 @@ public class AdminHomeActivity extends AppCompatActivity
 //        } else if (id == R.id.nav_send) {
 //
 //        }
-          if (id == R.id.logout) {
-            // Handle the accessories action
-            Intent in=new Intent(this,MainActivity.class);
-            startActivity(in);
-        }
+
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

@@ -19,6 +19,11 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -38,7 +43,8 @@ public class MainActivity extends AppCompatActivity
     public EditText phonenumber;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
-
+    private CollectionReference itemCollection;
+    private FirebaseFirestore db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -206,6 +212,7 @@ public class MainActivity extends AppCompatActivity
             } else {
 //                progressDialog.setMessage("Registering user...");
 //                progressDialog.show();
+
              firebaseAuth.createUserWithEmailAndPassword(em, pw).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                          @Override
                          public void onComplete(@NonNull Task<AuthResult> task) {
@@ -231,8 +238,16 @@ public class MainActivity extends AppCompatActivity
                          }
                      }
              );
+             db = FirebaseFirestore.getInstance();
+             itemCollection = db.collection("users");
+             Map<String, Object> adduser = new HashMap<>();
+             adduser.put("Username",uname );
+             adduser.put("Email", em);
+             adduser.put("Phonenumber", phone);
+             itemCollection.document().set(adduser);
 
             }
         }
+
     }
 }
