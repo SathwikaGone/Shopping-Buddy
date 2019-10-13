@@ -97,7 +97,7 @@ public class CartActivity extends AppCompatActivity
                                             itemListArray.add(new Container(doc1.getString("itemId"), doc1.getString("itemName"), doc1.getDouble("cost"), doc1.getString("itemDetails"),
                                                     doc1.getString("category"), doc1.getId(), doc1.getString("imageURL"),doc.getLong("quantity"),doc.getString("size"),doc.getString("user")));
                                             Log.d("click","cost: "+doc1.getDouble("cost"));
-                                            totalcost=totalcost+doc1.getDouble("cost");
+                                            totalcost=totalcost+(doc1.getDouble("cost")*doc.getLong("quantity"));
                                             i++;
                                         }
                                     }

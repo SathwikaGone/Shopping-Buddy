@@ -55,7 +55,7 @@ public class ShippingAddressActivity extends AppCompatActivity
     private RecyclerView.LayoutManager productLayoutManager;
     private FirebaseFirestore db;
     private StorageReference StorageRef;
-    private CollectionReference ordersCollection, cartCollection;
+    private CollectionReference shippingCollection, cartCollection;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     double totalcost;
@@ -72,13 +72,12 @@ public class ShippingAddressActivity extends AppCompatActivity
         setContentView(R.layout.activity_shipping_address);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-         fname1=findViewById(R.id.editText10);
-         lname1=findViewById(R.id.editText11);
-         address1=findViewById(R.id.editText14);
-         city1=findViewById(R.id.editText16);
-         state1=findViewById(R.id.editText17);
-         zipcode1=findViewById(R.id.editText15);
-         paybutton = findViewById(R.id.button17);
+        fname1=findViewById(R.id.editText10);
+        lname1=findViewById(R.id.editText11);
+        address1=findViewById(R.id.editText14);
+        city1=findViewById(R.id.editText16);
+        state1=findViewById(R.id.editText17);
+        zipcode1=findViewById(R.id.editText15);
 
 
         totcost=findViewById(R.id.textView40);
@@ -88,7 +87,7 @@ public class ShippingAddressActivity extends AppCompatActivity
         totalcost=i.getDoubleExtra("total cost",0.0);
         totcost.setText("$"+totalcost);
 
-        ordersCollection=db.collection("orders");
+        shippingCollection=db.collection("shippingAddress");
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         Button shipadd= findViewById(R.id.button17);
@@ -102,7 +101,7 @@ public class ShippingAddressActivity extends AppCompatActivity
                 state=state1.getText().toString();
                 zipcode=zipcode1.getText().toString();
                 orderId = lname + Math.random();
-                ordersCollection.orderBy("orderId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                shippingCollection.orderBy("orderId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
@@ -133,9 +132,13 @@ public class ShippingAddressActivity extends AppCompatActivity
                     addproduct.put("City", city);
                     addproduct.put("State", state);
                     addproduct.put("Zipcode", zipcode);
-                    ordersCollection.document().set(addproduct);
+                    shippingCollection.document().set(addproduct);
                     Toast.makeText(ShippingAddressActivity.this, "Order", Toast.LENGTH_SHORT).show();
                     finish();
+                    Intent i = new Intent(ShippingAddressActivity.this, PaymentActivity.class);
+                    i.putExtra("total cost",totalcost);
+                    i.putExtra("orderid",orderId);
+                    startActivity(i);
 
 
                 }
@@ -143,15 +146,7 @@ public class ShippingAddressActivity extends AppCompatActivity
             }
         });
 
-        paybutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(ShippingAddressActivity.this, PaymentActivity.class);
-                i.putExtra("total cost",totalcost);
-                startActivity(i);
 
-            }
-        });
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -206,7 +201,7 @@ public class ShippingAddressActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-          if (id == R.id.logout) {
+        if (id == R.id.logout) {
             // Handle the accessories action
             Intent in=new Intent(this,MainActivity.class);
             startActivity(in);
@@ -231,6 +226,10 @@ public class ShippingAddressActivity extends AppCompatActivity
         else if (id == R.id.footwear) {
             // Handle the accessories action
             Intent in=new Intent(this,Footwear.class);
+            startActivity(in);
+        }
+        else if(id==R.id.orders){
+            Intent in=new Intent(this,Orders_Product_List.class);
             startActivity(in);
         }
 

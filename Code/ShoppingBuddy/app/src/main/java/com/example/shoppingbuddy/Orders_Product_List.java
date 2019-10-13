@@ -70,7 +70,7 @@ public class Orders_Product_List extends AppCompatActivity
         final ArrayList<Container> itemListArray = new ArrayList<>();
 
 
-        ordersCollection.orderBy("itemId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        ordersCollection.orderBy("productId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -83,7 +83,7 @@ public class Orders_Product_List extends AppCompatActivity
                                     int i=0;
                                     for(QueryDocumentSnapshot doc1: task.getResult()){
                                         Log.d("click","inside products collection");
-                                        if(doc.getString("itemId").equals(doc1.getId())){
+                                        if(doc.getString("productId").equals(doc1.getId())){
                                             Log.d("click","inside products verification");
                                             itemListArray.add(new Container(doc1.getString("itemId"), doc1.getString("itemName"), doc1.getDouble("cost"), doc1.getString("itemDetails"),
                                                     doc1.getString("category"), doc1.getId(), doc1.getString("imageURL"),doc.getLong("quantity"),doc.getString("size"),doc.getString("user")));
@@ -116,6 +116,11 @@ public class Orders_Product_List extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        FirebaseAuth auth1 = FirebaseAuth.getInstance();
+        FirebaseUser user = auth1.getCurrentUser();
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.textView);
+        navUsername.setText(user.getEmail());
         navigationView.setNavigationItemSelectedListener(this);
     }
 
@@ -132,7 +137,7 @@ public class Orders_Product_List extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.orders__product__list, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 

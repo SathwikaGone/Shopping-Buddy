@@ -235,7 +235,10 @@ public class Footwear_Item_Details extends AppCompatActivity
             Intent in=new Intent(this,MainActivity.class);
             startActivity(in);
         }
-
+        else if(id==R.id.orders){
+            Intent in=new Intent(this,Orders_Product_List.class);
+            startActivity(in);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
