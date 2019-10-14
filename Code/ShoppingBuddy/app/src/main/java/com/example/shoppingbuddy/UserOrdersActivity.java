@@ -85,6 +85,13 @@ public class UserOrdersActivity extends AppCompatActivity
                                             i++;
                                         }
                                     }
+ 				    productLV = findViewById(R.id.productLV);
+                                    productLV.setHasFixedSize(true);
+                                    productLayoutManager = new LinearLayoutManager(UserOrdersActivity.this);
+                                    productsAdapter = new CartAdapter(itemListArray, UserOrdersActivity.this);
+                                    productLV.setLayoutManager(productLayoutManager);
+                                    productLV.setAdapter(productsAdapter);
+
                                  
 
 
