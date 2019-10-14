@@ -24,6 +24,9 @@
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings"
+            
+            android:theme="@style/AppTheme.NoActionBar" />
+            <activity
             android:name=".UserHistoryActivity"
             android:label="Users History"
             android:theme="@style/AppTheme.NoActionBar" />
