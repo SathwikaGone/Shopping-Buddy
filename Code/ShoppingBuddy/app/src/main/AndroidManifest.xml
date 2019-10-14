@@ -17,6 +17,10 @@
             android:label="Users History"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name=".UserOrdersActivity"
+            android:label="User Orders"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".Orders_Product_List"
             android:label="Orders"
             android:theme="@style/AppTheme.NoActionBar" />
