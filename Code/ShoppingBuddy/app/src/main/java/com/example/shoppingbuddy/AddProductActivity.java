@@ -271,7 +271,7 @@ public class AddProductActivity extends AppCompatActivity
 //        }
           if (id == R.id.logout) {
             // Handle the accessories action
-            Intent in=new Intent(this,MainActivity.class);
+            Intent in=new Intent(AddProductActivity.this,MainActivity.class);
             startActivity(in);
         }
 

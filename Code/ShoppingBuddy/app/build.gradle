@@ -40,5 +40,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-storage:17.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+
+
 }
 apply plugin: 'com.google.gms.google-services'
