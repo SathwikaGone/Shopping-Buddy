@@ -48,6 +48,8 @@
 
     <string name="title_activity_user_history">UserHistoryActivity</string>
     <string name="title_activity_user_orders">UserOrdersActivity</string>
+    <string name="title_activity_editor_remove_promo">EditorRemovePromo</string>
+    <string name="title_activity_select_promocode">SelectPromocodeActivity</string>
 
 
 </resources>

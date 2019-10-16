@@ -18,6 +18,9 @@ public class Container{
     private Long quantity;
     private String size;
     private String email;
+    private String promoid;
+    private String promocode;
+    private String price;
 
     public Container(String itemID, String itemName, double cost, String description, String category, String documentId, String imageURL) {
         this.itemID = itemID;
@@ -40,6 +43,13 @@ public class Container{
         this.quantity = quantity;
         this.size = size;
         this.email = email;
+    }
+
+    public Container(String promoid, String promocode, String price, String documentId) {
+        this.promoid = promoid;
+        this.promocode = promocode;
+        this.price = price;
+        this.documentId = documentId;
     }
 
     public String getItemID() {
@@ -80,6 +90,18 @@ public class Container{
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPromoid() {
+        return promoid;
+    }
+
+    public String getPromocode() {
+        return promocode;
+    }
+
+    public String getPrice() {
+        return price;
     }
 }
 
