@@ -138,7 +138,7 @@ public class EditorRemovePromo extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.editor_remove_promo, menu);
+        getMenuInflater().inflate(R.menu.admin_home, menu);
         return true;
     }
 
