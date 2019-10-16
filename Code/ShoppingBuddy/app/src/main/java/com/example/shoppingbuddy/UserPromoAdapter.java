@@ -19,11 +19,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class PromocodeAdapter extends RecyclerView.Adapter<PromocodeAdapter.ItemsViewHolder> {
+public class UserPromoAdapter extends RecyclerView.Adapter<UserPromoAdapter.ItemsViewHolder> {
 
     private ArrayList<Container> itemListArray;
 
-    public PromocodeAdapter(ArrayList<Container> itemListArray, Context context) {
+    public UserPromoAdapter(ArrayList<Container> itemListArray, Context context) {
         this.itemListArray = itemListArray;
         this.context = context;
     }
@@ -47,7 +47,7 @@ public class PromocodeAdapter extends RecyclerView.Adapter<PromocodeAdapter.Item
     @NonNull
     @Override
     public ItemsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_promo_container, viewGroup, false);
+        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_user_promo, viewGroup, false);
         ItemsViewHolder itemsVH = new ItemsViewHolder(v);
         return itemsVH;
     }
@@ -59,25 +59,25 @@ public class PromocodeAdapter extends RecyclerView.Adapter<PromocodeAdapter.Item
 
         //itemsViewHolder.itemImage.setImageResource(currentItem.getImage());
         //Picasso.get().load(currentItem.getImageURL()).into(itemsViewHolder.productImage);
-        itemsViewHolder.promocode.setText(currentItem.getPromocode());
-        itemsViewHolder.price.setText("$ " + currentItem.getPrice());
+        itemsViewHolder.promocode.setText("Code: "+currentItem.getPromocode());
+        itemsViewHolder.price.setText("$" + currentItem.getPrice()+" OFF ON "+currentItem.getPdes());
 
 
-        itemsViewHolder.linearLayout2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, EditorRemovePromo.class);
-                //intent.putExtra("imageURL", currentItem.getImageURL());
-                intent.putExtra("documentId", currentItem.getDocumentId());
-                //intent.putExtra("description", currentItem.getDescription());
-                intent.putExtra("promoId", currentItem.getPromoid());
-                intent.putExtra("promocode", currentItem.getPromocode());
-                intent.putExtra("price", currentItem.getPrice());
-                intent.putExtra("des",currentItem.getPdes());
-                //intent.putExtra("unitPrice", currentItem.getCost());
-                context.startActivity(intent);
-            }
-        });
+//        itemsViewHolder.linearLayout2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(context, EditorRemovePromo.class);
+//                //intent.putExtra("imageURL", currentItem.getImageURL());
+//                intent.putExtra("documentId", currentItem.getDocumentId());
+//                //intent.putExtra("description", currentItem.getDescription());
+//                intent.putExtra("promoId", currentItem.getPromoid());
+//                intent.putExtra("promocode", currentItem.getPromocode());
+//                intent.putExtra("price", currentItem.getPrice());
+//                intent.putExtra("des",currentItem.getPdes());
+//                //intent.putExtra("unitPrice", currentItem.getCost());
+//                context.startActivity(intent);
+//            }
+//        });
     }
 
     @Override

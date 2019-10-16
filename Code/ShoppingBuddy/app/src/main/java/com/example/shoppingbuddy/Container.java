@@ -21,6 +21,7 @@ public class Container{
     private String promoid;
     private String promocode;
     private String price;
+    private String pdes;
 
     public Container(String itemID, String itemName, double cost, String description, String category, String documentId, String imageURL) {
         this.itemID = itemID;
@@ -45,11 +46,12 @@ public class Container{
         this.email = email;
     }
 
-    public Container(String promoid, String promocode, String price, String documentId) {
+    public Container(String promoid, String promocode, String price, String documentId, String pdes) {
         this.promoid = promoid;
         this.promocode = promocode;
         this.price = price;
         this.documentId = documentId;
+        this.pdes=pdes;
     }
 
     public String getItemID() {
@@ -102,6 +104,10 @@ public class Container{
 
     public String getPrice() {
         return price;
+    }
+
+    public String getPdes() {
+        return pdes;
     }
 }
 

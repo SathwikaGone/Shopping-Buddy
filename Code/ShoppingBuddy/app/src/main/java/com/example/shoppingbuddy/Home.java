@@ -3,11 +3,14 @@ package com.example.shoppingbuddy;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,12 +19,28 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private RecyclerView productLV;
+    private RecyclerView.Adapter productsAdapter;
+    private RecyclerView.LayoutManager productLayoutManager;
+    private CollectionReference promoCollection;
+
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +57,30 @@ public class Home extends AppCompatActivity
 //                startActivity(ini);
 //            }
 //        });
+        db = FirebaseFirestore.getInstance();
+        promoCollection = db.collection("promocode");
+        final ArrayList<Container> itemListArray = new ArrayList<>();
+
+        promoCollection.orderBy("PromoId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    int i = 0;
+                    for (QueryDocumentSnapshot doc : task.getResult()) {
+                        itemListArray.add(new Container(doc.getString("PromoId"), doc.getString("PromoCode"), doc.getString("amount to dedcut"), doc.getId(),doc.getString("description")));
+                        i++;
+                    }
+
+                    productLV = findViewById(R.id.productsLV);
+                    productLV.setHasFixedSize(true);
+                    productLayoutManager = new LinearLayoutManager(Home.this,LinearLayoutManager.HORIZONTAL,false);
+                    productsAdapter = new UserPromoAdapter(itemListArray, Home.this);
+                    productLV.setLayoutManager(productLayoutManager);
+                    productLV.setAdapter(productsAdapter);
+                }
+            }
+        });
+
 
         ImageView in=findViewById(R.id.imageView4);
         ImageView in1=findViewById(R.id.imageView5);

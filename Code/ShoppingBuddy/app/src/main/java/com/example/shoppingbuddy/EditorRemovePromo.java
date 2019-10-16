@@ -30,9 +30,9 @@ import android.widget.Toast;
 public class EditorRemovePromo extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
         TextView promoid;
-        EditText promocode, cost;
+        EditText promocode, cost, description;
         private FirebaseFirestore db;
-        String pid, pcode, pcost, docid;
+        String pid, pcode, pcost, docid,pdes;
     private Button saveChangesBTN, cancelBTN, removeBTN;
     private DocumentReference itemDoc;
     @Override
@@ -44,7 +44,9 @@ public class EditorRemovePromo extends AppCompatActivity
 
         promoid=findViewById(R.id.textView58);
         promocode=findViewById(R.id.editText26);
-        cost=findViewById(R.id.editText27);
+        cost=findViewById(R.id.editText30);
+        description=findViewById(R.id.editText27);
+
         db = FirebaseFirestore.getInstance();
         saveChangesBTN=findViewById(R.id.button12);
         removeBTN=findViewById(R.id.button15);
@@ -56,20 +58,23 @@ public class EditorRemovePromo extends AppCompatActivity
         pcode = i.getStringExtra("promocode");
         pcost = i.getStringExtra("price");
         docid=i.getStringExtra("documentId");
+        pdes=i.getStringExtra("des");
         promoid.setText(pid);
         promocode.setText(pcode);
         cost.setText(pcost);
+        description.setText(pdes);
         itemDoc = db.collection("promocode").document(docid);
         saveChangesBTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 pcode = promocode.getText().toString();
                 pcost = cost.getText().toString();
+                pdes=description.getText().toString();
                 AlertDialog.Builder builder = new AlertDialog.Builder(EditorRemovePromo.this);
                 builder.setMessage("Are you sure you want to save the changes").setPositiveButton("Yes", new DialogInterface.OnClickListener(){
                     @Override
                     public void onClick(DialogInterface dialog, int which){
-                        itemDoc.update("PromoCode", pcode, "amount to dedcut", pcost);
+                        itemDoc.update("PromoCode", pcode, "amount to dedcut", pcost,"description",pdes);
                         Toast.makeText(EditorRemovePromo.this, "Promocode updated successfully", Toast.LENGTH_LONG).show();
                         Intent j = new Intent(EditorRemovePromo.this, AdminHomeActivity.class);
                         j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -163,19 +168,19 @@ public class EditorRemovePromo extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
+//        if (id == R.id.nav_camera) {
+//            // Handle the camera action
+//        } else if (id == R.id.nav_gallery) {
+//
+//        } else if (id == R.id.nav_slideshow) {
+//
+//        } else if (id == R.id.nav_manage) {
+//
+//        } else if (id == R.id.nav_share) {
+//
+//        } else if (id == R.id.nav_send) {
+//
+//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

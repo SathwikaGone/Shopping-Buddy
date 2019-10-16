@@ -39,8 +39,8 @@ public class AdminPromoActivity extends AppCompatActivity
     private StorageReference storg;
     private CollectionReference itemCollection;
     private DocumentReference itemDoc;
-    String id,promo,deductamount;
-    EditText promoid,promocode,deductedamount;
+    String id,promo,deductamount,des;
+    EditText promoid,promocode,deductedamount,description;
 
 
     @Override
@@ -53,6 +53,7 @@ public class AdminPromoActivity extends AppCompatActivity
         promoid=findViewById(R.id.editText10);
         promocode=findViewById(R.id.editText11);
         deductedamount=findViewById(R.id.editText19);
+        description=findViewById(R.id.editText28);
         Button addpromo=findViewById(R.id.button17);
 
 
@@ -67,8 +68,9 @@ public class AdminPromoActivity extends AppCompatActivity
                 id=promoid.getText().toString();
                 promo=promocode.getText().toString();
                 deductamount=deductedamount.getText().toString();
+                des=description.getText().toString();
 
-                if(id.equals("")||promo.equals("")){
+                if(id.equals("")||promo.equals("")||deductamount.equals("")||des.equals("")){
                     Toast.makeText(AdminPromoActivity.this, "All the field needs to be filled ", Toast.LENGTH_SHORT).show();
                 }
                 else {
@@ -76,6 +78,7 @@ public class AdminPromoActivity extends AppCompatActivity
                     addpromo.put("PromoId", id);
                     addpromo.put("PromoCode", promo);
                     addpromo.put("amount to dedcut",deductamount);
+                    addpromo.put("description",des);
 
                     itemCollection.document().set(addpromo);
                     Toast.makeText(AdminPromoActivity.this, "Promo code added to the list", Toast.LENGTH_SHORT).show();

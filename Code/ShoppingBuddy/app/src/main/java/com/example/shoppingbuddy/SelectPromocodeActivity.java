@@ -58,7 +58,7 @@ public class SelectPromocodeActivity extends AppCompatActivity
                 if (task.isSuccessful()) {
                     int i = 0;
                     for (QueryDocumentSnapshot doc : task.getResult()) {
-                            itemListArray.add(new Container(doc.getString("PromoId"), doc.getString("PromoCode"), doc.getString("amount to dedcut"), doc.getId()));
+                            itemListArray.add(new Container(doc.getString("PromoId"), doc.getString("PromoCode"), doc.getString("amount to dedcut"), doc.getId(),doc.getString("description")));
                             i++;
                         }
 
