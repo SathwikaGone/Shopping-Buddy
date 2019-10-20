@@ -22,12 +22,38 @@ import android.view.MenuItem;
 public class AdminSettingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+ private EditText password;
+        private TextView email;
+        private String pass;
+        private Button update;
+        FirebaseUser user;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_admin_setting);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+ user = FirebaseAuth.getInstance().getCurrentUser();
+        email =findViewById(R.id.textView65);
+        email.setText(user.getEmail());
+        password =findViewById(R.id.editText29);
+        update = findViewById(R.id.button23);
+
+  update.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View v) {
+                                          pass = password.getText().toString();
+                                          user.updatePassword(pass).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            
+                                          });
+                                      }
+                                  });
+
+
 
  //       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
