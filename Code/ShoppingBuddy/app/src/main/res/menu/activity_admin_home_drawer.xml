@@ -3,16 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/History"
-            android:title="History" />
+            android:id="@+id/aHistory"
+            android:title="Admin History">
+            <menu>
+                <item
+                    android:id="@+id/addedprod"
+                    android:title="         Added Products" />
+                <item
+                    android:id="@+id/deletedprod"
+                    android:title="         Deleted Products" />
+                <item
+                    android:id="@+id/addedpromo"
+                    android:title="         Added Promocodes" />
+                <item
+                    android:id="@+id/deletedpromo"
+                    android:title="         Deleted Promocodes" />
+            </menu>
+        </item>
+    <item
+        android:id="@+id/History"
+        android:title="User History" />
         <item
             android:id="@+id/Inventory"
             android:title="Inventory" />
         <item
             android:id="@+id/Logout"
             android:title="Logout" />
-    </group>
+
 </menu>

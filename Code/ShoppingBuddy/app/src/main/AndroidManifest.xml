@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AdminHistoryAprodActivity"
+            android:label="@string/title_activity_admin_history_aprod"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".SelectPromocodeActivity"
             android:label="@string/title_activity_select_promocode"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".EditorRemovePromo"
             android:label="@string/title_activity_editor_remove_promo"
