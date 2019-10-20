@@ -54,6 +54,14 @@ public class Container{
         this.pdes=pdes;
     }
 
+    public Container(String itemID, String itemName, double cost, String documentId, String imageURL) {
+        this.itemID = itemID;
+        this.itemName = itemName;
+        this.cost = cost;
+        this.documentId = documentId;
+        this.imageURL = imageURL;
+    }
+
     public String getItemID() {
         return itemID;
     }

@@ -123,6 +123,10 @@ public class AdminHomeActivity extends AppCompatActivity
             Intent in=new Intent(AdminHomeActivity.this,AdminHistoryAprodActivity.class);
             startActivity(in);
         }
+        else if(id==R.id.deletedprod){
+            Intent in=new Intent(AdminHomeActivity.this,AdminHistoryDProdActivity.class);
+            startActivity(in);
+        }
 
 //        if (id == R.id.nav_home) {
 //            // Handle the camera action

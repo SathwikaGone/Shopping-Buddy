@@ -14,7 +14,11 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".AdminHistoryAprodActivity"
-            android:label="@string/title_activity_admin_history_aprod"
+            android:label="Admin History"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".AdminHistoryDProdActivity"
+            android:label="Admin History"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".SelectPromocodeActivity"

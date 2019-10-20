@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.squareup.picasso.Picasso;
@@ -32,6 +33,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EditorRemoveProduct extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -40,9 +43,10 @@ public class EditorRemoveProduct extends AppCompatActivity
     private EditText  productid, productname, productdes, productcost, qntityNeededET, requiredByET;
     private Button saveChangesBTN, cancelBTN, removeBTN;
     private TextView id,name, cate ;
-    private String imageURL, prodcat, documentId, prodid, prodname,  proddes;
+    private String imageURL, prodcat, documentId, prodid, prodname,  proddes, name1;
     private Double prodcost;
     private Spinner productcate;
+    private CollectionReference itemCollection;
 
     private FirebaseFirestore db;
     private DocumentReference itemDoc;
@@ -69,6 +73,8 @@ public class EditorRemoveProduct extends AppCompatActivity
 
 
         db = FirebaseFirestore.getInstance();
+        //db = FirebaseFirestore.getInstance();
+        itemCollection = db.collection("deletedProducts");
 
 //      Get data from the Intent
         Intent i = getIntent();
@@ -79,6 +85,7 @@ public class EditorRemoveProduct extends AppCompatActivity
         imageURL = i.getStringExtra("imageURL");
         Picasso.get().load(imageURL).into(prodimage);
         name.setText(i.getStringExtra("itemName"));
+        name1=i.getStringExtra("itemName");
         id.setText(prodid);
         cate.setText(i.getStringExtra("category"));
         productcost.setText(prodcost.toString());
@@ -128,6 +135,12 @@ public class EditorRemoveProduct extends AppCompatActivity
                 builder.setMessage("Are you sure you want to delete the product").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Map<String, Object> deleteproduct = new HashMap<>();
+                        deleteproduct.put("itemId", prodid);
+                        deleteproduct.put("itemName", name1);
+                        deleteproduct.put("cost", prodcost);
+                        deleteproduct.put("imageURL", imageURL);
+                        itemCollection.document().set(deleteproduct);
                         itemDoc.delete();
                         finish();
                         Toast.makeText(EditorRemoveProduct.this, "Product deleted successfully", Toast.LENGTH_LONG).show();
