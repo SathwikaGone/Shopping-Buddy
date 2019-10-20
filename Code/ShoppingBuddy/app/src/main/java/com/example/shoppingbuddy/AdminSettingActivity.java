@@ -47,7 +47,9 @@ public class AdminSettingActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         user = FirebaseAuth.getInstance().getCurrentUser();
+
         email =findViewById(R.id.textView65);
         email.setText(user.getEmail());
         password =findViewById(R.id.editText29);
@@ -58,6 +60,7 @@ public class AdminSettingActivity extends AppCompatActivity
                                       public void onClick(View v) {
                                           pass = password.getText().toString();
                                           user.updatePassword(pass).addOnCompleteListener(new OnCompleteListener<Void>() {
+
                                               @Override
                                               public void onComplete(@NonNull Task<Void> task) {
                                                   if (task.isSuccessful()) {
@@ -70,6 +73,7 @@ public class AdminSettingActivity extends AppCompatActivity
                                                       Toast.makeText(AdminSettingActivity.this, "Password not updated", Toast.LENGTH_SHORT).show();
                                                   }
                                               }
+
                                           });
                                       }
                                   });
