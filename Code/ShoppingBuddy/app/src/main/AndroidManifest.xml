@@ -13,13 +13,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AdminSettingActivity"
+            android:label="@string/title_activity_admin_setting"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".AdminHistoryAprodActivity"
             android:label="Admin History"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AdminHistoryDProdActivity"
             android:label="Admin History"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SelectPromocodeActivity"
             android:label="@string/title_activity_select_promocode"
@@ -131,7 +135,6 @@
             android:name=".AdminHomeActivity"
             android:label="Admin Home"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".AdminLoginActivity" />
         <activity
             android:name=".ElectronicsActivity"
             android:label="Electronics"

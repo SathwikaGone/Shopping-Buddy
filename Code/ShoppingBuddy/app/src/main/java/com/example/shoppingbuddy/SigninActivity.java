@@ -178,7 +178,7 @@ public class SigninActivity extends AppCompatActivity
         }
 
         if(em.matches("[a-zA-Z0-9._-]+@[a-z]+.[a-z]+")) {
-            if(pwd.length()>=8) {
+            if(pwd.length()>=6) {
                 firebaseAuth.signInWithEmailAndPassword(em, pwd)
                         .addOnCompleteListener(SigninActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
@@ -196,9 +196,16 @@ public class SigninActivity extends AppCompatActivity
                                     if (user.isEmailVerified()) {
                                         progressDialog.setMessage("Logging in...");
                                         progressDialog.show();
-                                        Toast.makeText(SigninActivity.this, "Login sucessful", Toast.LENGTH_SHORT).show();
-                                        Intent i = new Intent(SigninActivity.this, Home.class);
-                                        startActivity(i);
+                                        if(em.equals("shoppingbuddyseven@gmail.com")){
+                                            Toast.makeText(SigninActivity.this, "Login sucessful", Toast.LENGTH_SHORT).show();
+                                            Intent i = new Intent(SigninActivity.this, AdminHomeActivity.class);
+                                            startActivity(i);
+                                        }else{
+                                            Toast.makeText(SigninActivity.this, "Login sucessful", Toast.LENGTH_SHORT).show();
+                                            Intent i = new Intent(SigninActivity.this, Home.class);
+                                            startActivity(i);
+                                        }
+
                                     }
                                     else {
                                         //Toast.makeText(SigninActivity.this, "User email is not verified", Toast.LENGTH_SHORT).show();

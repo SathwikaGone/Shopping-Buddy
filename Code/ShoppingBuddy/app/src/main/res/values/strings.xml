@@ -51,6 +51,7 @@
     <string name="title_activity_editor_remove_promo">EditorRemovePromo</string>
     <string name="title_activity_select_promocode">SelectPromocodeActivity</string>
     <string name="title_activity_admin_history_aprod">AdminHistoryAprodActivity</string>
+    <string name="title_activity_admin_setting">AdminSettingActivity</string>
 
 
 </resources>
