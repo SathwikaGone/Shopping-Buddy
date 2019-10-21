@@ -3,13 +3,19 @@ package com.example.shoppingbuddy;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -18,9 +24,21 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class AdminSettingActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+ private EditText password;
+        private TextView email;
+        private String pass;
+        private Button update;
+        FirebaseUser user;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +46,39 @@ public class AdminSettingActivity extends AppCompatActivity
         setContentView(R.layout.activity_admin_setting);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+
+        email =findViewById(R.id.textView65);
+        email.setText(user.getEmail());
+        password =findViewById(R.id.editText29);
+        update = findViewById(R.id.button23);
+
+  update.setOnClickListener(new View.OnClickListener() {
+                                      @Override
+                                      public void onClick(View v) {
+                                          pass = password.getText().toString();
+                                          user.updatePassword(pass).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+                                              @Override
+                                              public void onComplete(@NonNull Task<Void> task) {
+                                                  if (task.isSuccessful()) {
+                                                      Toast.makeText(AdminSettingActivity.this, "Password updated", Toast.LENGTH_SHORT).show();
+                                                      Log.d("success", "password updated");
+                                                      Intent i = new Intent(AdminSettingActivity.this, SigninActivity.class);
+                                                      startActivity(i);
+
+                                                  } else {
+                                                      Toast.makeText(AdminSettingActivity.this, "Password not updated", Toast.LENGTH_SHORT).show();
+                                                  }
+                                              }
+
+                                          });
+                                      }
+                                  });
+
+
 
  //       FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
 //        fab.setOnClickListener(new View.OnClickListener() {
