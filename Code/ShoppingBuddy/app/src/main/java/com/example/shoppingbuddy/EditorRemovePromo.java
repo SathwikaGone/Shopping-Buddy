@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -27,14 +28,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class EditorRemovePromo extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
         TextView promoid;
         EditText promocode, cost, description;
         private FirebaseFirestore db;
-        String pid, pcode, pcost, docid,pdes;
+        String pid, pcode, pcost, docid,pdes,deletePromo;
     private Button saveChangesBTN, cancelBTN, removeBTN;
     private DocumentReference itemDoc;
+    private CollectionReference deletedPromo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +53,7 @@ public class EditorRemovePromo extends AppCompatActivity
         description=findViewById(R.id.editText27);
 
         db = FirebaseFirestore.getInstance();
+        deletedPromo=db.collection("deletedPromo");
         saveChangesBTN=findViewById(R.id.button12);
         removeBTN=findViewById(R.id.button15);
         cancelBTN=findViewById(R.id.button14);
@@ -59,6 +65,7 @@ public class EditorRemovePromo extends AppCompatActivity
         pcost = i.getStringExtra("price");
         docid=i.getStringExtra("documentId");
         pdes=i.getStringExtra("des");
+        deletePromo=i.getStringExtra("promocode");
         promoid.setText(pid);
         promocode.setText(pcode);
         cost.setText(pcost);
@@ -104,6 +111,12 @@ public class EditorRemovePromo extends AppCompatActivity
                 builder.setMessage("Are you sure you want to delete the promocode").setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        Map<String, Object> deletepromo = new HashMap<>();
+                        deletepromo.put("itemId",pid);
+                        deletepromo.put("itemName", deletePromo);
+                        deletepromo.put("cost", pcost);
+                        deletepromo.put("description",pdes);
+                        deletedPromo.document().set(deletepromo);
                         itemDoc.delete();
                         finish();
                         Toast.makeText(EditorRemovePromo.this, "Promocode deleted successfully", Toast.LENGTH_LONG).show();

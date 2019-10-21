@@ -51,9 +51,6 @@ public class AdminPromoAdapter extends RecyclerView.Adapter<AdminPromoAdapter.It
     public void onBindViewHolder(@NonNull final AdminPromoAdapter.ItemsViewHolder itemsViewHolder, final int i) {
 
         final Container currentItem = itemListArray.get(i);
-
-        //itemsViewHolder.itemImage.setImageResource(currentItem.getImage());
-        //Picasso.get().load(currentItem.getImageURL()).into(itemsViewHolder.productImage);
         itemsViewHolder.promocode.setText(currentItem.getPromocode());
         itemsViewHolder.price.setText("$ " + currentItem.getPrice());
     }
