@@ -51,13 +51,13 @@ public class AdminHistoryDPromoActivity extends AppCompatActivity
         db = FirebaseFirestore.getInstance();
         promoCollection = db.collection("deletedPromo");
         final ArrayList<Container> itemListArray = new ArrayList<>();
-        promoCollection.orderBy("PromoId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        promoCollection.orderBy("promoId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     int i = 0;
                     for (QueryDocumentSnapshot doc : task.getResult()) {
-                        itemListArray.add(new Container(doc.getString("PromoId"), doc.getString("PromoCode"), doc.getString("amount to dedcut"), doc.getId(),doc.getString("description")));
+                        itemListArray.add(new Container(doc.getString("promoId"), doc.getString("promocode"), doc.getString("amount to dedcut"), doc.getId(),doc.getString("description")));
                         i++;
                     }
 
