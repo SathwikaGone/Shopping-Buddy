@@ -31,7 +31,7 @@ public CartAdapter(ArrayList<Container> itemListArray, Context context) {
         this.context = context;
         }
 public static class ItemsViewHolder extends RecyclerView.ViewHolder {
-    public ImageView productImage;
+    public ImageView productImage, delete;
     public TextView productName;
     public TextView cost,quantity,size;
 
@@ -45,6 +45,7 @@ public static class ItemsViewHolder extends RecyclerView.ViewHolder {
         productName = itemView.findViewById(R.id.iNameTV);
         cost = itemView.findViewById(R.id.priceTV);
         quantity = itemView.findViewById(R.id.quantityTV);
+        delete=itemView.findViewById(R.id.imageView10);
         size = itemView.findViewById(R.id.sizeTV);
         linearLayout2 = itemView.findViewById(R.id.linearLayout2);
 
@@ -71,22 +72,15 @@ public static class ItemsViewHolder extends RecyclerView.ViewHolder {
         itemsViewHolder.quantity.setText("Quantity: "+currentItem.getQuantity());
         itemsViewHolder.size.setText("Size: "+currentItem.getSize());
 
-//        itemsViewHolder.linearLayout2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, CartActivity.class);
-//                intent.putExtra("imageURL", currentItem.getImageURL());
-//                intent.putExtra("documentId", currentItem.getDocumentId());
-//                intent.putExtra("description", currentItem.getDescription());
-//                intent.putExtra("itemId", currentItem.getItemID());
-//                intent.putExtra("category", currentItem.getCategory());
-//                intent.putExtra("itemName", currentItem.getItemName());
-//                intent.putExtra("unitPrice", currentItem.getCost());
-//                context.startActivity(intent);
-//
-//            }
-//
-//        });
+        itemsViewHolder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CartActivity ct=new CartActivity();
+                ct.deleteprod(currentItem.getDocumentId());
+                Intent in=new Intent(context,CartActivity.class);
+                context.startActivity(in);
+            }
+        });
 
     }
 

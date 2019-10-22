@@ -93,7 +93,7 @@ public class Orders_Product_List extends AppCompatActivity
                                     productLV = findViewById(R.id.productsLV);
                                     productLV.setHasFixedSize(true);
                                     productLayoutManager = new LinearLayoutManager(Orders_Product_List.this);
-                                    productsAdapter = new CartAdapter(itemListArray, Orders_Product_List.this);
+                                    productsAdapter = new AdminHistoryAdapter(itemListArray, Orders_Product_List.this);
                                     productLV.setLayoutManager(productLayoutManager);
                                     productLV.setAdapter(productsAdapter);
 

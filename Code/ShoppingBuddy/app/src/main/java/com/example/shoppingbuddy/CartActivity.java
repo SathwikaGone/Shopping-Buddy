@@ -95,7 +95,7 @@ public class CartActivity extends AppCompatActivity
                                         if(doc.getString("itemId").equals(doc1.getId())){
                                             Log.d("click","inside products verification");
                                             itemListArray.add(new Container(doc1.getString("itemId"), doc1.getString("itemName"), doc1.getDouble("cost"), doc1.getString("itemDetails"),
-                                                    doc1.getString("category"), doc1.getId(), doc1.getString("imageURL"),doc.getLong("quantity"),doc.getString("size"),doc.getString("user")));
+                                                    doc1.getString("category"), doc.getId(), doc1.getString("imageURL"),doc.getLong("quantity"),doc.getString("size"),doc.getString("user")));
                                             Log.d("click","cost: "+doc1.getDouble("cost"));
                                             totalcost=totalcost+(doc1.getDouble("cost")*doc.getLong("quantity"));
                                             i++;
@@ -141,6 +141,11 @@ public class CartActivity extends AppCompatActivity
         TextView navUsername = (TextView) headerView.findViewById(R.id.textView);
         navUsername.setText(user.getEmail());
         navigationView.setNavigationItemSelectedListener(this);
+    }
+    public void deleteprod(String docid){
+        Log.d("delete",""+docid);
+        db = FirebaseFirestore.getInstance();
+        db.collection("cart").document(docid).delete();
     }
 
 
