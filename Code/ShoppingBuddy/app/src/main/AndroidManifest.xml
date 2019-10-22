@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".UserChatActivity"
+            android:label="@string/title_activity_user_chat"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".AdminHistoryDPromoActivity"
             android:label="Admin History Delete Promo Code"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AdminHistoryAPromoActivity"
             android:label="Admin History Added Promo Code"

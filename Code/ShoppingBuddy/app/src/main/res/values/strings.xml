@@ -54,6 +54,7 @@
     <string name="title_activity_admin_setting">AdminSettingActivity</string>
     <string name="title_activity_admin_history_apromo">AdminHistoryAPromoActivity</string>
     <string name="title_activity_admin_history_dpromo">AdminHistoryDPromoActivity</string>
+    <string name="title_activity_user_chat">UserChatActivity</string>
 
 
 </resources>
