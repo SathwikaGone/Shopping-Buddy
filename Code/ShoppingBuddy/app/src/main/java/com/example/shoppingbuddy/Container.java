@@ -22,6 +22,7 @@ public class Container{
     private String promocode;
     private String price;
     private String pdes;
+    private String subject, message;
 
     public Container(String itemID, String itemName, double cost, String description, String category, String documentId, String imageURL) {
         this.itemID = itemID;
@@ -61,6 +62,21 @@ public class Container{
         this.cost = cost;
         this.documentId = documentId;
         this.imageURL = imageURL;
+    }
+
+    public Container(String documentId, String email, String subject, String message) {
+        this.documentId = documentId;
+        this.email = email;
+        this.subject = subject;
+        this.message=message;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public String getMessage() {
+        return message;
     }
 
     public String getItemID() {
