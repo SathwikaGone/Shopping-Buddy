@@ -150,6 +150,10 @@ count.setText(String.valueOf(c));
             Intent in=new Intent(AdminHomeActivity.this,AdminHistoryDPromoActivity.class);
             startActivity(in);
         }
+        else if (id==R.id.Inventory){
+            Intent in=new Intent(AdminHomeActivity.this,AdminInventory.class);
+            startActivity(in);
+        }
 
 //        if (id == R.id.nav_home) {
 //            // Handle the camera action
