@@ -13,9 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".AdminInventory"
+            android:label="@string/title_activity_admin_inventory"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".AdminChat"
             android:label="@string/title_activity_admin_chat"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UserChatActivity"
             android:label="@string/title_activity_user_chat"
