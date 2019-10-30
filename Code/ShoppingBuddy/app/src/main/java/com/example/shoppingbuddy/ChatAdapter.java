@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -19,7 +21,11 @@ import androidx.recyclerview.widget.RecyclerView;
 public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ItemsViewHolder> {
 
     private ArrayList<Container> itemListArray;
+    public static final int MSG_TYPE_LEFT=0;
+    public static final int MSG_TYPE_RIGHT=1;
 
+    FirebaseUser user;
+    public String email;
     public ChatAdapter(ArrayList<Container> itemListArray, Context context) {
         this.itemListArray = itemListArray;
         this.context = context;
@@ -33,18 +39,13 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ItemsViewHolde
 
     public static class ItemsViewHolder extends RecyclerView.ViewHolder {
 
-        public TextView email;
-        public TextView subject;
-
+        public TextView message;
         public LinearLayout linearLayout2;
 
         public ItemsViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            email = itemView.findViewById(R.id.Email);
-            subject = itemView.findViewById(R.id.Subject);
-
-
+            message = itemView.findViewById(R.id.showmsg);
             linearLayout2 = itemView.findViewById(R.id.linearLayout2);
         }
     }
@@ -52,35 +53,23 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ItemsViewHolde
     @NonNull
     @Override
     public ItemsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_adminchat_container, viewGroup, false);
-        ItemsViewHolder itemsVH = new ItemsViewHolder(v);
-        return itemsVH;
+        if(i==MSG_TYPE_LEFT) {
+            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_chat_itemleft, viewGroup, false);
+            ItemsViewHolder itemsVH = new ItemsViewHolder(v);
+            return itemsVH;
+        }
+        else{
+            View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.activity_chat_itemright, viewGroup, false);
+            ItemsViewHolder itemsVH = new ItemsViewHolder(v);
+            return itemsVH;
+        }
     }
 
     @Override
     public void onBindViewHolder(@NonNull final ItemsViewHolder itemsViewHolder, final int i) {
 
         final Container currentItem = itemListArray.get(i);
-
-        //itemsViewHolder.itemImage.setImageResource(currentItem.getImage());
-
-        itemsViewHolder.email.setText(currentItem.getEmail());
-        itemsViewHolder.subject.setText("Subject: " + currentItem.getSubject());
-
-//        itemsViewHolder.linearLayout2.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(context, ItemDetails.class);
-//                intent.putExtra("imageURL", currentItem.getImageURL());
-//                intent.putExtra("documentId", currentItem.getDocumentId());
-//                intent.putExtra("description", currentItem.getDescription());
-//                intent.putExtra("itemId", currentItem.getItemID());
-//                intent.putExtra("category", currentItem.getCategory());
-//                intent.putExtra("itemName", currentItem.getItemName());
-//                intent.putExtra("unitPrice", currentItem.getCost());
-//                context.startActivity(intent);
-//            }
-//        });
+        itemsViewHolder.message.setText(currentItem.getMessage());
     }
 
     @Override
@@ -88,6 +77,16 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ItemsViewHolde
         return itemListArray.size();
     }
 
-
+    @Override
+    public int getItemViewType(int position) {
+        user=FirebaseAuth.getInstance().getCurrentUser();
+        //email=user.getEmail();
+        if(itemListArray.get(position).getSender().equals(user.getEmail())){
+            return MSG_TYPE_RIGHT;
+        }
+        else{
+            return MSG_TYPE_LEFT;
+        }
+    }
 }
 

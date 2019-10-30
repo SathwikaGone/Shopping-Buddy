@@ -22,7 +22,7 @@ public class Container{
     private String promocode;
     private String price;
     private String pdes;
-    private String subject, message;
+    private String message, sender, reciever;
 
     public Container(String itemID, String itemName, double cost, String description, String category, String documentId, String imageURL) {
         this.itemID = itemID;
@@ -64,15 +64,19 @@ public class Container{
         this.imageURL = imageURL;
     }
 
-    public Container(String documentId, String email, String subject, String message) {
+    public Container(String documentId, String message, String sender, String reciever) {
         this.documentId = documentId;
-        this.email = email;
-        this.subject = subject;
-        this.message=message;
+        this.message = message;
+        this.sender = sender;
+        this.reciever = reciever;
     }
 
-    public String getSubject() {
-        return subject;
+    public String getSender() {
+        return sender;
+    }
+
+    public String getReciever() {
+        return reciever;
     }
 
     public String getMessage() {
