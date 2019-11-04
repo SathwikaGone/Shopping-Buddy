@@ -1,20 +1,13 @@
 package com.example.shoppingbuddy;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.util.Log;
 import android.view.View;
-
-import androidx.annotation.NonNull;
-import androidx.core.view.GravityCompat;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-
-import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.CollectionReference;
@@ -25,78 +18,84 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import androidx.annotation.NonNull;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class AdminChat extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
     private RecyclerView productLV;
     private RecyclerView.Adapter productsAdapter;
     private RecyclerView.LayoutManager productLayoutManager;
 
     private FirebaseFirestore db;
-    private CollectionReference chatCollection;
-    final ArrayList<Container> itemListArray = new ArrayList<>();
-
+    private CollectionReference usersCollection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_chat);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        setContentView(R.layout.activity_user_history);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         db = FirebaseFirestore.getInstance();
-        chatCollection = db.collection("chat");
+        usersCollection = db.collection("chat");
+
+        final ArrayList<Container> itemListArray = new ArrayList<>();
+        final ArrayList<String> itemListArray1 = new ArrayList<>();
 
 
-        chatCollection.orderBy("From", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        usersCollection.orderBy("Date", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
                     int i = 0;
                     for (QueryDocumentSnapshot doc : task.getResult()) {
+                        if(!(doc.getString("From").equals("shoppingbuddyseven@gmail.com"))){
+                            if(!(itemListArray1.contains(doc.getString("From")))) {
+                                itemListArray.add(new Container(doc.getId(),doc.getString("From")));
+                                itemListArray1.add(doc.getString("From"));
+                                Log.d("click",""+itemListArray1.toString());
+                                i++;
+                            }
 
-                        if (doc.getString("To").equals("shoppingbuddyseven@gmail.com")) {
-                            Log.d("click","inside To");
-                            itemListArray.add(new Container( doc.getId(), doc.getString("From"), doc.getString("Subject"), doc.getString("Message")));
-                            i++;
                         }
+
                     }
 
                     productLV = findViewById(R.id.productsLV);
                     productLV.setHasFixedSize(true);
                     productLayoutManager = new LinearLayoutManager(AdminChat.this);
-                    productsAdapter = new ChatAdapter(itemListArray, AdminChat.this);
+                    productsAdapter = new AdminChatAdapter(itemListArray, AdminChat.this);
                     productLV.setLayoutManager(productLayoutManager);
                     productLV.setAdapter(productsAdapter);
                 }
             }
         });
-
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
-    public int getItemCount() {
-        return itemListArray.size();
-    }
+
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -131,10 +130,30 @@ public class AdminChat extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        if(id==R.id.History){
+            Intent in=new Intent(AdminChat.this,UserHistoryActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.Logout) {
+            // Handle the accessories action
+            Intent in=new Intent(AdminChat.this,MainActivity.class);
+            startActivity(in);
+        }
+//        if (id == R.id.nav_camera) {
+//            // Handle the camera action
+//        } else if (id == R.id.nav_gallery) {
+//
+//        } else if (id == R.id.nav_slideshow) {
+//
+//        } else if (id == R.id.nav_manage) {
+//
+//        } else if (id == R.id.nav_share) {
+//
+//        } else if (id == R.id.nav_send) {
+//
+//        }
 
-
-
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

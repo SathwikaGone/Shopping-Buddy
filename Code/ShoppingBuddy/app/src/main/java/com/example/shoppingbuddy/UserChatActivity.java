@@ -10,6 +10,7 @@ import com.google.android.material.snackbar.Snackbar;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -34,7 +35,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,6 +54,7 @@ public class UserChatActivity extends AppCompatActivity
     private RecyclerView productLV;
     private RecyclerView.Adapter productsAdapter;
     private RecyclerView.LayoutManager productLayoutManager;
+     Timestamp d;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,7 @@ public class UserChatActivity extends AppCompatActivity
         setContentView(R.layout.activity_user_chat);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        d= new Timestamp(new Date());
         message= findViewById(R.id.message);
         sendmsg=findViewById(R.id.send);
 //
@@ -78,15 +83,44 @@ public class UserChatActivity extends AppCompatActivity
                     messages.put("From", email);
                     messages.put("To", "shoppingbuddyseven@gmail.com");
                     messages.put("Message", msg);
+                    messages.put("Date",new Timestamp(new Date()) );
 
                     chatCollection.document().set(messages);
                     Toast.makeText(UserChatActivity.this, "Message sent", Toast.LENGTH_SHORT).show();
                     message.setText("");
+
+                final ArrayList<Container> itemListArray = new ArrayList<>();
+                chatCollection.orderBy("From", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int i = 0;
+                            for (QueryDocumentSnapshot doc : task.getResult()) {
+
+                                if (doc.getString("From").equals(email) || doc.getString("To").equals(email)) {
+                                    if(doc.getDate("Date").after(d.toDate())){
+                                        itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
+                                        i++;
+                                    }
+
+                                }
+                            }
+
+                            productLV = findViewById(R.id.recyclerview);
+                            productLV.setHasFixedSize(true);
+                            productLayoutManager = new LinearLayoutManager(UserChatActivity.this);
+                            productsAdapter = new ChatAdapter(itemListArray, UserChatActivity.this);
+                            productLV.setLayoutManager(productLayoutManager);
+                            productLV.setAdapter(productsAdapter);
+                        }
+                    }
+                });
             }
         });
+
         final ArrayList<Container> itemListArray = new ArrayList<>();
 
-        chatCollection.orderBy("From", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        chatCollection.orderBy("From", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -94,8 +128,11 @@ public class UserChatActivity extends AppCompatActivity
                     for (QueryDocumentSnapshot doc : task.getResult()) {
 
                         if (doc.getString("From").equals(email) || doc.getString("To").equals(email)) {
-                            itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
-                            i++;
+                            if(doc.getDate("Date").after(d.toDate())){
+                                itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
+                                i++;
+                            }
+
                         }
                     }
 

@@ -33,10 +33,7 @@ private TextView count;
         setContentView(R.layout.activity_admin_home);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-count=findViewById(R.id.textView71);
-AdminChat ct=new AdminChat();
-int c=ct.getItemCount();
-count.setText(String.valueOf(c));
+
                 FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -17,6 +17,10 @@
             android:label="@string/title_activity_admin_inventory"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
+            android:name=".AdminMessagesActivity"
+            android:label="Chat"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
             android:name=".AdminChat"
             android:label="@string/title_activity_admin_chat"
             android:theme="@style/AppTheme.NoActionBar" />

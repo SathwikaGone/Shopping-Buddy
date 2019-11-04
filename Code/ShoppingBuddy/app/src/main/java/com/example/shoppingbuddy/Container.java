@@ -71,6 +71,11 @@ public class Container{
         this.reciever = reciever;
     }
 
+    public Container(String documentId, String sender) {
+        this.documentId = documentId;
+        this.sender = sender;
+    }
+
     public String getSender() {
         return sender;
     }
