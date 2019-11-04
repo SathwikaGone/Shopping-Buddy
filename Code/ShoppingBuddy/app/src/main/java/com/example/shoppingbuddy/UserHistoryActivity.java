@@ -15,6 +15,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
@@ -22,6 +24,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,52 +37,42 @@ import java.util.ArrayList;
 
 public class UserHistoryActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private String name;
+    private RecyclerView productLV;
+    private RecyclerView.Adapter productsAdapter;
+    private RecyclerView.LayoutManager productLayoutManager;
 
-
-    protected static ArrayList<String> users=new ArrayList<String>();
-    private CollectionReference  userCollection;
     private FirebaseFirestore db;
-
+    private CollectionReference usersCollection;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_history);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        final ListView lv=findViewById(R.id.usersLV);
-            db = FirebaseFirestore.getInstance();
-            userCollection=db.collection("users");
-            userCollection.orderBy("Email", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    if (task.isSuccessful()) {
-                        int i = 0;
-                        for (QueryDocumentSnapshot doc : task.getResult()) {
-                                users.add(doc.getString("Email"));
-                                lv.invalidateViews();
-                                Log.d("users",""+users);
-                                i++;
-                        }
-                    }
-                }
-            });
-        UsersAdapter<String> usersap=new UsersAdapter<>(this,android.R.layout.simple_list_item_1,android.R.id.text1,users );
+        db = FirebaseFirestore.getInstance();
+        usersCollection = db.collection("users");
 
-            lv.setAdapter(usersap);
-            Log.d("click",""+usersap);
-        lv.setOnItemClickListener(new ListView.OnItemClickListener(){
+        final ArrayList<Container> itemListArray = new ArrayList<>();
+
+        usersCollection.orderBy("Email", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent in=new Intent(UserHistoryActivity.this,UserOrdersActivity.class);
-                String selected = ((TextView) view.findViewById(android.R.id.text1)).getText().toString();
-                in.putExtra("email",selected);
-                startActivity(in);
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    int i = 0;
+                    for (QueryDocumentSnapshot doc : task.getResult()) {
+                            itemListArray.add(new Container(doc.getId(),doc.getString("Email")));
+                            i++;
+                    }
+
+                    productLV = findViewById(R.id.productsLV);
+                    productLV.setHasFixedSize(true);
+                    productLayoutManager = new LinearLayoutManager(UserHistoryActivity.this);
+                    productsAdapter = new UsersAdapter(itemListArray, UserHistoryActivity.this);
+                    productLV.setLayoutManager(productLayoutManager);
+                    productLV.setAdapter(productsAdapter);
+                }
             }
-
         });
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
