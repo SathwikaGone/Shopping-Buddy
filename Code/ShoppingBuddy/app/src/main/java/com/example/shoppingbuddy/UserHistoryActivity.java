@@ -5,8 +5,6 @@ import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.util.Log;
 import android.view.View;
@@ -24,16 +22,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -69,7 +63,7 @@ public class UserHistoryActivity extends AppCompatActivity
                     }
                 }
             });
-        UsersArray<String> usersap=new UsersArray<>(this,android.R.layout.simple_list_item_1,android.R.id.text1,users );
+        UsersAdapter<String> usersap=new UsersAdapter<>(this,android.R.layout.simple_list_item_1,android.R.id.text1,users );
 
             lv.setAdapter(usersap);
             Log.d("click",""+usersap);

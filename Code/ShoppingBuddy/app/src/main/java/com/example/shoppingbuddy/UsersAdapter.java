@@ -11,8 +11,8 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-public class UsersArray<String> extends ArrayAdapter<String> {
-    public UsersArray(Context context, int resource, int textViewResourceId, List<String> objects) {
+public class UsersAdapter<String> extends ArrayAdapter<String> {
+    public UsersAdapter(Context context, int resource, int textViewResourceId, List<String> objects) {
         super(context, resource, textViewResourceId, objects);
     }
     @Override
