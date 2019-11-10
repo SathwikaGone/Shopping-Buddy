@@ -8,12 +8,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
-import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -32,91 +30,56 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.SearchView;
-import android.widget.Spinner;
 
 import java.util.ArrayList;
 
-public class SelectProduct extends AppCompatActivity
+public class SearchResultsActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
-
-
-    private static final String[] paths = {"Men's clothing", "Women's clothing", "Kid's clothing",
-            "Men's Accessories", "Women's Accessories", "Cell Phones and Accessories",
-            "Tv and Computers", "Men's Footwear", "Women's Footwear","Books","Sports Equipment","Hair","Skin","Makeup"};
-    Spinner productcate;
-    private Spinner spinner;
-    String category;
-    SearchView search;
-    private FirebaseFirestore db;
-    private StorageReference StorageRef;
-    private CollectionReference productCollection;
     private RecyclerView productLV;
     private RecyclerView.Adapter productsAdapter;
     private RecyclerView.LayoutManager productLayoutManager;
-    private String q;
 
-
+    private FirebaseFirestore db;
+    private StorageReference StorageRef;
+    private CollectionReference productCollection;
+    private String query;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_select_product);
+        setContentView(R.layout.activity_search_results);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-
         db = FirebaseFirestore.getInstance();
         StorageRef = FirebaseStorage.getInstance().getReference().child("productimages");
         productCollection = db.collection("products");
-        search=findViewById(R.id.search);
-        search.setIconifiedByDefault(false);
-        search.setQueryHint("Enter the product to be edited");
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+        Intent in=getIntent();
+        query=in.getStringExtra("query");
+        final ArrayList<Container> itemListArray = new ArrayList<>();
 
+        productCollection.orderBy("itemId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public boolean onQueryTextSubmit(String query) {
-                q=query;
-                final ArrayList<Container> itemListArray = new ArrayList<>();
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    int i = 0;
+                    for (QueryDocumentSnapshot doc : task.getResult()) {
 
-                productCollection.orderBy("itemId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            int i = 0;
-                            for (QueryDocumentSnapshot doc : task.getResult()) {
-                                Log.d("search method", "inside for loop");
-
-                                if (doc.getString("category").toLowerCase().contains(q.toLowerCase()) || doc.getString("itemName").toLowerCase().contains(q.toLowerCase()) || doc.getString("itemDetails").toLowerCase().contains(q.toLowerCase()) || doc.getString("itemId").toLowerCase().contains(q.toLowerCase())) {
-                                    itemListArray.add(new Container(doc.getString("itemId"), doc.getString("itemName"), doc.getDouble("cost"), doc.getString("itemDetails"),
-                                            doc.getString("category"), doc.getId(), doc.getString("imageURL")));
-                                    i++;
-                                }
-                            }
-
-                            productLV = findViewById(R.id.productsLV);
-                            productLV.setHasFixedSize(true);
-                            productLayoutManager = new LinearLayoutManager(SelectProduct.this);
-                            productsAdapter = new AdminProductsAdapter(itemListArray, SelectProduct.this);
-                            productLV.setLayoutManager(productLayoutManager);
-                            productLV.setAdapter(productsAdapter);
+                        if (doc.getString("itemName").toLowerCase().contains(query.toLowerCase()) || doc.getString("category").toLowerCase().contains(query.toLowerCase()) || doc.getString("itemDetails").toLowerCase().contains(query.toLowerCase())) {
+                            itemListArray.add(new Container(doc.getString("itemId"), doc.getString("itemName"), doc.getDouble("cost"), doc.getString("itemDetails"),
+                                    doc.getString("category"), doc.getId(), doc.getString("imageURL")));
+                            i++;
                         }
                     }
-                });
-                return true;
-            }
 
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                return false;
+                    productLV = findViewById(R.id.productsLV);
+                    productLV.setHasFixedSize(true);
+                    productLayoutManager = new LinearLayoutManager(SearchResultsActivity.this);
+                    productsAdapter = new SearchAdapter(itemListArray, SearchResultsActivity.this);
+                    productLV.setLayoutManager(productLayoutManager);
+                    productLV.setAdapter(productsAdapter);
+                }
             }
         });
-
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -142,7 +105,7 @@ public class SelectProduct extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.admin_home, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -167,25 +130,19 @@ public class SelectProduct extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-          if (id == R.id.logout) {
-            // Handle the accessories action
-            Intent in=new Intent(this,MainActivity.class);
-            startActivity(in);
+        if (id == R.id.nav_camera) {
+            // Handle the camera action
+        } else if (id == R.id.nav_gallery) {
+
+        } else if (id == R.id.nav_slideshow) {
+
+        } else if (id == R.id.nav_manage) {
+
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+
         }
-//
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
