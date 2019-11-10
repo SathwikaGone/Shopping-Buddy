@@ -3,7 +3,9 @@ package com.example.shoppingbuddy;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -17,8 +19,12 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -34,6 +40,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -58,7 +65,7 @@ public class Clothing_Item_Details extends AppCompatActivity
     private RadioButton selectedRadioButton;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
-    private CollectionReference itemCollection,orderCollection,ratingCollection, productCollection;
+    private CollectionReference itemCollection,ordersCollection,ratingCollection, productCollection;
 private float r;
     private RatingBar rating1;
 
@@ -139,7 +146,7 @@ itemid=i.getStringExtra("itemId");
                                 Log.d("rate","item: "+doc1.getString("item")+"itemid: "+itemid);
                                 if(doc1.getString("user").equals(user.getEmail())) {
                                     if (doc1.getString("item").equals(itemid)) {
-                                        Toast.makeText(Footwear_Item_Details.this, "you already rated this item", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Clothing_Item_Details.this, "you already rated this item", Toast.LENGTH_SHORT).show();
 
                                     } else{
                                         Map<String, Object> addproduct = new HashMap<>();
@@ -147,7 +154,7 @@ itemid=i.getStringExtra("itemId");
                                         addproduct.put("rating", r);
                                         addproduct.put("user", user.getEmail());
                                         ratingCollection.document().set(addproduct);
-                                        Toast.makeText(Footwear_Item_Details.this, "rating added to the list", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(Clothing_Item_Details.this, "rating added to the list", Toast.LENGTH_SHORT).show();
 
                                     }
                                 }
