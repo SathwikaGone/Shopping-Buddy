@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -39,6 +40,7 @@ public class Home extends AppCompatActivity
     private RecyclerView.Adapter productsAdapter;
     private RecyclerView.LayoutManager productLayoutManager;
     private CollectionReference promoCollection;
+    private SearchView search;
 
     private FirebaseFirestore db;
 
@@ -59,6 +61,23 @@ public class Home extends AppCompatActivity
 //        });
         db = FirebaseFirestore.getInstance();
         promoCollection = db.collection("promocode");
+        search=findViewById(R.id.search);
+        search.setIconifiedByDefault(false);
+        search.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent in=new Intent(Home.this,SearchResultsActivity.class);
+                in.putExtra("query",query);
+                startActivity(in);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
         final ArrayList<Container> itemListArray = new ArrayList<>();
 
         promoCollection.orderBy("PromoId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -86,8 +105,8 @@ public class Home extends AppCompatActivity
         ImageView in1=findViewById(R.id.imageView5);
         ImageView in2=findViewById(R.id.imageView6);
         ImageView in3=findViewById(R.id.imageView7);
-        ImageView in4=findViewById(R.id.imageView8);
-        ImageView in5=findViewById(R.id.imageView9);
+//        ImageView in4=findViewById(R.id.imageView8);
+//        ImageView in5=findViewById(R.id.imageView9);
         in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

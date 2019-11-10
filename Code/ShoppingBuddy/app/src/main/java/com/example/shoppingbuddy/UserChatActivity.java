@@ -54,6 +54,7 @@ public class UserChatActivity extends AppCompatActivity
     private RecyclerView productLV;
     private RecyclerView.Adapter productsAdapter;
     private RecyclerView.LayoutManager productLayoutManager;
+
      Timestamp d;
 
     @Override

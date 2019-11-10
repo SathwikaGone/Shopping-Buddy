@@ -50,12 +50,12 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.ItemsViewHol
     public void onBindViewHolder(@NonNull final UsersAdapter.ItemsViewHolder itemsViewHolder, final int i) {
 
         final Container currentItem = itemListArray.get(i);
-        itemsViewHolder.userEmail.setText(currentItem.getEmail());
+        itemsViewHolder.userEmail.setText(currentItem.getSender());
         itemsViewHolder.linearLayout2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, UserOrdersActivity.class);
-                intent.putExtra("email",currentItem.getEmail());
+                intent.putExtra("email",currentItem.getSender());
                 context.startActivity(intent);
             }
         });

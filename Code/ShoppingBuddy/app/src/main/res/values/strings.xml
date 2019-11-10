@@ -57,6 +57,7 @@
     <string name="title_activity_user_chat">UserChatActivity</string>
     <string name="title_activity_admin_chat">AdminChat</string>
     <string name="title_activity_admin_inventory">AdminInventory</string>
+    <string name="title_activity_search_results">SearchResultsActivity</string>
 
 
 </resources>

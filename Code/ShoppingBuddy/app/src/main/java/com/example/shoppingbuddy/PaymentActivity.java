@@ -100,6 +100,7 @@ public class PaymentActivity extends AppCompatActivity {
                                         addproduct.put("quantity",doc.getLong("quantity"));
                                         addproduct.put("size",doc.getString("size"));
                                         addproduct.put("total cost",totcost);
+                                        addproduct.put("item",doc.getString("item"));
                                         orderCollection.document().set(addproduct);
                                         Toast.makeText(PaymentActivity.this, "check your orders", Toast.LENGTH_SHORT).show();
                                         //finish();
