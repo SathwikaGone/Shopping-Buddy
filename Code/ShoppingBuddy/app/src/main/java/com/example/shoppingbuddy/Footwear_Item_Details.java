@@ -3,7 +3,9 @@ package com.example.shoppingbuddy;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -17,8 +19,12 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -34,6 +40,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -46,7 +53,7 @@ public class Footwear_Item_Details extends AppCompatActivity
     private ImageView imageIV;
     private TextView itemNameTV, priceTV, detailsTV,quantityTV,sizeTV;
     private FirebaseFirestore db;
-    private String imageURL,docId,size1,curruser;
+    private String imageURL,docId,size1,curruser, itemid;
     private DocumentReference itemRef;
     private Button cart,six,seven,eight,nine,ten;
     private Spinner spinner;
@@ -58,7 +65,9 @@ public class Footwear_Item_Details extends AppCompatActivity
     private RadioButton selectedRadioButton;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
-    private CollectionReference itemCollection;
+    private CollectionReference itemCollection,ratingCollection, ordersCollection, productCollection;
+    private float r;
+    private RatingBar rating1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +84,13 @@ public class Footwear_Item_Details extends AppCompatActivity
         cart=findViewById(R.id.button16);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
-//        six=findViewById(R.id.button17);
-//        seven=findViewById(R.id.button18);
-//        eight=findViewById(R.id.button19);
-//        nine=findViewById(R.id.button20);
-//        ten=findViewById(R.id.button21);
+        rating1=findViewById(R.id.ratingBar);
+
         db = FirebaseFirestore.getInstance();
         itemCollection = db.collection("cart");
+        ratingCollection=db.collection("rating");
+        ordersCollection=db.collection("orders");
+        productCollection=db.collection("products");
         quantity=findViewById(R.id.spinner);
         quantityTV=findViewById(R.id.textView32);
         sizeTV=findViewById(R.id.textView31);
@@ -90,6 +99,7 @@ public class Footwear_Item_Details extends AppCompatActivity
         Intent i = getIntent();
         docId = i.getStringExtra("documentId");
         imageURL = i.getStringExtra("imageURL");
+        itemid=i.getStringExtra("itemId");
         //imageIV.setImageResource(i.getIntExtra("image",0));
         Picasso.get().load(imageURL).into(imageIV);
         itemNameTV.setText(i.getStringExtra("itemName"));
@@ -119,7 +129,41 @@ public class Footwear_Item_Details extends AppCompatActivity
 
             }
         });
+//
+        rating1.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                r=rating;
+                ratingCollection.orderBy("user", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int i = 0;
+                            for (QueryDocumentSnapshot doc1 : task.getResult()) {
+                                Log.d("rate","item: "+doc1.getString("item")+"itemid: "+itemid);
+                                if(doc1.getString("user").equals(user.getEmail())) {
+                                    if (doc1.getString("item").equals(itemid)) {
+                                        Toast.makeText(Footwear_Item_Details.this, "you already rated this item", Toast.LENGTH_SHORT).show();
 
+                                    } else{
+                                        Map<String, Object> addproduct = new HashMap<>();
+                                        addproduct.put("item", itemid);
+                                        addproduct.put("rating", r);
+                                        addproduct.put("user", user.getEmail());
+                                        ratingCollection.document().set(addproduct);
+                                        Toast.makeText(Footwear_Item_Details.this, "rating added to the list", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                });
+            }
+        });
+
+        //
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
