@@ -46,7 +46,7 @@ public class Clothing_Item_Details extends AppCompatActivity
     private ImageView imageIV;
     private TextView itemNameTV, priceTV, detailsTV,quantityTV,sizeTV;
     private FirebaseFirestore db;
-    private String imageURL,docId,size1,curruser;
+    private String imageURL,docId,size1,curruser, itemid;
     private DocumentReference itemRef;
     private Button cart,xsmall,small,medium,large,xlarge;
     private ImageButton share;
@@ -58,7 +58,9 @@ public class Clothing_Item_Details extends AppCompatActivity
     private RadioButton selectedRadioButton;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
-    private CollectionReference itemCollection,orderCollection;
+    private CollectionReference itemCollection,orderCollection,ratingCollection, productCollection;
+private float r;
+    private RatingBar rating1;
 
 
     @Override
@@ -80,8 +82,12 @@ public class Clothing_Item_Details extends AppCompatActivity
 //        medium=findViewById(R.id.button19);
 //        large=findViewById(R.id.button20);
 //        xlarge=findViewById(R.id.button21);
+rating1=findViewById(R.id.ratingBar);
         db = FirebaseFirestore.getInstance();
         itemCollection = db.collection("cart");
+ratingCollection=db.collection("rating");
+        ordersCollection=db.collection("orders");
+        productCollection=db.collection("products");
         quantity=findViewById(R.id.spinner);
         quantityTV=findViewById(R.id.textView32);
         sizeTV=findViewById(R.id.textView31);
@@ -90,6 +96,7 @@ public class Clothing_Item_Details extends AppCompatActivity
         Intent i = getIntent();
         docId = i.getStringExtra("documentId");
         imageURL = i.getStringExtra("imageURL");
+itemid=i.getStringExtra("itemId");
         //imageIV.setImageResource(i.getIntExtra("image",0));
         Picasso.get().load(imageURL).into(imageIV);
         itemNameTV.setText(i.getStringExtra("itemName"));
@@ -117,6 +124,38 @@ public class Clothing_Item_Details extends AppCompatActivity
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+ rating1.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                r=rating;
+                ratingCollection.orderBy("user", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            int i = 0;
+                            for (QueryDocumentSnapshot doc1 : task.getResult()) {
+                                Log.d("rate","item: "+doc1.getString("item")+"itemid: "+itemid);
+                                if(doc1.getString("user").equals(user.getEmail())) {
+                                    if (doc1.getString("item").equals(itemid)) {
+                                        Toast.makeText(Footwear_Item_Details.this, "you already rated this item", Toast.LENGTH_SHORT).show();
+
+                                    } else{
+                                        Map<String, Object> addproduct = new HashMap<>();
+                                        addproduct.put("item", itemid);
+                                        addproduct.put("rating", r);
+                                        addproduct.put("user", user.getEmail());
+                                        ratingCollection.document().set(addproduct);
+                                        Toast.makeText(Footwear_Item_Details.this, "rating added to the list", Toast.LENGTH_SHORT).show();
+
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                });
             }
         });
 
