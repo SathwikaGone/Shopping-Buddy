@@ -129,6 +129,7 @@ public class UserHistoryActivity extends AppCompatActivity
             Intent in=new Intent(UserHistoryActivity.this,MainActivity.class);
             startActivity(in);
         }
+
 //        if (id == R.id.nav_camera) {
 //            // Handle the camera action
 //        } else if (id == R.id.nav_gallery) {
