@@ -91,7 +91,7 @@ public class UserChatActivity extends AppCompatActivity
                     message.setText("");
 
                 final ArrayList<Container> itemListArray = new ArrayList<>();
-                chatCollection.orderBy("From", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                chatCollection.orderBy("Date", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
@@ -99,10 +99,10 @@ public class UserChatActivity extends AppCompatActivity
                             for (QueryDocumentSnapshot doc : task.getResult()) {
 
                                 if (doc.getString("From").equals(email) || doc.getString("To").equals(email)) {
-                                    if(doc.getDate("Date").after(d.toDate())){
+                                  //  if(doc.getDate("Date").after(d.toDate())){
                                         itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
                                         i++;
-                                    }
+                                  //  }
 
                                 }
                             }
@@ -121,7 +121,7 @@ public class UserChatActivity extends AppCompatActivity
 
         final ArrayList<Container> itemListArray = new ArrayList<>();
 
-        chatCollection.orderBy("From", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        chatCollection.orderBy("Date", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 if (task.isSuccessful()) {
@@ -129,10 +129,10 @@ public class UserChatActivity extends AppCompatActivity
                     for (QueryDocumentSnapshot doc : task.getResult()) {
 
                         if (doc.getString("From").equals(email) || doc.getString("To").equals(email)) {
-                            if(doc.getDate("Date").after(d.toDate())){
+                           // if(doc.getDate("Date").after(d.toDate())){
                                 itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
                                 i++;
-                            }
+                          //  }
 
                         }
                     }
