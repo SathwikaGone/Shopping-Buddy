@@ -78,16 +78,30 @@ public class ShippingAddressActivity extends AppCompatActivity
         city1=findViewById(R.id.editText16);
         state1=findViewById(R.id.editText17);
         zipcode1=findViewById(R.id.editText15);
-
-
+        db = FirebaseFirestore.getInstance();
+        promoCollection=db.collection("promocode");
         totcost=findViewById(R.id.textView40);
 
         db = FirebaseFirestore.getInstance();
         Intent i=getIntent();
         totalcost=i.getDoubleExtra("total cost",0.0);
+        promocode=i.getStringExtra("promocode");
+        promoCollection.orderBy("PromoId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    int i = 0;
+                    for (QueryDocumentSnapshot doc : task.getResult()) {
+                        if(promocode.equals(doc.getString("PromoCode"))){
+                            totalcost=totalcost-Integer.parseInt(doc.getString("amount to dedcut"));
+                        }
 
-        totcost.setText("$"+totalcost);
+                    }
 
+                }
+                totcost.setText("$"+totalcost);
+            }
+        });
         shippingCollection=db.collection("shippingAddress");
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
