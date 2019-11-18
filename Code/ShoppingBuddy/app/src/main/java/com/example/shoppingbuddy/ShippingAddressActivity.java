@@ -165,16 +165,17 @@ public class ShippingAddressActivity extends AppCompatActivity
 
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-//        FirebaseAuth auth1 = FirebaseAuth.getInstance();
-//        FirebaseUser user = auth1.getCurrentUser();
-//        View headerView = navigationView.getHeaderView(0);
-//        TextView navUsername = (TextView) headerView.findViewById(R.id.textView);
-//        navUsername.setText(user.getEmail());
+        
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
+NavigationView navigationView = findViewById(R.id.nav_view);
+        FirebaseAuth auth1 = FirebaseAuth.getInstance();
+       FirebaseUser user = auth1.getCurrentUser();
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.textView);
+        navUsername.setText(user.getEmail());
         navigationView.setNavigationItemSelectedListener(this);
     }
 
