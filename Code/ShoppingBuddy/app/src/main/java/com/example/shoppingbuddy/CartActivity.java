@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +51,7 @@ public class CartActivity extends AppCompatActivity
     private double totalcost;
     private DocumentReference itemDoc;
     private String documentId;
+    private EditText et;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +66,7 @@ public class CartActivity extends AppCompatActivity
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         Button btn = findViewById(R.id.button18);
+        et=findViewById(R.id.editText18);
 
 
 
@@ -124,6 +127,7 @@ public class CartActivity extends AppCompatActivity
             public void onClick(View view) {
                 Intent i = new Intent(CartActivity.this,ShippingAddressActivity.class);
                 i.putExtra("total cost",totalcost);
+                i.putExtra("promocode",et.getText().toString());
                 startActivity(i);
             }
         });

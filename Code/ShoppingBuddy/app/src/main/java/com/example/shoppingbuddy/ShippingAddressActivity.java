@@ -78,16 +78,14 @@ public class ShippingAddressActivity extends AppCompatActivity
         city1=findViewById(R.id.editText16);
         state1=findViewById(R.id.editText17);
         zipcode1=findViewById(R.id.editText15);
-
-
+        db = FirebaseFirestore.getInstance();
+        promoCollection=db.collection("promocode");
         totcost=findViewById(R.id.textView40);
 
         db = FirebaseFirestore.getInstance();
         Intent i=getIntent();
         totalcost=i.getDoubleExtra("total cost",0.0);
-
-        totcost.setText("$"+totalcost);
-
+        
         shippingCollection=db.collection("shippingAddress");
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
