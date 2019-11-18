@@ -55,7 +55,7 @@ public class ShippingAddressActivity extends AppCompatActivity
     private RecyclerView.LayoutManager productLayoutManager;
     private FirebaseFirestore db;
     private StorageReference StorageRef;
-    private CollectionReference shippingCollection, cartCollection;
+    private CollectionReference shippingCollection, cartCollection,promoCollection;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     double totalcost;
@@ -85,6 +85,7 @@ public class ShippingAddressActivity extends AppCompatActivity
         db = FirebaseFirestore.getInstance();
         Intent i=getIntent();
         totalcost=i.getDoubleExtra("total cost",0.0);
+
         totcost.setText("$"+totalcost);
 
         shippingCollection=db.collection("shippingAddress");

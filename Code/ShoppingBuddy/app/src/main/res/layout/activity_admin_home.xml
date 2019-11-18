@@ -77,18 +77,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.645" />
 
-            <TextView
-                android:id="@+id/textView71"
-                android:layout_width="70dp"
-                android:layout_height="61dp"
-                android:text="TextView"
-                android:textColor="@color/common_google_signin_btn_text_dark_focused"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.897"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.959" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton

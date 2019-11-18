@@ -1,5 +1,7 @@
 package com.example.shoppingbuddy;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -36,6 +38,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -86,7 +89,7 @@ public class Orders_Product_List extends AppCompatActivity
                                         if(doc.getString("productId").equals(doc1.getId())){
                                             Log.d("click","inside products verification");
                                             itemListArray.add(new Container(doc1.getString("itemId"), doc1.getString("itemName"), doc1.getDouble("cost"), doc1.getString("itemDetails"),
-                                                    doc1.getString("category"), doc1.getId(), doc1.getString("imageURL"),doc.getLong("quantity"),doc.getString("size"),doc.getString("user")));
+                                                    doc1.getString("category"), doc.getId(), doc1.getString("imageURL"),doc.getLong("quantity"),doc.getString("size"),doc.getString("user")));
                                             i++;
                                         }
                                     }
@@ -123,6 +126,7 @@ public class Orders_Product_List extends AppCompatActivity
         navUsername.setText(user.getEmail());
         navigationView.setNavigationItemSelectedListener(this);
     }
+
 
     @Override
     public void onBackPressed() {
