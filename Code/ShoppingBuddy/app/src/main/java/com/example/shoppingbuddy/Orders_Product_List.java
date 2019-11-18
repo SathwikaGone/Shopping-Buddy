@@ -96,7 +96,7 @@ public class Orders_Product_List extends AppCompatActivity
                                     productLV = findViewById(R.id.productsLV);
                                     productLV.setHasFixedSize(true);
                                     productLayoutManager = new LinearLayoutManager(Orders_Product_List.this);
-                                    productsAdapter = new AdminHistoryAdapter(itemListArray, Orders_Product_List.this);
+                                    productsAdapter = new OrdersAdapter(itemListArray, Orders_Product_List.this);
                                     productLV.setLayoutManager(productLayoutManager);
                                     productLV.setAdapter(productsAdapter);
 
@@ -126,7 +126,12 @@ public class Orders_Product_List extends AppCompatActivity
         navUsername.setText(user.getEmail());
         navigationView.setNavigationItemSelectedListener(this);
     }
-
+    public void cancelOrder(String docid){
+        Log.d("docid",""+docid);
+        db = FirebaseFirestore.getInstance();
+        itemDoc = db.collection("orders").document(docid);
+        itemDoc.delete();
+    }
 
     @Override
     public void onBackPressed() {
