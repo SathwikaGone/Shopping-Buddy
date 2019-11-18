@@ -26,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class ChangePassword extends AppCompatActivity
@@ -66,8 +67,8 @@ public class ChangePassword extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser();
+FirebaseAuth auth1 = FirebaseAuth.getInstance();
+        FirebaseUser user = auth1.getCurrentUser();
         View headerView = navigationView.getHeaderView(0);
         TextView navUsername = (TextView) headerView.findViewById(R.id.textView);
         navUsername.setText(user.getEmail());
