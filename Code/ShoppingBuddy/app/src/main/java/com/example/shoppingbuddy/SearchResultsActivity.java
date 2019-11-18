@@ -89,6 +89,11 @@ public class SearchResultsActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        View headerView = navigationView.getHeaderView(0);
+        TextView navUsername = (TextView) headerView.findViewById(R.id.textView);
+        navUsername.setText(user.getEmail());
         navigationView.setNavigationItemSelectedListener(this);
     }
 
