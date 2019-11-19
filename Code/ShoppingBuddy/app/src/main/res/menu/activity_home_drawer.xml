@@ -19,18 +19,6 @@
         android:title="Electronics"
         android:id="@+id/electronics" />
     <item
-        android:title="Books"
-        android:id="@+id/books" />
-    <item
-        android:title="Sports Equipment"
-        android:id="@+id/SportsEquipment" />
-    <item
-        android:title="Beauty and Personal Care"
-        android:id="@+id/Beauty" />
-    <item
-        android:title="Deals"
-        android:id="@+id/deals" />
-    <item
         android:title="Orders"
         android:id="@+id/orders" />
     <item

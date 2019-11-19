@@ -137,14 +137,33 @@ public class AdminSettingActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if(id==R.id.History){
-            Intent in=new Intent(AdminSettingActivity.this,UserHistoryActivity.class);
+            Intent in=new Intent(this,UserHistoryActivity.class);
             startActivity(in);
         }
         else if (id == R.id.Logout) {
             // Handle the accessories action
-            Intent in=new Intent(AdminSettingActivity.this,MainActivity.class);
+            Intent in=new Intent(this,MainActivity.class);
+            startActivity(in);
+        }
+        else if(id==R.id.addedprod){
+            Intent in=new Intent(this,AdminHistoryAprodActivity.class);
+            startActivity(in);
+        }
+        else if(id==R.id.deletedprod){
+            Intent in=new Intent(this,AdminHistoryDProdActivity.class);
+            startActivity(in);
+        }
+        else if (id==R.id.addedpromo){
+            Intent in=new Intent(this,AdminHistoryAPromoActivity.class);
+            startActivity(in);
+        }
+        else if (id==R.id.deletedpromo){
+            Intent in=new Intent(this,AdminHistoryDPromoActivity.class);
+            startActivity(in);
+        }
+        else if (id==R.id.Inventory){
+            Intent in=new Intent(this,AdminInventory.class);
             startActivity(in);
         }
 

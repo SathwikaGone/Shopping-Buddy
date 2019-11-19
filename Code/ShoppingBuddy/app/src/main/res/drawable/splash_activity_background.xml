@@ -7,7 +7,7 @@
         </shape>
     </item>
     <item>
-        <bitmap android:src="@mipmap/logo" android:gravity="center"/>
+        <bitmap android:src="@drawable/shoppingbuddylogo" android:gravity="center"/>
     </item>
 
 </layer-list>

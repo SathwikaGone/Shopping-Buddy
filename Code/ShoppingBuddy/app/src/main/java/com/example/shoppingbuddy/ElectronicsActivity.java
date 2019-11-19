@@ -136,15 +136,20 @@ public class ElectronicsActivity extends AppCompatActivity
             Intent in=new Intent(this,Orders_Product_List.class);
             startActivity(in);
         }
-//        else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
+        else if (id == R.id.settings) {
+            // Handle the accessories action
+            Intent in = new Intent(this, Settings.class);
+            startActivity(in);
+        }
+        else if (id == R.id.footwear) {
+            // Handle the accessories action
+            Intent in=new Intent(this,Footwear.class);
+            startActivity(in);
+        }
+        else if (id == R.id.electronics) {
+            Intent in=new Intent(this,ElectronicsActivity.class);
+            startActivity(in);}
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

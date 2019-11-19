@@ -136,6 +136,7 @@ public class MensAccessoriesProductList extends AppCompatActivity
             startActivity(i);
         }
 
+
         return super.onOptionsItemSelected(item);
     }
 
@@ -174,6 +175,11 @@ public class MensAccessoriesProductList extends AppCompatActivity
         }
         else if(id==R.id.orders){
             Intent in=new Intent(this,Orders_Product_List.class);
+            startActivity(in);
+        }
+        else if (id == R.id.settings) {
+            // Handle the accessories action
+            Intent in = new Intent(this, Settings.class);
             startActivity(in);
         }
 

@@ -172,6 +172,11 @@ public class CellphonesElectronicsProductList extends AppCompatActivity
             Intent in=new Intent(this,Orders_Product_List.class);
             startActivity(in);
         }
+        else if (id == R.id.settings) {
+            // Handle the accessories action
+            Intent in = new Intent(this, Settings.class);
+            startActivity(in);
+        }
 //        if (id == R.id.nav_camera) {
 //            // Handle the camera action
 //        } else if (id == R.id.nav_gallery) {

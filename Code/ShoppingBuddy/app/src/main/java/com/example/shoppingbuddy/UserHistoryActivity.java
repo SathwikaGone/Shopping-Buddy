@@ -121,29 +121,34 @@ public class UserHistoryActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if(id==R.id.History){
-            Intent in=new Intent(UserHistoryActivity.this,UserHistoryActivity.class);
+            Intent in=new Intent(this,UserHistoryActivity.class);
             startActivity(in);
         }
         else if (id == R.id.Logout) {
             // Handle the accessories action
-            Intent in=new Intent(UserHistoryActivity.this,MainActivity.class);
+            Intent in=new Intent(this,MainActivity.class);
             startActivity(in);
         }
-
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
-
+        else if(id==R.id.addedprod){
+            Intent in=new Intent(this,AdminHistoryAprodActivity.class);
+            startActivity(in);
+        }
+        else if(id==R.id.deletedprod){
+            Intent in=new Intent(this,AdminHistoryDProdActivity.class);
+            startActivity(in);
+        }
+        else if (id==R.id.addedpromo){
+            Intent in=new Intent(this,AdminHistoryAPromoActivity.class);
+            startActivity(in);
+        }
+        else if (id==R.id.deletedpromo){
+            Intent in=new Intent(this,AdminHistoryDPromoActivity.class);
+            startActivity(in);
+        }
+        else if (id==R.id.Inventory){
+            Intent in=new Intent(this,AdminInventory.class);
+            startActivity(in);
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

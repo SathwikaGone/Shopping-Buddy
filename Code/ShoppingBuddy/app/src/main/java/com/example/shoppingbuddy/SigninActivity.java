@@ -34,7 +34,7 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 public class SigninActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        {
     public Button btn;
     public Button btn1;
     public EditText email;
@@ -69,14 +69,7 @@ public class SigninActivity extends AppCompatActivity
         email.setText(rememberMe.getString("userName",""));
         password.setText(rememberMe.getString("password",""));
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
         btn=(Button)findViewById(R.id.button3);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -139,30 +132,7 @@ public class SigninActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-//        int id = item.getItemId();
-//
-//        if (id == R.id.nav_camera) {
-//            // Handle the camera action
-//        } else if (id == R.id.nav_gallery) {
-//
-//        } else if (id == R.id.nav_slideshow) {
-//
-//        } else if (id == R.id.nav_manage) {
-//
-//        } else if (id == R.id.nav_share) {
-//
-//        } else if (id == R.id.nav_send) {
-//
-//        }
-//
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
+
     private void loginAcc(){
          em=email.getText().toString().trim();
          pwd=password.getText().toString().trim();

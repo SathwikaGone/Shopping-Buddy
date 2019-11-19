@@ -12,7 +12,7 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         SystemClock.sleep(1500);
-        Intent login = new Intent(SplashActivity.this,MainActivity.class);
+        Intent login = new Intent(SplashActivity.this, MainActivity.class);
         startActivity(login);
         finish();
     }

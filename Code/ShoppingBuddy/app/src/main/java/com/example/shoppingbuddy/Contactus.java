@@ -84,10 +84,42 @@ FirebaseAuth auth = FirebaseAuth.getInstance();
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.home) {
+            // Handle the home action
+            Intent in=new Intent(this,Home.class);
+            startActivity(in);}
+        else if (id == R.id.electronics) {
+            Intent in=new Intent(this,ElectronicsActivity.class);
+            startActivity(in);}
+        else if (id == R.id.clothing) {
+            // Handle the accessories action
+            Intent in=new Intent(this,ClothingActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.accessories) {
+            // Handle the accessories action
+            Intent in=new Intent(this,AccessoriesActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.footwear) {
+            // Handle the accessories action
+            Intent in=new Intent(this,Footwear.class);
+            startActivity(in);
+        }
+        else if (id == R.id.logout) {
+            // Handle the accessories action
+            Intent in=new Intent(this,MainActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.orders) {
+            // Handle the accessories action
+            Intent in = new Intent(this, Orders_Product_List.class);
+            startActivity(in);
+        }
+        else if (id == R.id.settings) {
+            // Handle the accessories action
+            Intent in = new Intent(this, Settings.class);
+            startActivity(in);
         }
 
         return super.onOptionsItemSelected(item);

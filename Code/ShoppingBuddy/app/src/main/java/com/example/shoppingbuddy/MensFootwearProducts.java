@@ -178,6 +178,11 @@ public class MensFootwearProducts extends AppCompatActivity
             Intent in=new Intent(this,Orders_Product_List.class);
             startActivity(in);
         }
+        else if (id == R.id.settings) {
+            // Handle the accessories action
+            Intent in = new Intent(this, Settings.class);
+            startActivity(in);
+        }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

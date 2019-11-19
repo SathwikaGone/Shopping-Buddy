@@ -63,6 +63,7 @@ public class Home extends AppCompatActivity
         promoCollection = db.collection("promocode");
         search=findViewById(R.id.search);
         search.setIconifiedByDefault(false);
+        search.setQueryHint("What are you looking for?");
         search.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
 
             @Override
