@@ -51,7 +51,7 @@ import java.util.Map;
 public class Footwear_Item_Details extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView imageIV;
-    private TextView itemNameTV, priceTV, detailsTV,quantityTV,sizeTV;
+    private TextView itemNameTV, priceTV, detailsTV,quantityTV,sizeTV, averageRating;
     private FirebaseFirestore db;
     private String imageURL,docId,size1,curruser, itemid;
     private DocumentReference itemRef;
@@ -95,6 +95,7 @@ public class Footwear_Item_Details extends AppCompatActivity
         quantityTV=findViewById(R.id.textView32);
         sizeTV=findViewById(R.id.textView31);
         size=findViewById(R.id.size);
+        averageRating=findViewById(R.id.textView69);
 //      Get data from the Intent
         Intent i = getIntent();
         docId = i.getStringExtra("documentId");
@@ -103,6 +104,7 @@ public class Footwear_Item_Details extends AppCompatActivity
         //imageIV.setImageResource(i.getIntExtra("image",0));
         Picasso.get().load(imageURL).into(imageIV);
         itemNameTV.setText(i.getStringExtra("itemName"));
+        averageRating.setText("Average Rating: 3.0");
         priceTV.setText("$" + i.getDoubleExtra("unitPrice",0));
 
 //        Get an instance of the items
@@ -157,6 +159,7 @@ public class Footwear_Item_Details extends AppCompatActivity
                                 }
 
                             }
+                            averageRating.setText("Average Rating: 2.5");
                         }
                     }
                 });

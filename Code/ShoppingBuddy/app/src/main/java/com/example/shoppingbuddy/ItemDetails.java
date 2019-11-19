@@ -53,7 +53,7 @@ import java.util.Map;
 public class ItemDetails extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView imageIV;
-    private TextView itemNameTV, priceTV, detailsTV,quantityTV;
+    private TextView itemNameTV, priceTV, detailsTV,quantityTV, averageRating;
     private FirebaseFirestore db;
     private String imageURL,docId,curruser,size1, itemid;
     private DocumentReference itemRef;
@@ -86,6 +86,7 @@ public class ItemDetails extends AppCompatActivity
         db = FirebaseFirestore.getInstance();
         quantity=findViewById(R.id.spinner);
         quantityTV=findViewById(R.id.textView32);
+        averageRating=findViewById(R.id.textView69);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
         itemCollection = db.collection("cart");
@@ -104,6 +105,7 @@ public class ItemDetails extends AppCompatActivity
         Picasso.get().load(imageURL).into(imageIV);
         itemNameTV.setText("Product Name:"+i.getStringExtra("itemName"));
         priceTV.setText("$" + i.getDoubleExtra("unitPrice",0));
+        averageRating.setText("Average Rating: 3.8");
 
 //        Get an instance of the items
         itemRef = db.collection("products").document(docId);
@@ -156,6 +158,7 @@ public class ItemDetails extends AppCompatActivity
                                 }
 
                             }
+                            averageRating.setText("Average Rating: 4.0");
                         }
                     }
                 });

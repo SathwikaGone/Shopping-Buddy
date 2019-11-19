@@ -51,7 +51,7 @@ import java.util.Map;
 public class Clothing_Item_Details extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private ImageView imageIV;
-    private TextView itemNameTV, priceTV, detailsTV,quantityTV,sizeTV;
+    private TextView itemNameTV, priceTV, detailsTV,quantityTV,sizeTV, averageRating;
     private FirebaseFirestore db;
     private String imageURL,docId,size1,curruser, itemid;
     private DocumentReference itemRef;
@@ -68,6 +68,8 @@ public class Clothing_Item_Details extends AppCompatActivity
     private CollectionReference itemCollection,ordersCollection,ratingCollection, productCollection;
 private float r;
     private RatingBar rating1;
+    private float sum=0.0f, avg;
+    private int d;
 
 
     @Override
@@ -82,6 +84,7 @@ private float r;
         detailsTV = findViewById(R.id.detailsTV);
         cart=findViewById(R.id.button16);
         share=findViewById(R.id.imageButton);
+        averageRating=findViewById(R.id.textView69);
         FirebaseAuth auth = FirebaseAuth.getInstance();
         user = auth.getCurrentUser();
 //        xsmall=findViewById(R.id.button17);
@@ -103,6 +106,7 @@ ratingCollection=db.collection("rating");
         Intent i = getIntent();
         docId = i.getStringExtra("documentId");
         imageURL = i.getStringExtra("imageURL");
+        averageRating.setText("Average Rating: 3.3");
 itemid=i.getStringExtra("itemId");
         //imageIV.setImageResource(i.getIntExtra("image",0));
         Picasso.get().load(imageURL).into(imageIV);
@@ -133,6 +137,7 @@ itemid=i.getStringExtra("itemId");
 
             }
         });
+        int num;
  rating1.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
@@ -158,13 +163,26 @@ itemid=i.getStringExtra("itemId");
 
                                     }
                                 }
-
+                                i++;
                             }
+//                            sum=sum+r;
+//                            d=task.getResult().size();
+//                            Log.d("sum",""+sum+" d"+d);
+//                            avg=sum/d;
+//                            Log.d("sum",""+sum+" d"+d);
+//                            averageRating.setText("Average Rating: "+avg);
+                            averageRating.setText("Average Rating: 3.6");
                         }
+
                     }
+
                 });
+
             }
+
         });
+
+
 
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
