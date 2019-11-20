@@ -60,7 +60,7 @@ public class UserPromoAdapter extends RecyclerView.Adapter<UserPromoAdapter.Item
         //itemsViewHolder.itemImage.setImageResource(currentItem.getImage());
         //Picasso.get().load(currentItem.getImageURL()).into(itemsViewHolder.productImage);
         itemsViewHolder.promocode.setText("Code: "+currentItem.getPromocode());
-        itemsViewHolder.price.setText("$" + currentItem.getPrice()+" OFF ON "+currentItem.getPdes());
+        itemsViewHolder.price.setText(currentItem.getPdes());
 
 
 //        itemsViewHolder.linearLayout2.setOnClickListener(new View.OnClickListener() {

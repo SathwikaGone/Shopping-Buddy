@@ -51,7 +51,7 @@ public class AddProductActivity extends AppCompatActivity
     private Spinner spinner;
     private static final String[] paths = {"Men's clothing", "Women's clothing", "Kid's clothing",
             "Men's Accessories", "Women's Accessories", "Cell Phones and Accessories",
-            "Tv and Computers", "Men's Footwear", "Women's Footwear","Books","Sports Equipment","Hair","Skin","Makeup"};
+            "Tv and Computers", "Men's Footwear", "Women's Footwear"};
     private FirebaseFirestore db;
     private StorageReference storage, storg;
     private CollectionReference itemCollection;

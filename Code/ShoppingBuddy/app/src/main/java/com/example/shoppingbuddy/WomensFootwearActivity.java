@@ -3,6 +3,8 @@ package com.example.shoppingbuddy;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -11,52 +13,85 @@ import android.view.View;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.TextView;
 
-public class Footwear extends AppCompatActivity
+import java.util.ArrayList;
+
+public class WomensFootwearActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private RecyclerView productLV;
+    private RecyclerView.Adapter productsAdapter;
+    private RecyclerView.LayoutManager productLayoutManager;
+
+    private FirebaseFirestore db;
+    private StorageReference StorageRef;
+    private CollectionReference productCollection;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_footwear);
+        setContentView(R.layout.activity_clothing_product_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button mbutton=findViewById(R.id.button6);
-        mbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mb=new Intent(Footwear.this, MensFootwearProducts.class);
-                startActivity(mb);
-            }
-        });
-        Button wbutton=findViewById(R.id.button7);
-        wbutton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mb=new Intent(Footwear.this, WomensFootwearActivity.class);
-                startActivity(mb);
-            }
-        });
-//        Button wbutton=findViewById(R.id.button7);
-//        wbutton.setOnClickListener(new View.OnClickListener() {
+        db = FirebaseFirestore.getInstance();
+        StorageRef = FirebaseStorage.getInstance().getReference().child("productimages");
+        productCollection = db.collection("products");
+
+
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
 //            @Override
-//            public void onClick(View v) {
-//                Intent mb=new Intent(Footwear.this, .class);
-//                startActivity(mb);
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
 //            }
 //        });
+        final ArrayList<Container> itemListArray = new ArrayList<>();
+
+        productCollection.orderBy("itemId", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    int i = 0;
+                    for (QueryDocumentSnapshot doc : task.getResult()) {
+
+                        if (doc.getString("category").equals("Women's Footwear")) {
+                            itemListArray.add(new Container(doc.getString("itemId"), doc.getString("itemName"), doc.getDouble("cost"), doc.getString("itemDetails"),
+                                    doc.getString("category"), doc.getId(), doc.getString("imageURL")));
+                            i++;
+                        }
+                    }
+
+                    productLV = findViewById(R.id.productsLV);
+                    productLV.setHasFixedSize(true);
+                    productLayoutManager = new LinearLayoutManager(WomensFootwearActivity.this);
+                    productsAdapter = new FootwearProductsAdapter(itemListArray, WomensFootwearActivity.this);
+                    productLV.setLayoutManager(productLayoutManager);
+                    productLV.setAdapter(productsAdapter);
+                }
+            }
+        });
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -99,7 +134,7 @@ public class Footwear extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_cart) {
-            Intent i = new Intent(Footwear.this,CartActivity.class);
+            Intent i = new Intent(WomensFootwearActivity.this,CartActivity.class);
             startActivity(i);
         }
 

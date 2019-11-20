@@ -12,7 +12,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity
+            android:name=".WomensFootwearActivity"
+            android:label="@string/title_activity_womens_footwear"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".AdminInventory"
             android:label="@string/title_activity_admin_inventory"
