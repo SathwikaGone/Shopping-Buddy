@@ -135,6 +135,10 @@ public class WomensClothingProductList extends AppCompatActivity
             Intent i = new Intent(WomensClothingProductList.this,CartActivity.class);
             startActivity(i);
         }
+        if (id == R.id.action_chat) {
+            Intent i = new Intent(this,UserChatActivity.class);
+            startActivity(i);
+        }
 
         return super.onOptionsItemSelected(item);
     }

@@ -5,14 +5,14 @@
         android:id="@+id/action_cart"
         android:orderInCategory="101"
         android:title="cart"
-        android:icon="@mipmap/shoppingcart"
+        android:icon="@drawable/cart_icon"
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/action_notification"
+        android:id="@+id/action_chat"
         android:orderInCategory="101"
-        android:title="notification"
-        android:icon="@mipmap/notification"
+        android:title="chat"
+        android:icon="@drawable/chat_icon"
 
         app:showAsAction="always" />
 </menu>

@@ -250,6 +250,10 @@ itemid=i.getStringExtra("itemId");
             Intent i = new Intent(Clothing_Item_Details.this,CartActivity.class);
             startActivity(i);
         }
+        if (id == R.id.action_chat) {
+            Intent i = new Intent(this,UserChatActivity.class);
+            startActivity(i);
+        }
 
         return super.onOptionsItemSelected(item);
     }
