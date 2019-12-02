@@ -14,12 +14,15 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -92,29 +95,24 @@ public class UserChatActivity extends AppCompatActivity
                     message.setText("");
 
                 final ArrayList<Container> itemListArray = new ArrayList<>();
-                chatCollection.orderBy("Date", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                chatCollection.orderBy("Date",Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
                     @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            int i = 0;
-                            for (QueryDocumentSnapshot doc : task.getResult()) {
+                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
 
-                                if (doc.getString("From").equals(email) || doc.getString("To").equals(email)) {
-                                  //  if(doc.getDate("Date").after(d.toDate())){
-                                        itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
-                                        i++;
-                                  //  }
+                            if (doc.getString("From").equals(email) || doc.getString("To").equals(email)) {
+                                //  if(doc.getDate("Date").after(d.toDate())){
+                                itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
+                                //  }
 
-                                }
                             }
-
-                            productLV = findViewById(R.id.recyclerview);
-                            productLV.setHasFixedSize(true);
-                            productLayoutManager = new LinearLayoutManager(UserChatActivity.this);
-                            productsAdapter = new ChatAdapter(itemListArray, UserChatActivity.this);
-                            productLV.setLayoutManager(productLayoutManager);
-                            productLV.setAdapter(productsAdapter);
                         }
+                        productLV = findViewById(R.id.recyclerview);
+                        productLV.setHasFixedSize(true);
+                        productLayoutManager = new LinearLayoutManager(UserChatActivity.this);
+                        productsAdapter = new ChatAdapter(itemListArray, UserChatActivity.this);
+                        productLV.setLayoutManager(productLayoutManager);
+                        productLV.setAdapter(productsAdapter);
                     }
                 });
             }
@@ -122,29 +120,24 @@ public class UserChatActivity extends AppCompatActivity
 
         final ArrayList<Container> itemListArray = new ArrayList<>();
 
-        chatCollection.orderBy("Date", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        chatCollection.orderBy("Date",Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    int i = 0;
-                    for (QueryDocumentSnapshot doc : task.getResult()) {
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
 
-                        if (doc.getString("From").equals(email) || doc.getString("To").equals(email)) {
-                           // if(doc.getDate("Date").after(d.toDate())){
-                                itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
-                                i++;
-                          //  }
+                    if (doc.getString("From").equals(email) || doc.getString("To").equals(email)) {
+                        //  if(doc.getDate("Date").after(d.toDate())){
+                        itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
+                        //  }
 
-                        }
                     }
-
-                    productLV = findViewById(R.id.recyclerview);
-                    productLV.setHasFixedSize(true);
-                    productLayoutManager = new LinearLayoutManager(UserChatActivity.this);
-                    productsAdapter = new ChatAdapter(itemListArray, UserChatActivity.this);
-                    productLV.setLayoutManager(productLayoutManager);
-                    productLV.setAdapter(productsAdapter);
                 }
+                productLV = findViewById(R.id.recyclerview);
+                productLV.setHasFixedSize(true);
+                productLayoutManager = new LinearLayoutManager(UserChatActivity.this);
+                productsAdapter = new ChatAdapter(itemListArray, UserChatActivity.this);
+                productLV.setLayoutManager(productLayoutManager);
+                productLV.setAdapter(productsAdapter);
             }
         });
 

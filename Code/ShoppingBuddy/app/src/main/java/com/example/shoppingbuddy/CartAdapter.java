@@ -67,7 +67,7 @@ public static class ItemsViewHolder extends RecyclerView.ViewHolder {
 
         //itemsViewHolder.itemImage.setImageResource(currentItem.getImage());
         Picasso.get().load(currentItem.getImageURL()).into(itemsViewHolder.productImage);
-        itemsViewHolder.productName.setText("Product Name: "+currentItem.getItemName());
+        itemsViewHolder.productName.setText(currentItem.getItemName());
         itemsViewHolder.cost.setText("price :$" + currentItem.getCost());
         itemsViewHolder.quantity.setText("Quantity: "+currentItem.getQuantity());
         itemsViewHolder.size.setText("Size: "+currentItem.getSize());
