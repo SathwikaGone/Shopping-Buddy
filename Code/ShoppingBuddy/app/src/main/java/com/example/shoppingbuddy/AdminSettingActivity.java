@@ -165,6 +165,9 @@ public class AdminSettingActivity extends AppCompatActivity
         else if (id==R.id.Inventory){
             Intent in=new Intent(this,AdminInventory.class);
             startActivity(in);
+        }else if (id==R.id.Home){
+            Intent in=new Intent(this,AdminHomeActivity.class);
+            startActivity(in);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

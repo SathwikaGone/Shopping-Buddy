@@ -90,25 +90,6 @@ public class AdminMessagesActivity extends AppCompatActivity
                 chatCollection.document().set(messages);
                 // Toast.makeText(UserChatActivity.this, "Message sent", Toast.LENGTH_SHORT).show();
                 message.setText("");
-                final ArrayList<Container> itemListArray = new ArrayList<>();
-                chatCollection.orderBy("Date",Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
-
-                            if ((doc.getString("From").equals("shoppingbuddyseven@gmail.com") && doc.getString("To").equals(remail)) || (doc.getString("To").equals("shoppingbuddyseven@gmail.com") && doc.getString("From").equals(remail))) {
-                                itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
-                            }
-                        }
-
-                        productLV = findViewById(R.id.recyclerview);
-                        productLV.setHasFixedSize(true);
-                        productLayoutManager = new LinearLayoutManager(AdminMessagesActivity.this);
-                        productsAdapter = new ChatAdapter(itemListArray, AdminMessagesActivity.this);
-                        productLV.setLayoutManager(productLayoutManager);
-                        productLV.setAdapter(productsAdapter);
-                    }
-                });
 
             }
         });
@@ -130,6 +111,8 @@ public class AdminMessagesActivity extends AppCompatActivity
                 productsAdapter = new ChatAdapter(itemListArray, AdminMessagesActivity.this);
                 productLV.setLayoutManager(productLayoutManager);
                 productLV.setAdapter(productsAdapter);
+                productLV.scrollToPosition(itemListArray.size()-1);
+
             }
         });
 
@@ -157,7 +140,7 @@ public class AdminMessagesActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
+        getMenuInflater().inflate(R.menu.admin_home, menu);
         return true;
     }
 
@@ -170,7 +153,8 @@ public class AdminMessagesActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent in=new Intent(this,AdminSettingActivity.class);
+            startActivity(in);
         }
 
         return super.onOptionsItemSelected(item);

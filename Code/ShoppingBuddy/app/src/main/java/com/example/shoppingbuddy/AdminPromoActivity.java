@@ -128,7 +128,8 @@ public class AdminPromoActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent in=new Intent(this,AdminSettingActivity.class);
+            startActivity(in);
         }
 
         return super.onOptionsItemSelected(item);
@@ -166,6 +167,9 @@ public class AdminPromoActivity extends AppCompatActivity
         }
         else if (id==R.id.Inventory){
             Intent in=new Intent(this,AdminInventory.class);
+            startActivity(in);
+        }else if (id==R.id.Home){
+            Intent in=new Intent(this,AdminHomeActivity.class);
             startActivity(in);
         }
 

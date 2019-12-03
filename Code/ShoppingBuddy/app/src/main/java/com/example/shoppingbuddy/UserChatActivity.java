@@ -1,5 +1,6 @@
 package com.example.shoppingbuddy;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -94,27 +95,7 @@ public class UserChatActivity extends AppCompatActivity
                     Toast.makeText(UserChatActivity.this, "Message sent", Toast.LENGTH_SHORT).show();
                     message.setText("");
 
-                final ArrayList<Container> itemListArray = new ArrayList<>();
-                chatCollection.orderBy("Date",Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                        for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
 
-                            if (doc.getString("From").equals(email) || doc.getString("To").equals(email)) {
-                                //  if(doc.getDate("Date").after(d.toDate())){
-                                itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
-                                //  }
-
-                            }
-                        }
-                        productLV = findViewById(R.id.recyclerview);
-                        productLV.setHasFixedSize(true);
-                        productLayoutManager = new LinearLayoutManager(UserChatActivity.this);
-                        productsAdapter = new ChatAdapter(itemListArray, UserChatActivity.this);
-                        productLV.setLayoutManager(productLayoutManager);
-                        productLV.setAdapter(productsAdapter);
-                    }
-                });
             }
         });
 
@@ -130,6 +111,7 @@ public class UserChatActivity extends AppCompatActivity
                         itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
                         //  }
 
+
                     }
                 }
                 productLV = findViewById(R.id.recyclerview);
@@ -138,6 +120,7 @@ public class UserChatActivity extends AppCompatActivity
                 productsAdapter = new ChatAdapter(itemListArray, UserChatActivity.this);
                 productLV.setLayoutManager(productLayoutManager);
                 productLV.setAdapter(productsAdapter);
+                productLV.scrollToPosition(itemListArray.size()-1);
             }
         });
 
@@ -182,8 +165,13 @@ FirebaseAuth auth = FirebaseAuth.getInstance();
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_cart) {
+            Intent i = new Intent(this,CartActivity.class);
+            startActivity(i);
+        }
+        if (id == R.id.action_chat) {
+            Intent i = new Intent(this,UserChatActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);
@@ -195,6 +183,42 @@ FirebaseAuth auth = FirebaseAuth.getInstance();
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        if (id == R.id.home) {
+            // Handle the home action
+            Intent in=new Intent(this,Home.class);
+            startActivity(in);}
+        else if (id == R.id.electronics) {
+            Intent in=new Intent(this,ElectronicsActivity.class);
+            startActivity(in);}
+        else if (id == R.id.clothing) {
+            // Handle the accessories action
+            Intent in=new Intent(this,ClothingActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.accessories) {
+            // Handle the accessories action
+            Intent in=new Intent(this,AccessoriesActivity.class);
+            startActivity(in);
+        }
+        else if (id == R.id.footwear) {
+            // Handle the accessories action
+            Intent in=new Intent(this,Footwear.class);
+            startActivity(in);
+        }
+        else if (id == R.id.logout) {
+            // Handle the accessories action
+            Intent in=new Intent(this,MainActivity.class);
+            startActivity(in);
+        }
+        else if(id==R.id.orders){
+            Intent in=new Intent(this,Orders_Product_List.class);
+            startActivity(in);
+        }
+        else if (id == R.id.settings) {
+            // Handle the accessories action
+            Intent in = new Intent(this, Settings.class);
+            startActivity(in);
+        }
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

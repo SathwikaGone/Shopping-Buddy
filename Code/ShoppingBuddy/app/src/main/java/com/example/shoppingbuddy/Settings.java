@@ -79,7 +79,7 @@ FirebaseAuth auth = FirebaseAuth.getInstance();
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.settings, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -91,8 +91,13 @@ FirebaseAuth auth = FirebaseAuth.getInstance();
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_cart) {
+            Intent i = new Intent(this,CartActivity.class);
+            startActivity(i);
+        }
+        if (id == R.id.action_chat) {
+            Intent i = new Intent(this,UserChatActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

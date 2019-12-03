@@ -125,6 +125,10 @@ public class AdminHistoryDProdActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        if (id == R.id.action_settings) {
+            Intent in=new Intent(this,AdminSettingActivity.class);
+            startActivity(in);
+        }
 
         //noinspection SimplifiableIfStatement
 
@@ -163,6 +167,9 @@ public class AdminHistoryDProdActivity extends AppCompatActivity
         }
         else if (id==R.id.Inventory){
             Intent in=new Intent(this,AdminInventory.class);
+            startActivity(in);
+        }else if (id==R.id.Home){
+            Intent in=new Intent(this,AdminHomeActivity.class);
             startActivity(in);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

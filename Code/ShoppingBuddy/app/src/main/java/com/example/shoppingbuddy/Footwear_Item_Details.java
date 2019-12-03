@@ -1,5 +1,7 @@
 package com.example.shoppingbuddy;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,13 +20,16 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -66,8 +71,10 @@ public class Footwear_Item_Details extends AppCompatActivity
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     private CollectionReference itemCollection,ratingCollection, ordersCollection, productCollection;
-    private float r;
+    private double r;
     private RatingBar rating1;
+    private int check=0,  count=0;
+    private double avg=0.0, sum=0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,37 +143,54 @@ public class Footwear_Item_Details extends AppCompatActivity
             @Override
             public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
                 r=rating;
-                ratingCollection.orderBy("user", Query.Direction.DESCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                ratingCollection.orderBy("user",Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            int i = 0;
-                            for (QueryDocumentSnapshot doc1 : task.getResult()) {
-                                Log.d("rate","item: "+doc1.getString("item")+"itemid: "+itemid);
-                                if(doc1.getString("user").equals(user.getEmail())) {
-                                    if (doc1.getString("item").equals(itemid)) {
-                                        Toast.makeText(Footwear_Item_Details.this, "you already rated this item", Toast.LENGTH_SHORT).show();
-
-                                    } else{
-                                        Map<String, Object> addproduct = new HashMap<>();
-                                        addproduct.put("item", itemid);
-                                        addproduct.put("rating", r);
-                                        addproduct.put("user", user.getEmail());
-                                        ratingCollection.document().set(addproduct);
-                                        Toast.makeText(Footwear_Item_Details.this, "rating added to the list", Toast.LENGTH_SHORT).show();
-
-                                    }
-                                }
-
+                        for (QueryDocumentSnapshot doc : task.getResult()) {
+                            if (doc.getString("user").equals(user.getEmail()) && doc.getString("item").equals(itemid)) {
+                                check=1;
                             }
-                            averageRating.setText("Average Rating: 2.5");
+                        }
+                        if(check==1){
+                            AlertDialog.Builder builder = new AlertDialog.Builder(Footwear_Item_Details.this);
+                            builder.setMessage("You have already rated this item").setPositiveButton("OK", new DialogInterface.OnClickListener(){
+                                @Override
+                                public void onClick(DialogInterface dialog, int which){
+                                    Intent j = new Intent(Footwear_Item_Details.this, Home.class);
+                                    j.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                    startActivity(j);
+
+                                }
+                            }).show();
+                        }
+                        else{
+                            Log.d("rate","inside rating onclick");
+                            Map<String, Object> addproduct = new HashMap<>();
+                            addproduct.put("item", itemid);
+                            addproduct.put("rating", r);
+                            addproduct.put("user", user.getEmail());
+                            ratingCollection.document().set(addproduct);
+                            Log.d("rate","inside rating posted");
+                            Toast.makeText(Footwear_Item_Details.this, "Rating added to the list", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
             }
         });
+        ratingCollection.orderBy("user",Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
+                    if (doc.getString("item").equals(itemid)) {
+                        sum=sum+doc.getDouble("rating");
+                        count=count+1;
+                    }
+                }
+                avg=sum/count;
+                averageRating.setText("Average rating: "+String.format("%.2f",avg));
+            }
+        });
 
-        //
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
