@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 repwd.setError("Re-Password should not be empty");
                 // Toast.makeText(this, "Re-Password should not be empty", Toast.LENGTH_LONG).show();
 
-            } else if (pw.length() < 8) {
+            } else if (pw.length() < 6) {
                 password.setError("Password should have a minimum length of 8 characters");
                 // Toast.makeText(this, "Password should have a minimum length of 8 characters", Toast.LENGTH_LONG).show();
 

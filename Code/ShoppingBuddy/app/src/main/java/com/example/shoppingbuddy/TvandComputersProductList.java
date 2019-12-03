@@ -135,6 +135,10 @@ public class TvandComputersProductList extends AppCompatActivity
             Intent i = new Intent(TvandComputersProductList.this,CartActivity.class);
             startActivity(i);
         }
+        if (id == R.id.action_chat) {
+            Intent i = new Intent(this,UserChatActivity.class);
+            startActivity(i);
+        }
 
         return super.onOptionsItemSelected(item);
     }

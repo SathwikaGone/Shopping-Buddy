@@ -150,7 +150,11 @@ private TextView count;
         else if (id==R.id.Inventory){
             Intent in=new Intent(AdminHomeActivity.this,AdminInventory.class);
             startActivity(in);
+        } else if (id==R.id.Home){
+            Intent in=new Intent(AdminHomeActivity.this,AdminHomeActivity.class);
+            startActivity(in);
         }
+
 
 //        if (id == R.id.nav_home) {
 //            // Handle the camera action

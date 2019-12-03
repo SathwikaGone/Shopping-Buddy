@@ -204,8 +204,13 @@ NavigationView navigationView = findViewById(R.id.nav_view);
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        if (id == R.id.action_cart) {
+            Intent i = new Intent(this,CartActivity.class);
+            startActivity(i);
+        }
+        if (id == R.id.action_chat) {
+            Intent i = new Intent(this,UserChatActivity.class);
+            startActivity(i);
         }
 
         return super.onOptionsItemSelected(item);

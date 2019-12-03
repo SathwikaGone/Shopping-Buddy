@@ -3,10 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-
+    <item
+        android:id="@+id/Home"
+        android:title="Home" />
         <item
             android:id="@+id/aHistory"
             android:title="Admin History">
+
             <menu>
                 <item
                     android:id="@+id/addedprod"

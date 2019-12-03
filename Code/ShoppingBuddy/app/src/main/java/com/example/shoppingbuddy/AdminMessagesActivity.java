@@ -15,12 +15,15 @@ import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -87,54 +90,29 @@ public class AdminMessagesActivity extends AppCompatActivity
                 chatCollection.document().set(messages);
                 // Toast.makeText(UserChatActivity.this, "Message sent", Toast.LENGTH_SHORT).show();
                 message.setText("");
-                final ArrayList<Container> itemListArray = new ArrayList<>();
 
-                chatCollection.orderBy("Date", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            int i = 0;
-                            for (QueryDocumentSnapshot doc : task.getResult()) {
-
-                                if ((doc.getString("From").equals("shoppingbuddyseven@gmail.com") && doc.getString("To").equals(remail)) || (doc.getString("To").equals("shoppingbuddyseven@gmail.com") && doc.getString("From").equals(remail))) {
-                                    itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
-                                    i++;
-                                }
-                            }
-
-                            productLV = findViewById(R.id.recyclerview);
-                            productLV.setHasFixedSize(true);
-                            productLayoutManager = new LinearLayoutManager(AdminMessagesActivity.this);
-                            productsAdapter = new ChatAdapter(itemListArray, AdminMessagesActivity.this);
-                            productLV.setLayoutManager(productLayoutManager);
-                            productLV.setAdapter(productsAdapter);
-                        }
-                    }
-                });
             }
         });
         final ArrayList<Container> itemListArray = new ArrayList<>();
 
-        chatCollection.orderBy("Date", Query.Direction.ASCENDING).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        chatCollection.orderBy("Date",Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    int i = 0;
-                    for (QueryDocumentSnapshot doc : task.getResult()) {
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
 
-                        if ((doc.getString("From").equals("shoppingbuddyseven@gmail.com") && doc.getString("To").equals(remail)) || (doc.getString("To").equals("shoppingbuddyseven@gmail.com") && doc.getString("From").equals(remail))) {
-                            itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
-                            i++;
-                        }
+                    if ((doc.getString("From").equals("shoppingbuddyseven@gmail.com") && doc.getString("To").equals(remail)) || (doc.getString("To").equals("shoppingbuddyseven@gmail.com") && doc.getString("From").equals(remail))) {
+                        itemListArray.add(new Container(doc.getId(),doc.getString("Message"), doc.getString("From"),doc.getString("To")));
                     }
-
-                    productLV = findViewById(R.id.recyclerview);
-                    productLV.setHasFixedSize(true);
-                    productLayoutManager = new LinearLayoutManager(AdminMessagesActivity.this);
-                    productsAdapter = new ChatAdapter(itemListArray, AdminMessagesActivity.this);
-                    productLV.setLayoutManager(productLayoutManager);
-                    productLV.setAdapter(productsAdapter);
                 }
+
+                productLV = findViewById(R.id.recyclerview);
+                productLV.setHasFixedSize(true);
+                productLayoutManager = new LinearLayoutManager(AdminMessagesActivity.this);
+                productsAdapter = new ChatAdapter(itemListArray, AdminMessagesActivity.this);
+                productLV.setLayoutManager(productLayoutManager);
+                productLV.setAdapter(productsAdapter);
+                productLV.scrollToPosition(itemListArray.size()-1);
+
             }
         });
 
@@ -162,7 +140,7 @@ public class AdminMessagesActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.home, menu);
+        getMenuInflater().inflate(R.menu.admin_home, menu);
         return true;
     }
 
@@ -175,7 +153,8 @@ public class AdminMessagesActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Intent in=new Intent(this,AdminSettingActivity.class);
+            startActivity(in);
         }
 
         return super.onOptionsItemSelected(item);

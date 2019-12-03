@@ -31,11 +31,11 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AdminChat"
-            android:label="@string/title_activity_admin_chat"
+            android:label="chat"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".UserChatActivity"
-            android:label="@string/title_activity_user_chat"
+            android:label="Chat"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".AdminHistoryDPromoActivity"
