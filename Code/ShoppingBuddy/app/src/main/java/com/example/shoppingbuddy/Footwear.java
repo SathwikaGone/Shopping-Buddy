@@ -3,9 +3,6 @@ package com.example.shoppingbuddy;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
@@ -99,7 +96,7 @@ public class Footwear extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_cart) {
-            Intent i = new Intent(Footwear.this,CartActivity.class);
+            Intent i = new Intent(Footwear.this, CartActivity.class);
             startActivity(i);
         }
         if (id == R.id.action_chat) {
@@ -125,12 +122,12 @@ public class Footwear extends AppCompatActivity
             startActivity(in);}
         else if (id == R.id.clothing) {
             // Handle the accessories action
-            Intent in=new Intent(this,ClothingActivity.class);
+            Intent in=new Intent(this, ClothingActivity.class);
             startActivity(in);
         }
         else if (id == R.id.accessories) {
             // Handle the accessories action
-            Intent in=new Intent(this,AccessoriesActivity.class);
+            Intent in=new Intent(this, AccessoriesActivity.class);
             startActivity(in);
         }
         else if (id == R.id.footwear) {

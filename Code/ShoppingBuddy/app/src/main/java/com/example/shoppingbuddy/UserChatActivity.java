@@ -3,14 +3,8 @@ package com.example.shoppingbuddy;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.view.View;
 
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,11 +16,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,10 +24,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -47,7 +35,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserChatActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+         {
 
     private EditText message;
     private ImageButton sendmsg;
@@ -104,6 +92,7 @@ public class UserChatActivity extends AppCompatActivity
         chatCollection.orderBy("Date",Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                final ArrayList<Container> itemListArray = new ArrayList<>();
                 for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
 
                     if (doc.getString("From").equals(email) || doc.getString("To").equals(email)) {
@@ -125,30 +114,30 @@ public class UserChatActivity extends AppCompatActivity
         });
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser();
-        View headerView = navigationView.getHeaderView(0);
-        TextView navUsername = (TextView) headerView.findViewById(R.id.textView);
-        navUsername.setText(user.getEmail());
-        navigationView.setNavigationItemSelectedListener(this);
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
+//
+//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//FirebaseAuth auth = FirebaseAuth.getInstance();
+//        FirebaseUser user = auth.getCurrentUser();
+//        View headerView = navigationView.getHeaderView(0);
+//        TextView navUsername = (TextView) headerView.findViewById(R.id.textView);
+//        navUsername.setText(user.getEmail());
+//        navigationView.setNavigationItemSelectedListener(this);
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -166,7 +155,7 @@ FirebaseAuth auth = FirebaseAuth.getInstance();
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_cart) {
-            Intent i = new Intent(this,CartActivity.class);
+            Intent i = new Intent(this, CartActivity.class);
             startActivity(i);
         }
         if (id == R.id.action_chat) {
@@ -177,52 +166,52 @@ FirebaseAuth auth = FirebaseAuth.getInstance();
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.home) {
-            // Handle the home action
-            Intent in=new Intent(this,Home.class);
-            startActivity(in);}
-        else if (id == R.id.electronics) {
-            Intent in=new Intent(this,ElectronicsActivity.class);
-            startActivity(in);}
-        else if (id == R.id.clothing) {
-            // Handle the accessories action
-            Intent in=new Intent(this,ClothingActivity.class);
-            startActivity(in);
-        }
-        else if (id == R.id.accessories) {
-            // Handle the accessories action
-            Intent in=new Intent(this,AccessoriesActivity.class);
-            startActivity(in);
-        }
-        else if (id == R.id.footwear) {
-            // Handle the accessories action
-            Intent in=new Intent(this,Footwear.class);
-            startActivity(in);
-        }
-        else if (id == R.id.logout) {
-            // Handle the accessories action
-            Intent in=new Intent(this,MainActivity.class);
-            startActivity(in);
-        }
-        else if(id==R.id.orders){
-            Intent in=new Intent(this,Orders_Product_List.class);
-            startActivity(in);
-        }
-        else if (id == R.id.settings) {
-            // Handle the accessories action
-            Intent in = new Intent(this, Settings.class);
-            startActivity(in);
-        }
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
+   // @SuppressWarnings("StatementWithEmptyBody")
+//    @Override
+//    public boolean onNavigationItemSelected(MenuItem item) {
+//        // Handle navigation view item clicks here.
+//        int id = item.getItemId();
+//
+//        if (id == R.id.home) {
+//            // Handle the home action
+//            Intent in=new Intent(this,Home.class);
+//            startActivity(in);}
+//        else if (id == R.id.electronics) {
+//            Intent in=new Intent(this,ElectronicsActivity.class);
+//            startActivity(in);}
+//        else if (id == R.id.clothing) {
+//            // Handle the accessories action
+//            Intent in=new Intent(this,ClothingActivity.class);
+//            startActivity(in);
+//        }
+//        else if (id == R.id.accessories) {
+//            // Handle the accessories action
+//            Intent in=new Intent(this,AccessoriesActivity.class);
+//            startActivity(in);
+//        }
+//        else if (id == R.id.footwear) {
+//            // Handle the accessories action
+//            Intent in=new Intent(this,Footwear.class);
+//            startActivity(in);
+//        }
+//        else if (id == R.id.logout) {
+//            // Handle the accessories action
+//            Intent in=new Intent(this,MainActivity.class);
+//            startActivity(in);
+//        }
+//        else if(id==R.id.orders){
+//            Intent in=new Intent(this,Orders_Product_List.class);
+//            startActivity(in);
+//        }
+//        else if (id == R.id.settings) {
+//            // Handle the accessories action
+//            Intent in = new Intent(this, Settings.class);
+//            startActivity(in);
+//        }
+//
+//
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawer.closeDrawer(GravityCompat.START);
+//        return true;
+//    }
 }

@@ -1,11 +1,7 @@
 package com.example.shoppingbuddy;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.view.View;
 
@@ -26,8 +22,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import java.util.HashMap;
@@ -128,7 +122,7 @@ public class AdminPromoActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent in=new Intent(this,AdminSettingActivity.class);
+            Intent in=new Intent(this, AdminSettingActivity.class);
             startActivity(in);
         }
 
@@ -141,35 +135,35 @@ public class AdminPromoActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if(id==R.id.History){
-            Intent in=new Intent(this,UserHistoryActivity.class);
+            Intent in=new Intent(this, UserHistoryActivity.class);
             startActivity(in);
         }
         else if (id == R.id.Logout) {
             // Handle the accessories action
-            Intent in=new Intent(this,MainActivity.class);
+            Intent in=new Intent(this, MainActivity.class);
             startActivity(in);
         }
         else if(id==R.id.addedprod){
-            Intent in=new Intent(this,AdminHistoryAprodActivity.class);
+            Intent in=new Intent(this, AdminHistoryAprodActivity.class);
             startActivity(in);
         }
         else if(id==R.id.deletedprod){
-            Intent in=new Intent(this,AdminHistoryDProdActivity.class);
+            Intent in=new Intent(this, AdminHistoryDProdActivity.class);
             startActivity(in);
         }
         else if (id==R.id.addedpromo){
-            Intent in=new Intent(this,AdminHistoryAPromoActivity.class);
+            Intent in=new Intent(this, AdminHistoryAPromoActivity.class);
             startActivity(in);
         }
         else if (id==R.id.deletedpromo){
-            Intent in=new Intent(this,AdminHistoryDPromoActivity.class);
+            Intent in=new Intent(this, AdminHistoryDPromoActivity.class);
             startActivity(in);
         }
         else if (id==R.id.Inventory){
-            Intent in=new Intent(this,AdminInventory.class);
+            Intent in=new Intent(this, AdminInventory.class);
             startActivity(in);
         }else if (id==R.id.Home){
-            Intent in=new Intent(this,AdminHomeActivity.class);
+            Intent in=new Intent(this, AdminHomeActivity.class);
             startActivity(in);
         }
 

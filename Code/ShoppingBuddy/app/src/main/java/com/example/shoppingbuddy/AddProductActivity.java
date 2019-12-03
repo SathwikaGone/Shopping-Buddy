@@ -5,17 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
-import com.google.android.gms.auth.api.signin.internal.Storage;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import android.os.storage.StorageManager;
 import android.util.Log;
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.Timestamp;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -42,7 +37,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -130,7 +124,7 @@ public class AddProductActivity extends AppCompatActivity
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(AddProductActivity.this,AdminHomeActivity.class);
+                Intent in=new Intent(AddProductActivity.this, AdminHomeActivity.class);
                 startActivity(in);
             }
         });
@@ -244,7 +238,7 @@ public class AddProductActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent in=new Intent(this,AdminSettingActivity.class);
+            Intent in=new Intent(this, AdminSettingActivity.class);
             startActivity(in);
         }
 
@@ -257,32 +251,32 @@ public class AddProductActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if(id==R.id.History){
-            Intent in=new Intent(this,UserHistoryActivity.class);
+            Intent in=new Intent(this, UserHistoryActivity.class);
             startActivity(in);
         }
         else if (id == R.id.Logout) {
             // Handle the accessories action
-            Intent in=new Intent(this,MainActivity.class);
+            Intent in=new Intent(this, MainActivity.class);
             startActivity(in);
         }
         else if(id==R.id.addedprod){
-            Intent in=new Intent(this,AdminHistoryAprodActivity.class);
+            Intent in=new Intent(this, AdminHistoryAprodActivity.class);
             startActivity(in);
         }
         else if(id==R.id.deletedprod){
-            Intent in=new Intent(this,AdminHistoryDProdActivity.class);
+            Intent in=new Intent(this, AdminHistoryDProdActivity.class);
             startActivity(in);
         }
         else if (id==R.id.addedpromo){
-            Intent in=new Intent(this,AdminHistoryAPromoActivity.class);
+            Intent in=new Intent(this, AdminHistoryAPromoActivity.class);
             startActivity(in);
         }
         else if (id==R.id.deletedpromo){
-            Intent in=new Intent(this,AdminHistoryDPromoActivity.class);
+            Intent in=new Intent(this, AdminHistoryDPromoActivity.class);
             startActivity(in);
         }
         else if (id==R.id.Inventory){
-            Intent in=new Intent(this,AdminInventory.class);
+            Intent in=new Intent(this, AdminInventory.class);
             startActivity(in);
         } else if (id==R.id.Home){
             Intent in=new Intent(this,AdminHomeActivity.class);

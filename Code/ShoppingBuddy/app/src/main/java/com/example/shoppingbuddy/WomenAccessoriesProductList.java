@@ -129,7 +129,7 @@ public class WomenAccessoriesProductList extends AppCompatActivity
 
             //noinspection SimplifiableIfStatement
             if (id == R.id.action_cart) {
-                Intent i = new Intent(WomenAccessoriesProductList.this,CartActivity.class);
+                Intent i = new Intent(WomenAccessoriesProductList.this, CartActivity.class);
                 startActivity(i);
             }
             if (id == R.id.action_chat) {
@@ -154,12 +154,12 @@ public class WomenAccessoriesProductList extends AppCompatActivity
                 startActivity(in);}
             else if (id == R.id.clothing) {
                 // Handle the accessories action
-                Intent in=new Intent(this,ClothingActivity.class);
+                Intent in=new Intent(this, ClothingActivity.class);
                 startActivity(in);
             }
             else if (id == R.id.accessories) {
                 // Handle the accessories action
-                Intent in=new Intent(this,AccessoriesActivity.class);
+                Intent in=new Intent(this, AccessoriesActivity.class);
                 startActivity(in);
             }
             else if (id == R.id.footwear) {

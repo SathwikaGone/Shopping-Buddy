@@ -3,13 +3,9 @@ package com.example.shoppingbuddy;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.gms.common.util.Strings;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -26,14 +22,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
@@ -42,10 +36,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Random;
 
 public class ShippingAddressActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -205,7 +197,7 @@ NavigationView navigationView = findViewById(R.id.nav_view);
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_cart) {
-            Intent i = new Intent(this,CartActivity.class);
+            Intent i = new Intent(this, CartActivity.class);
             startActivity(i);
         }
         if (id == R.id.action_chat) {
@@ -236,12 +228,12 @@ NavigationView navigationView = findViewById(R.id.nav_view);
             startActivity(in);}
         else if (id == R.id.clothing) {
             // Handle the accessories action
-            Intent in=new Intent(this,ClothingActivity.class);
+            Intent in=new Intent(this, ClothingActivity.class);
             startActivity(in);
         }
         else if (id == R.id.accessories) {
             // Handle the accessories action
-            Intent in=new Intent(this,AccessoriesActivity.class);
+            Intent in=new Intent(this, AccessoriesActivity.class);
             startActivity(in);
         }
         else if (id == R.id.footwear) {

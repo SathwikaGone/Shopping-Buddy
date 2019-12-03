@@ -5,15 +5,10 @@ import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.util.Log;
-import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -34,7 +29,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -154,32 +148,32 @@ public class UserOrdersActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if(id==R.id.History){
-            Intent in=new Intent(this,UserHistoryActivity.class);
+            Intent in=new Intent(this, UserHistoryActivity.class);
             startActivity(in);
         }
         else if (id == R.id.Logout) {
             // Handle the accessories action
-            Intent in=new Intent(this,MainActivity.class);
+            Intent in=new Intent(this, MainActivity.class);
             startActivity(in);
         }
         else if(id==R.id.addedprod){
-            Intent in=new Intent(this,AdminHistoryAprodActivity.class);
+            Intent in=new Intent(this, AdminHistoryAprodActivity.class);
             startActivity(in);
         }
         else if(id==R.id.deletedprod){
-            Intent in=new Intent(this,AdminHistoryDProdActivity.class);
+            Intent in=new Intent(this, AdminHistoryDProdActivity.class);
             startActivity(in);
         }
         else if (id==R.id.addedpromo){
-            Intent in=new Intent(this,AdminHistoryAPromoActivity.class);
+            Intent in=new Intent(this, AdminHistoryAPromoActivity.class);
             startActivity(in);
         }
         else if (id==R.id.deletedpromo){
-            Intent in=new Intent(this,AdminHistoryDPromoActivity.class);
+            Intent in=new Intent(this, AdminHistoryDPromoActivity.class);
             startActivity(in);
         }
         else if (id==R.id.Inventory){
-            Intent in=new Intent(this,AdminInventory.class);
+            Intent in=new Intent(this, AdminInventory.class);
             startActivity(in);
         }
 

@@ -4,14 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -126,7 +122,7 @@ public class AdminHistoryDProdActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            Intent in=new Intent(this,AdminSettingActivity.class);
+            Intent in=new Intent(this, AdminSettingActivity.class);
             startActivity(in);
         }
 
@@ -141,16 +137,16 @@ public class AdminHistoryDProdActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if(id==R.id.History){
-            Intent in=new Intent(this,UserHistoryActivity.class);
+            Intent in=new Intent(this, UserHistoryActivity.class);
             startActivity(in);
         }
         else if (id == R.id.Logout) {
             // Handle the accessories action
-            Intent in=new Intent(this,MainActivity.class);
+            Intent in=new Intent(this, MainActivity.class);
             startActivity(in);
         }
         else if(id==R.id.addedprod){
-            Intent in=new Intent(this,AdminHistoryAprodActivity.class);
+            Intent in=new Intent(this, AdminHistoryAprodActivity.class);
             startActivity(in);
         }
         else if(id==R.id.deletedprod){
@@ -158,18 +154,18 @@ public class AdminHistoryDProdActivity extends AppCompatActivity
             startActivity(in);
         }
         else if (id==R.id.addedpromo){
-            Intent in=new Intent(this,AdminHistoryAPromoActivity.class);
+            Intent in=new Intent(this, AdminHistoryAPromoActivity.class);
             startActivity(in);
         }
         else if (id==R.id.deletedpromo){
-            Intent in=new Intent(this,AdminHistoryDPromoActivity.class);
+            Intent in=new Intent(this, AdminHistoryDPromoActivity.class);
             startActivity(in);
         }
         else if (id==R.id.Inventory){
-            Intent in=new Intent(this,AdminInventory.class);
+            Intent in=new Intent(this, AdminInventory.class);
             startActivity(in);
         }else if (id==R.id.Home){
-            Intent in=new Intent(this,AdminHomeActivity.class);
+            Intent in=new Intent(this, AdminHomeActivity.class);
             startActivity(in);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

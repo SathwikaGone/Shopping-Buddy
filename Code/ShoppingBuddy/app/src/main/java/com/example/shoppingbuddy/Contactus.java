@@ -3,9 +3,6 @@ package com.example.shoppingbuddy;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
@@ -74,7 +71,7 @@ FirebaseAuth auth = FirebaseAuth.getInstance();
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.contactus, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -93,12 +90,12 @@ FirebaseAuth auth = FirebaseAuth.getInstance();
             startActivity(in);}
         else if (id == R.id.clothing) {
             // Handle the accessories action
-            Intent in=new Intent(this,ClothingActivity.class);
+            Intent in=new Intent(this, ClothingActivity.class);
             startActivity(in);
         }
         else if (id == R.id.accessories) {
             // Handle the accessories action
-            Intent in=new Intent(this,AccessoriesActivity.class);
+            Intent in=new Intent(this, AccessoriesActivity.class);
             startActivity(in);
         }
         else if (id == R.id.footwear) {

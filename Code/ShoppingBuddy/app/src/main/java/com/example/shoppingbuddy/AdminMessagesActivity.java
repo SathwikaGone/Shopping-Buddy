@@ -3,14 +3,8 @@ package com.example.shoppingbuddy;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.view.View;
 
-import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,11 +16,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -34,10 +24,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,7 +33,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AdminMessagesActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+         {
 
     private EditText message;
     private ImageButton sendmsg;
@@ -93,11 +81,12 @@ public class AdminMessagesActivity extends AppCompatActivity
 
             }
         });
-        final ArrayList<Container> itemListArray = new ArrayList<>();
+
 
         chatCollection.orderBy("Date",Query.Direction.ASCENDING).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                final ArrayList<Container> itemListArray = new ArrayList<>();
                 for (QueryDocumentSnapshot doc : queryDocumentSnapshots) {
 
                     if ((doc.getString("From").equals("shoppingbuddyseven@gmail.com") && doc.getString("To").equals(remail)) || (doc.getString("To").equals("shoppingbuddyseven@gmail.com") && doc.getString("From").equals(remail))) {
@@ -117,25 +106,25 @@ public class AdminMessagesActivity extends AppCompatActivity
         });
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+//                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+//        drawer.addDrawerListener(toggle);
+//        toggle.syncState();
+//
+//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+//        navigationView.setNavigationItemSelectedListener(this);
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
+//    @Override
+//    public void onBackPressed() {
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        if (drawer.isDrawerOpen(GravityCompat.START)) {
+//            drawer.closeDrawer(GravityCompat.START);
+//        } else {
+//            super.onBackPressed();
+//        }
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -153,51 +142,51 @@ public class AdminMessagesActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent in=new Intent(this,AdminSettingActivity.class);
+            Intent in=new Intent(this, AdminSettingActivity.class);
             startActivity(in);
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    @SuppressWarnings("StatementWithEmptyBody")
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-        if(id==R.id.History){
-            Intent in=new Intent(this,UserHistoryActivity.class);
-            startActivity(in);
-        }
-        else if (id == R.id.Logout) {
-            // Handle the accessories action
-            Intent in=new Intent(this,MainActivity.class);
-            startActivity(in);
-        }
-        else if(id==R.id.addedprod){
-            Intent in=new Intent(this,AdminHistoryAprodActivity.class);
-            startActivity(in);
-        }
-        else if(id==R.id.deletedprod){
-            Intent in=new Intent(this,AdminHistoryDProdActivity.class);
-            startActivity(in);
-        }
-        else if (id==R.id.addedpromo){
-            Intent in=new Intent(this,AdminHistoryAPromoActivity.class);
-            startActivity(in);
-        }
-        else if (id==R.id.deletedpromo){
-            Intent in=new Intent(this,AdminHistoryDPromoActivity.class);
-            startActivity(in);
-        }
-        else if (id==R.id.Inventory){
-            Intent in=new Intent(this,AdminInventory.class);
-            startActivity(in);
-        }
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
+//    @SuppressWarnings("StatementWithEmptyBody")
+//    @Override
+//    public boolean onNavigationItemSelected(MenuItem item) {
+//        // Handle navigation view item clicks here.
+//        int id = item.getItemId();
+//        if(id==R.id.History){
+//            Intent in=new Intent(this,UserHistoryActivity.class);
+//            startActivity(in);
+//        }
+//        else if (id == R.id.Logout) {
+//            // Handle the accessories action
+//            Intent in=new Intent(this,MainActivity.class);
+//            startActivity(in);
+//        }
+//        else if(id==R.id.addedprod){
+//            Intent in=new Intent(this,AdminHistoryAprodActivity.class);
+//            startActivity(in);
+//        }
+//        else if(id==R.id.deletedprod){
+//            Intent in=new Intent(this,AdminHistoryDProdActivity.class);
+//            startActivity(in);
+//        }
+//        else if (id==R.id.addedpromo){
+//            Intent in=new Intent(this,AdminHistoryAPromoActivity.class);
+//            startActivity(in);
+//        }
+//        else if (id==R.id.deletedpromo){
+//            Intent in=new Intent(this,AdminHistoryDPromoActivity.class);
+//            startActivity(in);
+//        }
+//        else if (id==R.id.Inventory){
+//            Intent in=new Intent(this,AdminInventory.class);
+//            startActivity(in);
+//        }
+//
+//
+//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+//        drawer.closeDrawer(GravityCompat.START);
+//        return true;
+//    }
 }

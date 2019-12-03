@@ -3,9 +3,6 @@ package com.example.shoppingbuddy;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
 import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
@@ -92,11 +89,11 @@ public class AccessoriesActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_cart) {
-            Intent i = new Intent(AccessoriesActivity.this,CartActivity.class);
+            Intent i = new Intent(AccessoriesActivity.this, CartActivity.class);
             startActivity(i);
         }
         if (id == R.id.action_chat) {
-            Intent i = new Intent(this,UserChatActivity.class);
+            Intent i = new Intent(this, UserChatActivity.class);
             startActivity(i);
         }
 
@@ -112,14 +109,14 @@ public class AccessoriesActivity extends AppCompatActivity
 
         if (id == R.id.home) {
             // Handle the home action
-            Intent in=new Intent(this,Home.class);
+            Intent in=new Intent(this, Home.class);
             startActivity(in);}
          else if (id == R.id.electronics) {
-            Intent in=new Intent(this,ElectronicsActivity.class);
+            Intent in=new Intent(this, ElectronicsActivity.class);
             startActivity(in);}
         else if (id == R.id.clothing) {
             // Handle the accessories action
-            Intent in=new Intent(this,ClothingActivity.class);
+            Intent in=new Intent(this, ClothingActivity.class);
             startActivity(in);
         }
         else if (id == R.id.accessories) {
@@ -129,16 +126,16 @@ public class AccessoriesActivity extends AppCompatActivity
         }
         else if (id == R.id.footwear) {
             // Handle the accessories action
-            Intent in=new Intent(this,Footwear.class);
+            Intent in=new Intent(this, Footwear.class);
             startActivity(in);
         }
         else if (id == R.id.logout) {
             // Handle the accessories action
-            Intent in=new Intent(this,MainActivity.class);
+            Intent in=new Intent(this, MainActivity.class);
             startActivity(in);
         }
         else if(id==R.id.orders){
-            Intent in=new Intent(this,Orders_Product_List.class);
+            Intent in=new Intent(this, Orders_Product_List.class);
             startActivity(in);
         }
 

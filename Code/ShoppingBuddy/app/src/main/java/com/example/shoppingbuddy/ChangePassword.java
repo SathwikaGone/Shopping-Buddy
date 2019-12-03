@@ -5,8 +5,6 @@ import android.os.Bundle;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import android.util.Log;
 import android.view.View;
@@ -114,7 +112,7 @@ FirebaseAuth auth1 = FirebaseAuth.getInstance();
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.change_password, menu);
+        getMenuInflater().inflate(R.menu.home, menu);
         return true;
     }
 
@@ -140,29 +138,29 @@ FirebaseAuth auth1 = FirebaseAuth.getInstance();
         int id = item.getItemId();
         if (id == R.id.home) {
             // Handle the home action
-            Intent in=new Intent(this,Home.class);
+            Intent in=new Intent(this, Home.class);
             startActivity(in);}
         else if (id == R.id.electronics) {
-            Intent in=new Intent(this,ElectronicsActivity.class);
+            Intent in=new Intent(this, ElectronicsActivity.class);
             startActivity(in);}
         else if (id == R.id.clothing) {
             // Handle the accessories action
-            Intent in=new Intent(this,ClothingActivity.class);
+            Intent in=new Intent(this, ClothingActivity.class);
             startActivity(in);
         }
         else if (id == R.id.accessories) {
             // Handle the accessories action
-            Intent in=new Intent(this,AccessoriesActivity.class);
+            Intent in=new Intent(this, AccessoriesActivity.class);
             startActivity(in);
         }
         else if (id == R.id.footwear) {
             // Handle the accessories action
-            Intent in=new Intent(this,Footwear.class);
+            Intent in=new Intent(this, Footwear.class);
             startActivity(in);
         }
         else if (id == R.id.logout) {
             // Handle the accessories action
-            Intent in=new Intent(this,MainActivity.class);
+            Intent in=new Intent(this, MainActivity.class);
             startActivity(in);
         }
         else if (id == R.id.orders) {

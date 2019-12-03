@@ -7,7 +7,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import android.util.Log;
-import android.view.View;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.CollectionReference;
@@ -15,8 +14,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import androidx.annotation.NonNull;
 import androidx.core.view.GravityCompat;
@@ -29,9 +26,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.AdapterView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -119,7 +113,7 @@ public class AdminChat extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Intent in=new Intent(this,AdminSettingActivity.class);
+            Intent in=new Intent(this, AdminSettingActivity.class);
             startActivity(in);
         }
 
@@ -132,35 +126,35 @@ public class AdminChat extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
         if(id==R.id.History){
-            Intent in=new Intent(this,UserHistoryActivity.class);
+            Intent in=new Intent(this, UserHistoryActivity.class);
             startActivity(in);
         }
         else if (id == R.id.Logout) {
             // Handle the accessories action
-            Intent in=new Intent(this,MainActivity.class);
+            Intent in=new Intent(this, MainActivity.class);
             startActivity(in);
         }
         else if(id==R.id.addedprod){
-            Intent in=new Intent(this,AdminHistoryAprodActivity.class);
+            Intent in=new Intent(this, AdminHistoryAprodActivity.class);
             startActivity(in);
         }
         else if(id==R.id.deletedprod){
-            Intent in=new Intent(this,AdminHistoryDProdActivity.class);
+            Intent in=new Intent(this, AdminHistoryDProdActivity.class);
             startActivity(in);
         }
         else if (id==R.id.addedpromo){
-            Intent in=new Intent(this,AdminHistoryAPromoActivity.class);
+            Intent in=new Intent(this, AdminHistoryAPromoActivity.class);
             startActivity(in);
         }
         else if (id==R.id.deletedpromo){
-            Intent in=new Intent(this,AdminHistoryDPromoActivity.class);
+            Intent in=new Intent(this, AdminHistoryDPromoActivity.class);
             startActivity(in);
         }
         else if (id==R.id.Inventory){
-            Intent in=new Intent(this,AdminInventory.class);
+            Intent in=new Intent(this, AdminInventory.class);
             startActivity(in);
         }else if (id==R.id.Home){
-            Intent in=new Intent(this,AdminHomeActivity.class);
+            Intent in=new Intent(this, AdminHomeActivity.class);
             startActivity(in);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
@@ -30,7 +29,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
@@ -111,7 +109,7 @@ public class Home extends AppCompatActivity
         in.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ini=new Intent(Home.this,ClothingActivity.class);
+                Intent ini=new Intent(Home.this, ClothingActivity.class);
                 startActivity(ini);
             }
         });
@@ -125,7 +123,7 @@ public class Home extends AppCompatActivity
         in2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent ini=new Intent(Home.this,AccessoriesActivity.class);
+                Intent ini=new Intent(Home.this, AccessoriesActivity.class);
                 startActivity(ini);
             }
         });
@@ -194,7 +192,7 @@ public class Home extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_cart) {
-            Intent i = new Intent(Home.this,CartActivity.class);
+            Intent i = new Intent(Home.this, CartActivity.class);
             startActivity(i);
         }
         if (id == R.id.action_chat) {
