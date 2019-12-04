@@ -126,6 +126,14 @@ FirebaseAuth auth = FirebaseAuth.getInstance();
         if (id == R.id.action_settings) {
             return true;
         }
+        if (id == R.id.action_cart) {
+            Intent i = new Intent(this, CartActivity.class);
+            startActivity(i);
+        }
+        if (id == R.id.action_chat) {
+            Intent i = new Intent(this,UserChatActivity.class);
+            startActivity(i);
+        }
 
         return super.onOptionsItemSelected(item);
     }
